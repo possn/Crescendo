@@ -1,0 +1,67 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  transition: opacity 0.35s ease;
+}
+
+.splash__icon {
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.splash__wordmark {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Fase 1: ícone entra */
+.splash--icone .splash__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Fase 2: texto entra por baixo */
+.splash--texto .splash__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+.splash--texto .splash__wordmark {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fase 3: tudo desvanece para revelar a app */
+.splash--sair {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash--sair .splash__icon,
+.splash--sair .splash__wordmark {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash__icon,
+  .splash__wordmark {
+    transition: opacity 0.2s linear;
+    transform: none !important;
+  }
+}

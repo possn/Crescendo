@@ -8,6 +8,7 @@ import { PuericulturaScreen } from "./features/puericultura/PuericulturaScreen";
 import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
+import { SplashScreen } from "./components/SplashScreen";
 import type { AppSection, Crianca, EntradaDiario, MedicaoCrescimento } from "./types";
 import {
   carregarCriancas,
@@ -40,6 +41,7 @@ const MEDICOES_EXEMPLO: MedicaoCrescimento[] = [
 
 export default function App() {
   const [pronto, setPronto] = useState(false);
+  const [splashTerminou, setSplashTerminou] = useState(false);
   const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("crescimento");
   const [criancas, setCriancas] = useState<Crianca[]>([]);
   const [criancaAtivaId, setCriancaAtivaId] = useState("");
@@ -145,6 +147,10 @@ export default function App() {
     setEntradasDiario([]);
     guardarCriancas([CRIANCA_EXEMPLO]);
     guardarMedicoes(MEDICOES_EXEMPLO);
+  }
+
+  if (!splashTerminou) {
+    return <SplashScreen onTerminar={() => setSplashTerminou(true)} />;
   }
 
   if (!pronto || !criancaAtiva) {
