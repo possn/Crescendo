@@ -28,10 +28,10 @@ do produto.
 - [x] Perfil da Criança + idade corrigida para prematuridade (AAP), aplicada automaticamente aos módulos de marcos e crescimento
 - [x] PWA instalável (manifest, ícones, service worker, funciona offline)
 - [x] Identidade visual: nome, ícone, paleta
+- [x] Diário Visual — fotos/vídeos associados a marcos, timeline por idade
 
 ## Por construir (ordem sugerida, mas discutível)
 
-- [ ] Diário Visual — fotos/vídeos associados a marcos, timeline
 - [ ] Puericultura — conselhos de sono, alimentação, segurança (0–24 meses)
 - [ ] Sinais de Alerta — linguagem revista clinicamente, sem gerar scores de risco
 - [ ] Definições — privacidade, exportar/apagar dados, notificações
@@ -55,6 +55,7 @@ Checklist mínimo, para não descobrir tarde demais:
 
 - [ ] Revisão clínica de **todo** o conteúdo de texto por outro pediatra (não só por ti) — especialmente Sinais de Alerta
 - [ ] Substituir a fonte de dados LMS (atualmente via `pygrowup`) pelos ficheiros oficiais da OMS descarregados diretamente
+- [ ] Diário Visual guarda fotos/vídeos em memória (base64, perdem-se ao fechar a app) — precisa de armazenamento real (local no dispositivo ou backend) antes de uso a sério
 - [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica)
 - [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio
 - [ ] Aconselhamento jurídico sobre termos de uso e disclaimers

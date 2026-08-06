@@ -3,8 +3,9 @@ import { Sidebar } from "./components/Sidebar";
 import { GrowthCurvesScreen } from "./features/growth/GrowthCurvesScreen";
 import { MilestonesScreen } from "./features/milestones/MilestonesScreen";
 import { ProfileScreen } from "./features/profile/ProfileScreen";
+import { DiaryScreen } from "./features/diary/DiaryScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
-import type { AppSection, Crianca, MedicaoCrescimento } from "./types";
+import type { AppSection, Crianca, EntradaDiario, MedicaoCrescimento } from "./types";
 import "./App.css";
 
 // Dados de exemplo (sintéticos) só para o protótipo poder ser testado
@@ -54,6 +55,21 @@ export default function App() {
     setCriancas((prev) => prev.map((x) => (x.id === c.id ? c : x)));
   }
 
+  const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
+
+  function adicionarEntradaDiario(e: EntradaDiario) {
+    setEntradasDiario((prev) => [...prev, e]);
+  }
+  function removerEntradaDiario(id: string) {
+    setEntradasDiario((prev) => prev.filter((e) => e.id !== id));
+  }
+  function atualizarLegendaDiario(id: string, legenda: string) {
+    setEntradasDiario((prev) => prev.map((e) => (e.id === id ? { ...e, legenda } : e)));
+  }
+  function associarMarcoDiario(id: string, marcoId: string | undefined) {
+    setEntradasDiario((prev) => prev.map((e) => (e.id === id ? { ...e, marcoId } : e)));
+  }
+
   return (
     <div className="app-shell">
       <Sidebar
@@ -85,9 +101,13 @@ export default function App() {
           />
         )}
         {seccaoAtiva === "diario" && (
-          <EmConstrucao
-            titulo="Diário Visual"
-            descricao="Fotos e vídeos organizados por idade, associáveis a marcos específicos."
+          <DiaryScreen
+            crianca={criancaAtiva}
+            entradas={entradasDiario}
+            onAdicionar={adicionarEntradaDiario}
+            onRemover={removerEntradaDiario}
+            onAtualizarLegenda={atualizarLegendaDiario}
+            onAssociarMarco={associarMarcoDiario}
           />
         )}
         {seccaoAtiva === "puericultura" && (

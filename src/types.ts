@@ -89,3 +89,15 @@ export interface RegistoMarco {
   marcoId: string;
   alcancadoEm?: string; // ISO date, opcional
 }
+
+// --- Diário Visual ------------------------------------------------------
+
+export interface EntradaDiario {
+  id: string;
+  criancaId: string;
+  data: string; // ISO date
+  tipo: "foto" | "video";
+  dataUrl: string; // base64 — protótipo local-first, sem backend
+  legenda?: string;
+  marcoId?: string; // ligação opcional a um marco do Módulo 3
+}

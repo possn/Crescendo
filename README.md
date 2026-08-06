@@ -31,8 +31,11 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
   a partir dos **dados oficiais LMS da WHO Child Growth Standards (2006)**,
   formulário de registo de medições, e leitura de percentil/z-score em tempo
   real.
-- 🚧 Restantes secções (Diário Visual, Puericultura, Sinais de Alerta,
-  Perfil, Definições): placeholders "em construção" — módulos seguintes.
+- ✅ **Diário Visual**: fotos e vídeos (captura direta da câmara em telemóvel,
+  ou galeria), organizados por idade em meses, com legenda opcional e
+  associação opcional a um marco de desenvolvimento específico do Módulo 3.
+- 🚧 Restantes secções (Puericultura, Sinais de Alerta, Definições):
+  placeholders "em construção" — módulos seguintes.
 
 ## Testar a instalação como PWA
 
