@@ -1,0 +1,115 @@
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  height: 100%;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 14px;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 22px;
+}
+
+.sidebar__brand-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: linear-gradient(
+    155deg,
+    var(--accent) 0%,
+    var(--accent-strong) 100%
+  );
+  flex-shrink: 0;
+}
+
+.sidebar__brand-name {
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.sidebar__eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0 10px 6px;
+}
+
+.sidebar__child-switch {
+  padding-bottom: 18px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar__child-switch select {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-sunken);
+  font-size: 14px;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sidebar__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 9px 10px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.sidebar__item:hover {
+  background: var(--surface-sunken);
+}
+
+.sidebar__item--ativo {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.sidebar__item--secundario {
+  color: var(--ink-muted);
+  font-size: 13.5px;
+}
+
+@media (max-width: 860px) {
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+  }
+}

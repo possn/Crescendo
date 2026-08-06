@@ -1,0 +1,139 @@
+.growth-screen {
+  max-width: 980px;
+}
+
+.growth-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+
+.growth-screen__subtitle {
+  color: var(--ink-muted);
+  margin: 0 0 22px;
+  max-width: 640px;
+}
+
+.growth-screen__tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.growth-screen__tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.growth-screen__tab--ativo {
+  background: var(--surface);
+  font-weight: 600;
+}
+
+.growth-screen__layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .growth-screen__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.growth-screen__chart-card,
+.growth-screen__form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.growth-screen__readout {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.growth-screen__readout-value {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.growth-screen__readout-detail {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.growth-screen__empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+.growth-screen__disclaimer {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin: 14px 0 0;
+  line-height: 1.5;
+}
+
+.growth-screen__form h2 {
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+
+.growth-screen__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.growth-screen__field input[type="text"],
+.growth-screen__field input[type="number"],
+.growth-screen__field input[type="date"] {
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 14px;
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+
+.growth-screen__field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.growth-screen__submit {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.growth-screen__submit:hover {
+  background: var(--accent-strong);
+}

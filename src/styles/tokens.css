@@ -1,0 +1,84 @@
+/* ---------------------------------------------------------------------
+   Design tokens — App de Desenvolvimento & Crescimento Infantil
+
+   Direção: minimalismo calmo tipo Apple HIG / Claude.ai. Paleta neutra
+   quente (não o cream #F4F1EA genérico), um único acento de confiança
+   (verde-sálvia profundo — nem clínico-frio nem infantil), e cor usada
+   apenas para codificar significado (domínios de desenvolvimento,
+   indicadores de crescimento), nunca como decoração.
+   --------------------------------------------------------------------- */
+
+:root {
+  /* Superfícies */
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface-sunken: #f2f1ee;
+  --border: #e6e4df;
+  --border-strong: #d4d2cb;
+
+  /* Texto */
+  --ink: #1d1d1f;
+  --ink-muted: #6e6e73;
+  --ink-faint: #a1a1a6;
+
+  /* Acento de marca */
+  --accent: #2f6f62;
+  --accent-strong: #1f4d43;
+  --accent-soft: #e4efec;
+
+  /* Indicadores de crescimento (cor fixa por indicador, repetida em toda a app) */
+  --ind-peso: #2f6f62;
+  --ind-comprimento: #8a6d3b;
+  --ind-perimetro: #6b5b95;
+
+  /* Estado */
+  --warn: #a15c2f;
+  --warn-soft: #f5e9df;
+
+  /* Tipografia */
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter",
+    "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Menlo", monospace;
+
+  /* Espaçamento */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

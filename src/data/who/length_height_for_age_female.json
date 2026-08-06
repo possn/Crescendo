@@ -1,0 +1,443 @@
+{
+  "indicador": "length_height_for_age",
+  "sexo": "F",
+  "unidade": "cm",
+  "fonte": "WHO Child Growth Standards (2006) \u2014 Multicentre Growth Reference Study",
+  "nota": "Ate aos 24 meses usa-se comprimento (deitado); dos 24 aos 60 meses usa-se altura (em pe). A OMS fornece series distintas para os 24 meses porque a medicao em pe da, em media, ~0.7cm menos que deitado.",
+  "pontos": [
+    {
+      "idadeMeses": 0.0,
+      "L": 1.0,
+      "M": 49.1477,
+      "S": 0.0379,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 1.0,
+      "L": 1.0,
+      "M": 53.6872,
+      "S": 0.0364,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 2.0,
+      "L": 1.0,
+      "M": 57.0673,
+      "S": 0.03568,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 3.0,
+      "L": 1.0,
+      "M": 59.8029,
+      "S": 0.0352,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 4.0,
+      "L": 1.0,
+      "M": 62.0899,
+      "S": 0.03486,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 5.0,
+      "L": 1.0,
+      "M": 64.0301,
+      "S": 0.03463,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 6.0,
+      "L": 1.0,
+      "M": 65.7311,
+      "S": 0.03448,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 7.0,
+      "L": 1.0,
+      "M": 67.2873,
+      "S": 0.03441,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 8.0,
+      "L": 1.0,
+      "M": 68.7498,
+      "S": 0.0344,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 9.0,
+      "L": 1.0,
+      "M": 70.1435,
+      "S": 0.03444,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 10.0,
+      "L": 1.0,
+      "M": 71.4818,
+      "S": 0.03452,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 11.0,
+      "L": 1.0,
+      "M": 72.771,
+      "S": 0.03464,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 12.0,
+      "L": 1.0,
+      "M": 74.015,
+      "S": 0.03479,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 13.0,
+      "L": 1.0,
+      "M": 75.2176,
+      "S": 0.03496,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 14.0,
+      "L": 1.0,
+      "M": 76.3817,
+      "S": 0.03514,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 15.0,
+      "L": 1.0,
+      "M": 77.5099,
+      "S": 0.03534,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 16.0,
+      "L": 1.0,
+      "M": 78.6055,
+      "S": 0.03555,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 17.0,
+      "L": 1.0,
+      "M": 79.671,
+      "S": 0.03576,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 18.0,
+      "L": 1.0,
+      "M": 80.7079,
+      "S": 0.03598,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 19.0,
+      "L": 1.0,
+      "M": 81.7182,
+      "S": 0.0362,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 20.0,
+      "L": 1.0,
+      "M": 82.7036,
+      "S": 0.03643,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 21.0,
+      "L": 1.0,
+      "M": 83.6654,
+      "S": 0.03666,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 22.0,
+      "L": 1.0,
+      "M": 84.604,
+      "S": 0.03688,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 23.0,
+      "L": 1.0,
+      "M": 85.5202,
+      "S": 0.03711,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 24.0,
+      "L": 1.0,
+      "M": 86.4153,
+      "S": 0.03734,
+      "tipoMedicao": "comprimento"
+    },
+    {
+      "idadeMeses": 24.0,
+      "L": 1.0,
+      "M": 85.7153,
+      "S": 0.03764,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 25.0,
+      "L": 1.0,
+      "M": 86.5904,
+      "S": 0.03786,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 26.0,
+      "L": 1.0,
+      "M": 87.4462,
+      "S": 0.03808,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 27.0,
+      "L": 1.0,
+      "M": 88.283,
+      "S": 0.0383,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 28.0,
+      "L": 1.0,
+      "M": 89.1004,
+      "S": 0.03851,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 29.0,
+      "L": 1.0,
+      "M": 89.8991,
+      "S": 0.03872,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 30.0,
+      "L": 1.0,
+      "M": 90.6797,
+      "S": 0.03893,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 31.0,
+      "L": 1.0,
+      "M": 91.443,
+      "S": 0.03913,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 32.0,
+      "L": 1.0,
+      "M": 92.1906,
+      "S": 0.03933,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 33.0,
+      "L": 1.0,
+      "M": 92.9239,
+      "S": 0.03952,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 34.0,
+      "L": 1.0,
+      "M": 93.6444,
+      "S": 0.03971,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 35.0,
+      "L": 1.0,
+      "M": 94.3533,
+      "S": 0.03989,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 36.0,
+      "L": 1.0,
+      "M": 95.0515,
+      "S": 0.04006,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 37.0,
+      "L": 1.0,
+      "M": 95.7399,
+      "S": 0.04024,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 38.0,
+      "L": 1.0,
+      "M": 96.4187,
+      "S": 0.04041,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 39.0,
+      "L": 1.0,
+      "M": 97.0885,
+      "S": 0.04057,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 40.0,
+      "L": 1.0,
+      "M": 97.7493,
+      "S": 0.04073,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 41.0,
+      "L": 1.0,
+      "M": 98.4015,
+      "S": 0.04089,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 42.0,
+      "L": 1.0,
+      "M": 99.0448,
+      "S": 0.04105,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 43.0,
+      "L": 1.0,
+      "M": 99.6795,
+      "S": 0.0412,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 44.0,
+      "L": 1.0,
+      "M": 100.3058,
+      "S": 0.04135,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 45.0,
+      "L": 1.0,
+      "M": 100.9238,
+      "S": 0.0415,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 46.0,
+      "L": 1.0,
+      "M": 101.5337,
+      "S": 0.04164,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 47.0,
+      "L": 1.0,
+      "M": 102.136,
+      "S": 0.04179,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 48.0,
+      "L": 1.0,
+      "M": 102.7312,
+      "S": 0.04193,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 49.0,
+      "L": 1.0,
+      "M": 103.3197,
+      "S": 0.04206,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 50.0,
+      "L": 1.0,
+      "M": 103.9021,
+      "S": 0.0422,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 51.0,
+      "L": 1.0,
+      "M": 104.4786,
+      "S": 0.04233,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 52.0,
+      "L": 1.0,
+      "M": 105.0494,
+      "S": 0.04246,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 53.0,
+      "L": 1.0,
+      "M": 105.6148,
+      "S": 0.04259,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 54.0,
+      "L": 1.0,
+      "M": 106.1748,
+      "S": 0.04272,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 55.0,
+      "L": 1.0,
+      "M": 106.7295,
+      "S": 0.04285,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 56.0,
+      "L": 1.0,
+      "M": 107.2788,
+      "S": 0.04298,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 57.0,
+      "L": 1.0,
+      "M": 107.8227,
+      "S": 0.0431,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 58.0,
+      "L": 1.0,
+      "M": 108.3613,
+      "S": 0.04322,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 59.0,
+      "L": 1.0,
+      "M": 108.8948,
+      "S": 0.04334,
+      "tipoMedicao": "altura"
+    },
+    {
+      "idadeMeses": 60.0,
+      "L": 1.0,
+      "M": 109.4233,
+      "S": 0.04347,
+      "tipoMedicao": "altura"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+.growth-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.growth-chart__band {
+  stroke: none;
+}
+
+.growth-chart__band--outer {
+  fill: var(--accent);
+  opacity: 0.06;
+}
+
+.growth-chart__band--inner {
+  fill: var(--accent);
+  opacity: 0.12;
+}
+
+.growth-chart__gridline {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.growth-chart__axis-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  fill: var(--ink-faint);
+}
+
+.growth-chart__median-line {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+}
+
+.growth-chart__band-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--ink-faint);
+  dominant-baseline: middle;
+}
+
+.growth-chart__child-line {
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.growth-chart__child-point {
+  stroke: var(--surface);
+  stroke-width: 2;
+}
