@@ -30,6 +30,25 @@ function idadeEmMeses(dataNascimento: string, dataReferencia: string): number {
   return (d - n) / (1000 * 60 * 60 * 24 * 30.4375);
 }
 
+/**
+ * Data de nascimento "efetiva" para efeitos de posicionamento nas curvas:
+ * se a criança é prematura e ainda está dentro da janela de correção
+ * (<24 meses cronológicos), desloca-se a data de nascimento pelo número
+ * de semanas de prematuridade — assim todo o resto do módulo (gráfico,
+ * leitura de percentil) usa automaticamente a idade corrigida sem
+ * duplicar lógica.
+ */
+function dataNascimentoEfetiva(crianca: Crianca): string {
+  if (!crianca.prematura || !crianca.semanasGestacaoNoNascimento) return crianca.dataNascimento;
+  const idadeCronologicaMeses = idadeEmMeses(crianca.dataNascimento, new Date().toISOString());
+  if (idadeCronologicaMeses >= 24) return crianca.dataNascimento;
+  const semanasPrematuridade = 40 - crianca.semanasGestacaoNoNascimento;
+  if (semanasPrematuridade <= 0) return crianca.dataNascimento;
+  const d = new Date(crianca.dataNascimento);
+  d.setDate(d.getDate() + semanasPrematuridade * 7);
+  return d.toISOString().slice(0, 10);
+}
+
 interface GrowthCurvesScreenProps {
   crianca: Crianca;
   medicoes: MedicaoCrescimento[];
@@ -46,12 +65,13 @@ const ABAS: { id: Indicador; label: string; cor: string; unidade: string }[] = [
 
 export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: GrowthCurvesScreenProps) {
   const [abaAtiva, setAbaAtiva] = useState<Indicador>("weight_for_age");
+  const nascimentoEfetivo = dataNascimentoEfetiva(crianca);
 
   const [formData, setFormData] = useState(new Date().toISOString().slice(0, 10));
   const [formPeso, setFormPeso] = useState("");
   const [formComprimento, setFormComprimento] = useState("");
   const [formTipoMedicao, setFormTipoMedicao] = useState<"comprimento" | "altura">(
-    idadeEmMeses(crianca.dataNascimento, new Date().toISOString()) <= 24 ? "comprimento" : "altura"
+    idadeEmMeses(nascimentoEfetivo, new Date().toISOString()) <= 24 ? "comprimento" : "altura"
   );
   const [formPerimetro, setFormPerimetro] = useState("");
 
@@ -79,14 +99,14 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
     if (!ultimaMedicaoComValor) return null;
     const valor = extratores[abaAtiva](ultimaMedicaoComValor);
     if (valor === undefined) return null;
-    const idade = idadeEmMeses(crianca.dataNascimento, ultimaMedicaoComValor.data);
+    const idade = idadeEmMeses(nascimentoEfetivo, ultimaMedicaoComValor.data);
     return calcularZScoreEPercentil(
       valor,
       tabelaAtiva,
       idade,
       ultimaMedicaoComValor.tipoMedicaoComprimento
     );
-  }, [ultimaMedicaoComValor, abaAtiva, tabelaAtiva, crianca.dataNascimento, extratores]);
+  }, [ultimaMedicaoComValor, abaAtiva, tabelaAtiva, nascimentoEfetivo, extratores]);
 
   function submeter(e: React.FormEvent) {
     e.preventDefault();
@@ -144,6 +164,11 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
                 {leituraAtual.medianaEsperada.toFixed(1)}
                 {ABAS.find((a) => a.id === abaAtiva)?.unidade}
               </span>
+              {nascimentoEfetivo !== crianca.dataNascimento && (
+                <span className="growth-screen__corrected-badge">
+                  A usar idade corrigida (prematuridade)
+                </span>
+              )}
             </div>
           )}
 
@@ -157,7 +182,7 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
               tabela={tabelaAtiva}
               medicoes={medicoesOrdenadas}
               extrairValor={extratores[abaAtiva]}
-              dataNascimento={crianca.dataNascimento}
+              dataNascimento={nascimentoEfetivo}
               tipoMedicaoPreferido={forAVisualizacao}
               corIndicador={ABAS.find((a) => a.id === abaAtiva)!.cor}
             />

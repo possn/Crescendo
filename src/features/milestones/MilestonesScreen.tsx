@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { Crianca, DominioDesenvolvimento } from "../../types";
 import { MARCOS_CDC, IDADES_CHECKLIST_MESES } from "../../data/milestones/cdcMilestones";
 import { JANELAS_MOTORAS_OMS, NOTA_SEQUENCIA_OMS } from "../../data/milestones/whoMotorWindows";
+import { calcularIdade } from "../../lib/correctedAge";
 import { MotorWindowBar } from "./MotorWindowBar";
 import "./MilestonesScreen.css";
 
@@ -18,12 +19,6 @@ const DOMINIOS: { id: DominioDesenvolvimento; label: string; cor: string }[] = [
   { id: "motor", label: "Motor", cor: "#2f6f62" },
 ];
 
-function idadeEmMeses(dataNascimento: string): number {
-  const n = new Date(dataNascimento).getTime();
-  const hoje = Date.now();
-  return (hoje - n) / (1000 * 60 * 60 * 24 * 30.4375);
-}
-
 function idadeChecklistMaisProxima(idadeMeses: number): number {
   return IDADES_CHECKLIST_MESES.reduce((maisProxima, atual) =>
     Math.abs(atual - idadeMeses) < Math.abs(maisProxima - idadeMeses) ? atual : maisProxima
@@ -31,7 +26,13 @@ function idadeChecklistMaisProxima(idadeMeses: number): number {
 }
 
 export function MilestonesScreen({ crianca, marcosAlcancados, onAlternarMarco }: MilestonesScreenProps) {
-  const idadeAtual = idadeEmMeses(crianca.dataNascimento);
+  const resultadoIdade = calcularIdade(
+    crianca.dataNascimento,
+    new Date().toISOString(),
+    crianca.prematura,
+    crianca.semanasGestacaoNoNascimento
+  );
+  const idadeAtual = resultadoIdade.idadeCorrigidaMeses;
   const [idadeChecklist, setIdadeChecklist] = useState(idadeChecklistMaisProxima(idadeAtual));
 
   const marcosDoChecklist = useMemo(
@@ -44,9 +45,11 @@ export function MilestonesScreen({ crianca, marcosAlcancados, onAlternarMarco }:
       <header className="milestones-screen__header">
         <h1>Marcos de Desenvolvimento</h1>
         <p className="milestones-screen__subtitle">
-          {crianca.nome} tem cerca de {idadeAtual.toFixed(1)} meses. Os marcos abaixo mostram o que{" "}
-          <strong>75% ou mais</strong> das crianças fazem até uma certa idade (CDC/AAP, 2022) — não
-          uma média nem um prazo rígido. Faltar um marco isolado não é, por si só, motivo de alarme.
+          {crianca.nome} tem cerca de {idadeAtual.toFixed(1)} meses
+          {resultadoIdade.aplicaCorrecao ? " (idade corrigida para prematuridade)" : ""}. Os
+          marcos abaixo mostram o que <strong>75% ou mais</strong> das crianças fazem até uma
+          certa idade (CDC/AAP, 2022) — não uma média nem um prazo rígido. Faltar um marco
+          isolado não é, por si só, motivo de alarme.
         </p>
       </header>
 

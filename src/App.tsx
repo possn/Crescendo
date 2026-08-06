@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Sidebar } from "./components/Sidebar";
 import { GrowthCurvesScreen } from "./features/growth/GrowthCurvesScreen";
 import { MilestonesScreen } from "./features/milestones/MilestonesScreen";
+import { ProfileScreen } from "./features/profile/ProfileScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
 import type { AppSection, Crianca, MedicaoCrescimento } from "./types";
 import "./App.css";
@@ -25,7 +26,7 @@ const MEDICOES_EXEMPLO: MedicaoCrescimento[] = [
 
 export default function App() {
   const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("crescimento");
-  const [criancas] = useState<Crianca[]>([CRIANCA_EXEMPLO]);
+  const [criancas, setCriancas] = useState<Crianca[]>([CRIANCA_EXEMPLO]);
   const [criancaAtivaId, setCriancaAtivaId] = useState(CRIANCA_EXEMPLO.id);
   const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>(MEDICOES_EXEMPLO);
   const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
@@ -47,6 +48,10 @@ export default function App() {
       }
       return novo;
     });
+  }
+
+  function guardarPerfil(c: Crianca) {
+    setCriancas((prev) => prev.map((x) => (x.id === c.id ? c : x)));
   }
 
   return (
@@ -98,7 +103,7 @@ export default function App() {
           />
         )}
         {seccaoAtiva === "perfil" && (
-          <EmConstrucao titulo="Perfil da Criança" descricao="Dados, idade corrigida e gestão de múltiplos perfis." />
+          <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />
         )}
         {seccaoAtiva === "definicoes" && (
           <EmConstrucao titulo="Definições" descricao="Privacidade, exportação e eliminação de dados, notificações." />

@@ -1,0 +1,126 @@
+.profile-screen {
+  max-width: 900px;
+}
+
+.profile-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.profile-screen__subtitle {
+  color: var(--ink-muted);
+  max-width: 560px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.profile-screen__layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .profile-screen__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-screen__form,
+.profile-screen__age-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.profile-screen__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.profile-screen__field input[type="text"],
+.profile-screen__field input[type="number"],
+.profile-screen__field input[type="date"],
+.profile-screen__field select {
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 14px;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  background: var(--surface);
+}
+
+.profile-screen__field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+}
+
+.profile-screen__submit {
+  padding: 10px 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.profile-screen__submit:hover {
+  background: var(--accent-strong);
+}
+
+.profile-screen__age-card h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 16px;
+  color: var(--ink-muted);
+}
+
+.profile-screen__age-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.profile-screen__age-value--corrected {
+  color: var(--accent-strong);
+}
+
+.profile-screen__age-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+
+.profile-screen__age-note {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  line-height: 1.55;
+  margin: 0 0 10px;
+}
+
+.profile-screen__age-note--warn {
+  color: var(--warn);
+}
