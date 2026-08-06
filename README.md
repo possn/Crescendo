@@ -7,14 +7,39 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
 
 - ✅ **Módulo 1 — Navegação lateral (sidebar)**: menu persistente com seletor
   de criança, ligação a todas as secções.
+- ✅ **Módulo 3 — Marcos de Desenvolvimento**: 100 marcos reais dos
+  checklists **CDC/AAP (revisão de 2022)**, cobrindo os 8 pontos de
+  controlo dos primeiros 24 meses (2, 4, 6, 9, 12, 15, 18, 24 meses) nos 4
+  domínios oficiais (Socio-emocional, Linguagem/Comunicação, Cognitivo,
+  Motor), mais uma secção dedicada às **6 janelas de percentil P1–P99 do
+  WHO Motor Development Study (2006)** para marcos motores grossos — uma
+  visualização deliberadamente não-binária, com barra de intervalo em vez
+  de checkbox.
 - ✅ **Módulo 4 — Curvas de Crescimento**: peso, comprimento/altura e
   perímetro cefálico, com bandas de percentil (P3–P15–P50–P85–P97) calculadas
   a partir dos **dados oficiais LMS da WHO Child Growth Standards (2006)**,
   formulário de registo de medições, e leitura de percentil/z-score em tempo
   real.
-- 🚧 Restantes secções (Marcos de Desenvolvimento, Diário Visual,
-  Puericultura, Sinais de Alerta, Perfil, Definições): placeholders "em
-  construção" — módulos seguintes.
+- 🚧 Restantes secções (Diário Visual, Puericultura, Sinais de Alerta,
+  Perfil, Definições): placeholders "em construção" — módulos seguintes.
+
+## Rigor dos dados de marcos de desenvolvimento
+
+- Os 100 itens em `src/data/milestones/cdcMilestones.ts` foram extraídos
+  diretamente dos PDFs oficiais "Milestone Moments" do CDC
+  (`cdc.gov/act-early`), revisão de 2022 com a AAP (Zubler et al.,
+  *Pediatrics*, 2022) — que passou o referencial de P50 para **P75** para
+  evitar a atitude de "esperar para ver". Traduzidos e adaptados para
+  português, não gerados por aproximação.
+- As 6 janelas motoras em `src/data/milestones/whoMotorWindows.ts` vêm do
+  WHO Motor Development Study (de Onis et al., *Acta Paediatrica Suppl*
+  450, 2006) — os valores P1/P99, média e desvio-padrão de cada marco são
+  os publicados no estudo original, não estimados.
+- A UI do módulo de marcos foi desenhada deliberadamente para **nunca**
+  mostrar uma idade única como "correta" — o CDC é apresentado como
+  checklist por idade de referência (com nota que representa P75, não
+  P50), e a OMS como barra de intervalo P1–P99, nunca como ponto fixo.
+
 
 ## Rigor dos dados de crescimento
 
