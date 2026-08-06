@@ -114,8 +114,8 @@ export function Sidebar({
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
-        <span className="sidebar__brand-mark" aria-hidden />
-        <span className="sidebar__brand-name">Marcos</span>
+        <img src="/icons/icon-192.png" alt="" className="sidebar__brand-mark" />
+        <span className="sidebar__brand-name">Crescendo</span>
       </div>
 
       {criancas.length > 0 && (

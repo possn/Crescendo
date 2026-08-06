@@ -10,24 +10,24 @@
 
 :root {
   /* Superfícies */
-  --bg: #faf9f7;
-  --surface: #ffffff;
-  --surface-sunken: #f2f1ee;
-  --border: #e6e4df;
-  --border-strong: #d4d2cb;
+  --bg: #f7f2e9;
+  --surface: #fffdf9;
+  --surface-sunken: #efe7d8;
+  --border: #e6ddc8;
+  --border-strong: #d6c9ac;
 
   /* Texto */
-  --ink: #1d1d1f;
-  --ink-muted: #6e6e73;
-  --ink-faint: #a1a1a6;
+  --ink: #1c1b19;
+  --ink-muted: #6f6a5d;
+  --ink-faint: #a89e89;
 
   /* Acento de marca */
-  --accent: #2f6f62;
-  --accent-strong: #1f4d43;
-  --accent-soft: #e4efec;
+  --accent: #d86a4a;
+  --accent-strong: #b04f31;
+  --accent-soft: #f6e2d5;
 
   /* Indicadores de crescimento (cor fixa por indicador, repetida em toda a app) */
-  --ind-peso: #2f6f62;
+  --ind-peso: #d86a4a;
   --ind-comprimento: #8a6d3b;
   --ind-perimetro: #6b5b95;
 

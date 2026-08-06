@@ -17,15 +17,11 @@
 }
 
 .sidebar__brand-mark {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 7px;
-  background: linear-gradient(
-    155deg,
-    var(--accent) 0%,
-    var(--accent-strong) 100%
-  );
   flex-shrink: 0;
+  display: block;
 }
 
 .sidebar__brand-name {
