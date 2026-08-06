@@ -53,3 +53,39 @@ export type AppSection =
   | "puericultura"
   | "alertas"
   | "definicoes";
+
+// --- Marcos de Desenvolvimento ---------------------------------------
+
+export type DominioDesenvolvimento =
+  | "socio_emocional"
+  | "linguagem"
+  | "cognitivo"
+  | "motor";
+
+export interface MarcoDesenvolvimento {
+  id: string;
+  idadeReferenciaMeses: number; // idade do checklist CDC/AAP a que este marco pertence (2,4,6,9,12,15,18,24…)
+  dominio: DominioDesenvolvimento;
+  descricao: string;
+}
+
+/**
+ * Janela de percentil (P1–P99) para um marco motor grosso específico,
+ * segundo o WHO Motor Development Study (Windows of Achievement, 2006).
+ * Mais precisa do que o checklist CDC/AAP porque é uma verdadeira
+ * distribuição de percentis, não um único ponto de corte etário.
+ */
+export interface JanelaMotoraOMS {
+  id: string;
+  nome: string;
+  p1Meses: number;
+  p99Meses: number;
+  mediaMeses: number;
+  desvioPadraoMeses: number;
+}
+
+export interface RegistoMarco {
+  criancaId: string;
+  marcoId: string;
+  alcancadoEm?: string; // ISO date, opcional
+}

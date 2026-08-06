@@ -1,0 +1,103 @@
+.motor-window {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.motor-window:last-child {
+  border-bottom: none;
+}
+
+.motor-window__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.motor-window__name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.motor-window__badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.motor-window__badge--dentro_da_janela {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.motor-window__badge--ainda_nao_esperado {
+  background: var(--surface-sunken);
+  color: var(--ink-muted);
+}
+
+.motor-window__badge--fora_da_janela {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.motor-window__track {
+  position: relative;
+  height: 8px;
+  background: var(--surface-sunken);
+  border-radius: 999px;
+  margin-bottom: 4px;
+}
+
+.motor-window__range {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  opacity: 0.28;
+  border-radius: 999px;
+}
+
+.motor-window__median-tick {
+  position: absolute;
+  top: -2px;
+  width: 2px;
+  height: 12px;
+  background: var(--border-strong);
+}
+
+.motor-window__current {
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 16px;
+  border-radius: 4px;
+  transform: translateX(-50%);
+  border: 2px solid var(--surface);
+}
+
+.motor-window__current--dentro_da_janela {
+  background: var(--accent);
+}
+
+.motor-window__current--ainda_nao_esperado {
+  background: var(--ink-faint);
+}
+
+.motor-window__current--fora_da_janela {
+  background: var(--warn);
+}
+
+.motor-window__scale {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+}
+
+.motor-window__message {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin: 6px 0 0;
+}

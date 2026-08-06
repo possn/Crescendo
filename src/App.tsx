@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Sidebar } from "./components/Sidebar";
 import { GrowthCurvesScreen } from "./features/growth/GrowthCurvesScreen";
+import { MilestonesScreen } from "./features/milestones/MilestonesScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
 import type { AppSection, Crianca, MedicaoCrescimento } from "./types";
 import "./App.css";
@@ -27,12 +28,25 @@ export default function App() {
   const [criancas] = useState<Crianca[]>([CRIANCA_EXEMPLO]);
   const [criancaAtivaId, setCriancaAtivaId] = useState(CRIANCA_EXEMPLO.id);
   const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>(MEDICOES_EXEMPLO);
+  const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
 
   const criancaAtiva = criancas.find((c) => c.id === criancaAtivaId)!;
   const medicoesDaCrianca = medicoes.filter((m) => m.criancaId === criancaAtivaId);
 
   function adicionarMedicao(m: MedicaoCrescimento) {
     setMedicoes((prev) => [...prev, m]);
+  }
+
+  function alternarMarco(marcoId: string) {
+    setMarcosAlcancados((prev) => {
+      const novo = new Set(prev);
+      if (novo.has(marcoId)) {
+        novo.delete(marcoId);
+      } else {
+        novo.add(marcoId);
+      }
+      return novo;
+    });
   }
 
   return (
@@ -59,9 +73,10 @@ export default function App() {
           />
         )}
         {seccaoAtiva === "marcos" && (
-          <EmConstrucao
-            titulo="Marcos de Desenvolvimento"
-            descricao="Motor grosso, motor fino, linguagem, cognitivo e socio-emocional, com janelas de percentil CDC/AAP 2022 e WHO Windows of Achievement."
+          <MilestonesScreen
+            crianca={criancaAtiva}
+            marcosAlcancados={marcosAlcancados}
+            onAlternarMarco={alternarMarco}
           />
         )}
         {seccaoAtiva === "diario" && (
