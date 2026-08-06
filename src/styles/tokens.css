@@ -10,24 +10,24 @@
 
 :root {
   /* Superfícies */
-  --bg: #f8f1e8;
-  --surface: #fffcf6;
-  --surface-sunken: #efe6d5;
-  --border: #e3d8c2;
-  --border-strong: #d1c2a3;
+  --bg: #fef5e8;
+  --surface: #fffcf5;
+  --surface-sunken: #f2e6d1;
+  --border: #e6d6b8;
+  --border-strong: #d3bd95;
 
   /* Texto */
-  --ink: #42483f;
-  --ink-muted: #767f6d;
-  --ink-faint: #a9ac9b;
+  --ink: #3f4a38;
+  --ink-muted: #71805f;
+  --ink-faint: #a6ac93;
 
   /* Acento de marca (verde-sálvia, extraído da identidade "Crescendo") */
-  --accent: #7c8f73;
-  --accent-strong: #58684f;
-  --accent-soft: #e7ebe0;
+  --accent: #86977c;
+  --accent-strong: #5c6e54;
+  --accent-soft: #e8ecdf;
 
   /* Indicadores de crescimento (cor fixa por indicador, repetida em toda a app) */
-  --ind-peso: #d68a63;
+  --ind-peso: #f29e7f;
   --ind-comprimento: #8a6d3b;
   --ind-perimetro: #6b5b95;
 
