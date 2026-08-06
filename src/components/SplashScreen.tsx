@@ -25,7 +25,11 @@ export function SplashScreen({ onTerminar, duracaoMinimaMs = 2200 }: SplashScree
 
   return (
     <div className={`splash splash--${fase}`}>
-      <img src="/icons/icon-192.png" alt="" className="splash__icon" />
+      <img
+        src={`${import.meta.env.BASE_URL}icons/icon-192.png`}
+        alt=""
+        className="splash__icon"
+      />
       <span className="splash__wordmark">crescendo</span>
     </div>
   );

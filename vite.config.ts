@@ -4,6 +4,10 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // O site fica em possn.github.io/Crescendo/ (página de projeto, não de
+  // utilizador) — sem isto, todos os ficheiros (JS, CSS, ícones) seriam
+  // pedidos a partir da raiz e dariam 404.
+  base: "/Crescendo/",
   plugins: [
     react(),
     VitePWA({
@@ -14,14 +18,14 @@ export default defineConfig({
         "icons/apple-touch-icon.png",
       ],
       manifest: {
-        id: "/",
+        id: "/Crescendo/",
         name: "Crescendo — Desenvolvimento & Crescimento Infantil",
         short_name: "Crescendo",
         description:
           "Acompanhamento do desenvolvimento e crescimento infantil (0-5 anos), com curvas de crescimento e marcos baseados em dados oficiais da OMS e CDC/AAP.",
         lang: "pt-PT",
-        start_url: "/",
-        scope: "/",
+        start_url: "/Crescendo/",
+        scope: "/Crescendo/",
         display: "standalone",
         orientation: "portrait",
         background_color: "#fef5e8",

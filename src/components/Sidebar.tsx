@@ -114,7 +114,11 @@ export function Sidebar({
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
-        <img src="/icons/icon-192.png" alt="" className="sidebar__brand-mark" />
+        <img
+          src={`${import.meta.env.BASE_URL}icons/icon-192.png`}
+          alt=""
+          className="sidebar__brand-mark"
+        />
         <span className="sidebar__brand-name">Crescendo</span>
       </div>
 
