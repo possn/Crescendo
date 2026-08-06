@@ -34,8 +34,23 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
 - ✅ **Diário Visual**: fotos e vídeos (captura direta da câmara em telemóvel,
   ou galeria), organizados por idade em meses, com legenda opcional e
   associação opcional a um marco de desenvolvimento específico do Módulo 3.
-- 🚧 Restantes secções (Puericultura, Sinais de Alerta, Definições):
-  placeholders "em construção" — módulos seguintes.
+- ✅ **Persistência local (IndexedDB)**: todos os dados — perfis, medições,
+  marcos, fotos e vídeos — ficam guardados no próprio dispositivo, entre
+  sessões, sem nenhum servidor envolvido. Ver `src/lib/persistence.ts`.
+- ✅ **Definições**: explica a postura de privacidade, exporta todos os
+  dados num ficheiro JSON, e permite apagar tudo permanentemente.
+- 🚧 Restantes secções (Puericultura, Sinais de Alerta): placeholders "em
+  construção" — módulos seguintes.
+
+## Privacidade e armazenamento
+
+Toda a persistência (`src/lib/persistence.ts`) usa o IndexedDB nativo do
+browser, via `idb-keyval` — sem backend, sem conta, sem chamada de rede em
+lado nenhum deste ficheiro. Os dados vivem só no dispositivo onde a app foi
+instalada; não há sincronização entre dispositivos (se isso vier a ser
+construído no futuro, tem de ser opt-in explícito, nunca automático). A
+secção Definições dentro da app deixa isto claro ao utilizador, e oferece
+exportar (JSON) ou apagar tudo permanentemente.
 
 ## Testar a instalação como PWA
 

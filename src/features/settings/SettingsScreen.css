@@ -1,0 +1,111 @@
+.settings-screen {
+  max-width: 640px;
+}
+
+.settings-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 22px;
+}
+
+.settings-screen__card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 16px;
+}
+
+.settings-screen__card h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.settings-screen__card p {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+.settings-screen__card p:last-of-type {
+  margin-bottom: 14px;
+}
+
+.settings-screen__card p strong {
+  color: var(--ink);
+}
+
+.settings-screen__note {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.settings-screen__btn {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent-strong);
+  color: white;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.settings-screen__btn:hover {
+  background: var(--accent-strong-hover);
+}
+
+.settings-screen__btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.settings-screen__card--danger {
+  border-color: var(--warn-soft);
+}
+
+.settings-screen__btn-danger {
+  padding: 9px 16px;
+  border: 1px solid var(--warn);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--warn);
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.settings-screen__btn-danger:hover {
+  background: var(--warn-soft);
+}
+
+.settings-screen__confirm {
+  background: var(--warn-soft);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.settings-screen__confirm p {
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.settings-screen__confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.settings-screen__btn-cancel {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+}

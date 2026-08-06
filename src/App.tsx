@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar } from "./components/Sidebar";
 import { GrowthCurvesScreen } from "./features/growth/GrowthCurvesScreen";
 import { MilestonesScreen } from "./features/milestones/MilestonesScreen";
 import { ProfileScreen } from "./features/profile/ProfileScreen";
 import { DiaryScreen } from "./features/diary/DiaryScreen";
+import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
 import type { AppSection, Crianca, EntradaDiario, MedicaoCrescimento } from "./types";
+import {
+  carregarCriancas,
+  guardarCriancas,
+  carregarMedicoes,
+  guardarMedicoes,
+  carregarMarcosAlcancados,
+  guardarMarcosAlcancados,
+  carregarDiario,
+  guardarDiario,
+} from "./lib/persistence";
 import "./App.css";
 
-// Dados de exemplo (sintéticos) só para o protótipo poder ser testado
-// sem necessitar de backend. Nenhuma criança real.
+// Dados de exemplo (sintéticos) — usados só na primeiríssima utilização,
+// antes de existir qualquer dado guardado localmente. Nenhuma criança real.
 const CRIANCA_EXEMPLO: Crianca = {
   id: "crianca-1",
   nome: "Matilde",
@@ -26,48 +37,120 @@ const MEDICOES_EXEMPLO: MedicaoCrescimento[] = [
 ];
 
 export default function App() {
+  const [pronto, setPronto] = useState(false);
   const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("crescimento");
-  const [criancas, setCriancas] = useState<Crianca[]>([CRIANCA_EXEMPLO]);
-  const [criancaAtivaId, setCriancaAtivaId] = useState(CRIANCA_EXEMPLO.id);
-  const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>(MEDICOES_EXEMPLO);
+  const [criancas, setCriancas] = useState<Crianca[]>([]);
+  const [criancaAtivaId, setCriancaAtivaId] = useState("");
+  const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>([]);
   const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
+  const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
 
-  const criancaAtiva = criancas.find((c) => c.id === criancaAtivaId)!;
+  // Carrega tudo do IndexedDB local ao arrancar. Se for a primeira vez
+  // (nada guardado ainda), semeia com os dados de exemplo e já os grava.
+  useEffect(() => {
+    (async () => {
+      const [criancasGuardadas, medicoesGuardadas, marcosGuardados, diarioGuardado] =
+        await Promise.all([
+          carregarCriancas(),
+          carregarMedicoes(),
+          carregarMarcosAlcancados(),
+          carregarDiario(),
+        ]);
+
+      if (criancasGuardadas === undefined) {
+        setCriancas([CRIANCA_EXEMPLO]);
+        setCriancaAtivaId(CRIANCA_EXEMPLO.id);
+        setMedicoes(MEDICOES_EXEMPLO);
+        await Promise.all([
+          guardarCriancas([CRIANCA_EXEMPLO]),
+          guardarMedicoes(MEDICOES_EXEMPLO),
+        ]);
+      } else {
+        setCriancas(criancasGuardadas);
+        setCriancaAtivaId(criancasGuardadas[0]?.id ?? "");
+        setMedicoes(medicoesGuardadas ?? []);
+      }
+
+      setMarcosAlcancados(marcosGuardados);
+      setEntradasDiario(diarioGuardado ?? []);
+      setPronto(true);
+    })();
+  }, []);
+
+  const criancaAtiva = criancas.find((c) => c.id === criancaAtivaId);
   const medicoesDaCrianca = medicoes.filter((m) => m.criancaId === criancaAtivaId);
 
   function adicionarMedicao(m: MedicaoCrescimento) {
-    setMedicoes((prev) => [...prev, m]);
+    setMedicoes((prev) => {
+      const novo = [...prev, m];
+      guardarMedicoes(novo);
+      return novo;
+    });
   }
 
   function alternarMarco(marcoId: string) {
     setMarcosAlcancados((prev) => {
       const novo = new Set(prev);
-      if (novo.has(marcoId)) {
-        novo.delete(marcoId);
-      } else {
-        novo.add(marcoId);
-      }
+      if (novo.has(marcoId)) novo.delete(marcoId);
+      else novo.add(marcoId);
+      guardarMarcosAlcancados(novo);
       return novo;
     });
   }
 
   function guardarPerfil(c: Crianca) {
-    setCriancas((prev) => prev.map((x) => (x.id === c.id ? c : x)));
+    setCriancas((prev) => {
+      const novo = prev.map((x) => (x.id === c.id ? c : x));
+      guardarCriancas(novo);
+      return novo;
+    });
   }
-
-  const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
 
   function adicionarEntradaDiario(e: EntradaDiario) {
-    setEntradasDiario((prev) => [...prev, e]);
+    setEntradasDiario((prev) => {
+      const novo = [...prev, e];
+      guardarDiario(novo);
+      return novo;
+    });
   }
   function removerEntradaDiario(id: string) {
-    setEntradasDiario((prev) => prev.filter((e) => e.id !== id));
+    setEntradasDiario((prev) => {
+      const novo = prev.filter((e) => e.id !== id);
+      guardarDiario(novo);
+      return novo;
+    });
   }
   function atualizarLegendaDiario(id: string, legenda: string) {
-    setEntradasDiario((prev) => prev.map((e) => (e.id === id ? { ...e, legenda } : e)));
+    setEntradasDiario((prev) => {
+      const novo = prev.map((e) => (e.id === id ? { ...e, legenda } : e));
+      guardarDiario(novo);
+      return novo;
+    });
   }
   function associarMarcoDiario(id: string, marcoId: string | undefined) {
-    setEntradasDiario((prev) => prev.map((e) => (e.id === id ? { ...e, marcoId } : e)));
+    setEntradasDiario((prev) => {
+      const novo = prev.map((e) => (e.id === id ? { ...e, marcoId } : e));
+      guardarDiario(novo);
+      return novo;
+    });
+  }
+
+  function dadosApagados() {
+    setCriancas([CRIANCA_EXEMPLO]);
+    setCriancaAtivaId(CRIANCA_EXEMPLO.id);
+    setMedicoes(MEDICOES_EXEMPLO);
+    setMarcosAlcancados(new Set());
+    setEntradasDiario([]);
+    guardarCriancas([CRIANCA_EXEMPLO]);
+    guardarMedicoes(MEDICOES_EXEMPLO);
+  }
+
+  if (!pronto || !criancaAtiva) {
+    return (
+      <div className="app-shell app-shell--loading">
+        <p>A carregar…</p>
+      </div>
+    );
   }
 
   return (
@@ -125,9 +208,7 @@ export default function App() {
         {seccaoAtiva === "perfil" && (
           <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />
         )}
-        {seccaoAtiva === "definicoes" && (
-          <EmConstrucao titulo="Definições" descricao="Privacidade, exportação e eliminação de dados, notificações." />
-        )}
+        {seccaoAtiva === "definicoes" && <SettingsScreen onDadosApagados={dadosApagados} />}
       </main>
     </div>
   );

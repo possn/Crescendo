@@ -29,12 +29,13 @@ do produto.
 - [x] PWA instalável (manifest, ícones, service worker, funciona offline)
 - [x] Identidade visual: nome, ícone, paleta
 - [x] Diário Visual — fotos/vídeos associados a marcos, timeline por idade
+- [x] Persistência local (IndexedDB) — dados sobrevivem a fechar a app, nunca saem do dispositivo
+- [x] Definições — privacidade, exportar, apagar tudo
 
 ## Por construir (ordem sugerida, mas discutível)
 
 - [ ] Puericultura — conselhos de sono, alimentação, segurança (0–24 meses)
 - [ ] Sinais de Alerta — linguagem revista clinicamente, sem gerar scores de risco
-- [ ] Definições — privacidade, exportar/apagar dados, notificações
 - [ ] Exportação em PDF (curvas + marcos) para levar à consulta
 - [ ] Múltiplos filhos por conta (a estrutura de dados já suporta; falta UI de gestão)
 
@@ -55,8 +56,7 @@ Checklist mínimo, para não descobrir tarde demais:
 
 - [ ] Revisão clínica de **todo** o conteúdo de texto por outro pediatra (não só por ti) — especialmente Sinais de Alerta
 - [ ] Substituir a fonte de dados LMS (atualmente via `pygrowup`) pelos ficheiros oficiais da OMS descarregados diretamente
-- [ ] Diário Visual guarda fotos/vídeos em memória (base64, perdem-se ao fechar a app) — precisa de armazenamento real (local no dispositivo ou backend) antes de uso a sério
-- [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica)
+- [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica). Nota: a arquitetura já é 100% local-first (IndexedDB, sem servidor) — o que falta é o *texto legal*, não a engenharia.
 - [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio
 - [ ] Aconselhamento jurídico sobre termos de uso e disclaimers
 - [ ] Verificação formal de marca registada para "Crescendo" (a minha verificação foi só uma busca rápida, não é clearance legal)
