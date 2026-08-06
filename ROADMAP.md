@@ -31,11 +31,22 @@ do produto.
 - [x] Diário Visual — fotos/vídeos associados a marcos, timeline por idade
 - [x] Persistência local (IndexedDB) — dados sobrevivem a fechar a app, nunca saem do dispositivo
 - [x] Definições — privacidade, exportar, apagar tudo
+- [x] Puericultura — 16 conselhos AAP/WHO/NIAID, sono/alimentação/segurança/estimulação
+- [x] Sinais de Alerta — CDC "Learn the Signs", alinhado com as janelas OMS do Módulo de Marcos
 
-## Por construir (ordem sugerida, mas discutível)
+## Todos os módulos do MVP estão construídos
 
-- [ ] Puericultura — conselhos de sono, alimentação, segurança (0–24 meses)
-- [ ] Sinais de Alerta — linguagem revista clinicamente, sem gerar scores de risco
+Próximo foco natural: testar a fundo, recolher feedback real (ver secção de
+backlog abaixo), e trabalhar a checklist pré-App Store mais abaixo neste
+documento — não há mais nenhum módulo "em falta" da lista original.
+
+## Ideias fora do MVP original (avaliar antes de construir)
+
+- [ ] Links para recursos práticos (ex.: fraldas, roupa) — ver nota de
+  17/discussão: risco de misturar conteúdo comercial com conselho clínico,
+  possível questão de conduta profissional (Ordem dos Médicos) se
+  associado ao nome do autor. Se avançar, manter separado do conteúdo
+  clínico, sem marcas/afiliação, e validar as regras profissionais primeiro.
 - [ ] Exportação em PDF (curvas + marcos) para levar à consulta
 - [ ] Múltiplos filhos por conta (a estrutura de dados já suporta; falta UI de gestão)
 

@@ -39,8 +39,15 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
   sessões, sem nenhum servidor envolvido. Ver `src/lib/persistence.ts`.
 - ✅ **Definições**: explica a postura de privacidade, exporta todos os
   dados num ficheiro JSON, e permite apagar tudo permanentemente.
-- 🚧 Restantes secções (Puericultura, Sinais de Alerta): placeholders "em
-  construção" — módulos seguintes.
+- ✅ **Puericultura**: 16 conselhos práticos (sono, alimentação, segurança,
+  estimulação), filtráveis por tema e por relevância à idade atual, com
+  fontes AAP/WHO/NIAID explícitas em cada cartão.
+- ✅ **Sinais de Alerta**: sinais do CDC "Learn the Signs" por domínio, com
+  os valores motores alinhados aos mesmos P99 do WHO Motor Development
+  Study já usados no Módulo de Marcos (nunca dois números diferentes para
+  a mesma coisa), destaque próprio para regressão de competências (o sinal
+  mais consistentemente urgente na literatura, a qualquer idade), e CTA
+  para o pediatra em todos os pontos de decisão.
 
 ## Privacidade e armazenamento
 

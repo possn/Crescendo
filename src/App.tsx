@@ -4,6 +4,8 @@ import { GrowthCurvesScreen } from "./features/growth/GrowthCurvesScreen";
 import { MilestonesScreen } from "./features/milestones/MilestonesScreen";
 import { ProfileScreen } from "./features/profile/ProfileScreen";
 import { DiaryScreen } from "./features/diary/DiaryScreen";
+import { PuericulturaScreen } from "./features/puericultura/PuericulturaScreen";
+import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
 import type { AppSection, Crianca, EntradaDiario, MedicaoCrescimento } from "./types";
@@ -193,18 +195,8 @@ export default function App() {
             onAssociarMarco={associarMarcoDiario}
           />
         )}
-        {seccaoAtiva === "puericultura" && (
-          <EmConstrucao
-            titulo="Puericultura"
-            descricao="Conselhos sobre sono, alimentação, segurança e estimulação, com foco nos primeiros 24 meses."
-          />
-        )}
-        {seccaoAtiva === "alertas" && (
-          <EmConstrucao
-            titulo="Sinais de Alerta"
-            descricao="Quando contactar o pediatra — conteúdo com revisão clínica obrigatória antes de publicação."
-          />
-        )}
+        {seccaoAtiva === "puericultura" && <PuericulturaScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "alertas" && <AlertasScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "perfil" && (
           <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />
         )}

@@ -101,3 +101,26 @@ export interface EntradaDiario {
   legenda?: string;
   marcoId?: string; // ligação opcional a um marco do Módulo 3
 }
+
+// --- Puericultura --------------------------------------------------------
+
+export type TemaPuericultura = "sono" | "alimentacao" | "seguranca" | "estimulacao";
+
+export interface ConselhoPuericultura {
+  id: string;
+  tema: TemaPuericultura;
+  idadeMinMeses: number;
+  idadeMaxMeses: number;
+  titulo: string;
+  texto: string;
+  fonte: string;
+}
+
+// --- Sinais de Alerta ------------------------------------------------------
+
+export interface SinalAlerta {
+  id: string;
+  dominio: DominioDesenvolvimento;
+  idadeReferenciaMeses: number | "qualquer_idade";
+  sinal: string;
+}
