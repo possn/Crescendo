@@ -7,6 +7,12 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
 
 - ✅ **Módulo 1 — Navegação lateral (sidebar)**: menu persistente com seletor
   de criança, ligação a todas as secções.
+- ✅ **Perfil da Criança + idade corrigida para prematuridade**: fórmula
+  padrão da AAP (`idade corrigida = idade cronológica − semanas de
+  prematuridade`), aplicada automaticamente aos Módulos 3 e 4 até aos 24
+  meses de idade cronológica — sem o utilizador ter de fazer nada. O
+  ecrã de perfil mostra as duas idades lado a lado e avisa que a
+  vacinação segue sempre a idade cronológica.
 - ✅ **Módulo 3 — Marcos de Desenvolvimento**: 100 marcos reais dos
   checklists **CDC/AAP (revisão de 2022)**, cobrindo os 8 pontos de
   controlo dos primeiros 24 meses (2, 4, 6, 9, 12, 15, 18, 24 meses) nos 4
