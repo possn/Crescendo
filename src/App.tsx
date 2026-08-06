@@ -43,6 +43,7 @@ export default function App() {
   const [pronto, setPronto] = useState(false);
   const [splashTerminou, setSplashTerminou] = useState(false);
   const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("crescimento");
+  const [sidebarAberta, setSidebarAberta] = useState(false);
   const [criancas, setCriancas] = useState<Crianca[]>([]);
   const [criancaAtivaId, setCriancaAtivaId] = useState("");
   const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>([]);
@@ -169,8 +170,19 @@ export default function App() {
         criancas={criancas}
         criancaAtivaId={criancaAtivaId}
         onMudarCrianca={setCriancaAtivaId}
+        aberta={sidebarAberta}
+        onFechar={() => setSidebarAberta(false)}
       />
       <main className="app-shell__content">
+        <button
+          className="app-shell__menu-btn"
+          onClick={() => setSidebarAberta(true)}
+          aria-label="Abrir menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
         {seccaoAtiva === "crescimento" && (
           <GrowthCurvesScreen
             crianca={criancaAtiva}

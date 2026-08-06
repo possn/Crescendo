@@ -102,6 +102,8 @@ interface SidebarProps {
   criancas: Crianca[];
   criancaAtivaId: string;
   onMudarCrianca: (id: string) => void;
+  aberta: boolean;
+  onFechar: () => void;
 }
 
 export function Sidebar({
@@ -110,9 +112,21 @@ export function Sidebar({
   criancas,
   criancaAtivaId,
   onMudarCrianca,
+  aberta,
+  onFechar,
 }: SidebarProps) {
+  function selecionar(s: AppSection) {
+    onMudarSeccao(s);
+    onFechar(); // em telemóvel, escolher uma secção fecha o menu sozinho
+  }
+
   return (
-    <aside className="sidebar">
+    <>
+      {aberta && <div className="sidebar__backdrop" onClick={onFechar} aria-hidden />}
+      <aside className={"sidebar" + (aberta ? " sidebar--aberta" : "")}>
+      <button className="sidebar__fechar" onClick={onFechar} aria-label="Fechar menu">
+        ✕
+      </button>
       <div className="sidebar__brand">
         <img
           src={`${import.meta.env.BASE_URL}icons/icon-192.png`}
@@ -149,7 +163,7 @@ export function Sidebar({
               "sidebar__item" +
               (seccaoAtiva === item.id ? " sidebar__item--ativo" : "")
             }
-            onClick={() => onMudarSeccao(item.id)}
+            onClick={() => selecionar(item.id)}
             aria-current={seccaoAtiva === item.id ? "page" : undefined}
           >
             <Glyph name={item.glyph} />
@@ -166,7 +180,7 @@ export function Sidebar({
               "sidebar__item sidebar__item--secundario" +
               (seccaoAtiva === item.id ? " sidebar__item--ativo" : "")
             }
-            onClick={() => onMudarSeccao(item.id)}
+            onClick={() => selecionar(item.id)}
           >
             <Glyph name={item.glyph} />
             <span>{item.label}</span>
@@ -174,5 +188,6 @@ export function Sidebar({
         ))}
       </div>
     </aside>
+    </>
   );
 }
