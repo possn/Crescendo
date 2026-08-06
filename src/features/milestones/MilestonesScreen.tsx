@@ -13,10 +13,10 @@ interface MilestonesScreenProps {
 }
 
 const DOMINIOS: { id: DominioDesenvolvimento; label: string; cor: string }[] = [
-  { id: "socio_emocional", label: "Socio-emocional", cor: "#c9a227" },
+  { id: "socio_emocional", label: "Socio-emocional", cor: "#c99a3a" },
   { id: "linguagem", label: "Linguagem / Comunicação", cor: "#8a6d3b" },
   { id: "cognitivo", label: "Cognitivo", cor: "#6b5b95" },
-  { id: "motor", label: "Motor", cor: "#2f6f62" },
+  { id: "motor", label: "Motor", cor: "#5c6e54" },
 ];
 
 function idadeChecklistMaisProxima(idadeMeses: number): number {

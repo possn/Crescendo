@@ -139,7 +139,7 @@
   margin-top: 6px;
   border: none;
   border-radius: var(--radius-sm);
-  background: var(--accent);
+  background: var(--accent-strong);
   color: white;
   font-weight: 600;
   font-size: 14px;
@@ -147,5 +147,5 @@
 }
 
 .growth-screen__submit:hover {
-  background: var(--accent-strong);
+  background: var(--accent-strong-hover);
 }

@@ -18,16 +18,17 @@
 
   /* Texto */
   --ink: #3f4a38;
-  --ink-muted: #71805f;
-  --ink-faint: #a6ac93;
+  --ink-muted: #586750;
+  --ink-faint: #68705c;
 
   /* Acento de marca (verde-sálvia, extraído da identidade "Crescendo") */
   --accent: #86977c;
   --accent-strong: #5c6e54;
+  --accent-strong-hover: #47543f;
   --accent-soft: #e8ecdf;
 
   /* Indicadores de crescimento (cor fixa por indicador, repetida em toda a app) */
-  --ind-peso: #f29e7f;
+  --ind-peso: #ad5834;
   --ind-comprimento: #8a6d3b;
   --ind-perimetro: #6b5b95;
 
