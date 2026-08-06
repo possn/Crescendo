@@ -51,7 +51,14 @@ export default defineConfig({
         // App-shell + dados estáticos (JSON da OMS) em cache; sem cache de
         // pedidos de rede dinâmicos porque o protótipo ainda não tem backend.
         globPatterns: ["**/*.{js,css,html,json,png,svg,ico}"],
-        navigateFallback: "/index.html",
+        navigateFallback: "/Crescendo/index.html",
+        // Ativa a nova versão do service worker imediatamente em vez de
+        // esperar que todos os separadores antigos fechem — sem isto, uma
+        // vez instalada uma versão com bug, o telemóvel fica preso nela
+        // indefinidamente, mesmo depois de eu corrigir e publicar de novo.
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
       },
       devOptions: {
         enabled: false, // manter simples em dev; testar PWA sempre via `npm run build && npm run preview`
