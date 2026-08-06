@@ -5,6 +5,11 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
 
 ## Estado atual
 
+- ✅ **PWA (Progressive Web App)**: manifest, ícones (incl. variantes
+  "maskable" para Android e `apple-touch-icon` para iOS), e service worker
+  com cache offline do "app shell" e dos dados JSON da OMS. A partir de
+  Safari no iPhone, **Partilhar → Adicionar ao Ecrã Principal** instala-a
+  como um ícone próprio, em ecrã inteiro, sem barra de endereço.
 - ✅ **Módulo 1 — Navegação lateral (sidebar)**: menu persistente com seletor
   de criança, ligação a todas as secções.
 - ✅ **Perfil da Criança + idade corrigida para prematuridade**: fórmula
@@ -28,6 +33,43 @@ porte nativo para iOS/App Store. Construído módulo a módulo.
   real.
 - 🚧 Restantes secções (Diário Visual, Puericultura, Sinais de Alerta,
   Perfil, Definições): placeholders "em construção" — módulos seguintes.
+
+## Testar a instalação como PWA
+
+O service worker só é gerado em build de produção (por desenho, para não
+interferir com o hot-reload em desenvolvimento):
+
+```bash
+npm run build
+npm run preview
+```
+
+Abre o URL que aparece (normalmente `http://localhost:4173`) no **Safari do
+iPhone** (tem de ser na mesma rede Wi-Fi, ou usa um túnel tipo `ngrok` se
+quiseres testar num dispositivo antes de fazer deploy). Depois: **botão
+Partilhar → Adicionar ao Ecrã Principal**.
+
+Em desenvolvimento normal (`npm run dev`) o service worker não corre — isso
+é intencional.
+
+## O caminho honesto de PWA até à App Store
+
+Importante: **instalar como PWA não é o mesmo que estar na App Store.** A
+Apple não aceita "instalar a partir do Safari" como listagem — precisa de
+um `.ipa` submetido via Xcode/App Store Connect. A PWA é, no entanto, um
+passo real e reutilizável nesse caminho. Duas vias a partir daqui:
+
+1. **Capacitor** (Ionic) — embrulha esta mesma app React num projeto Xcode
+   nativo, reaproveitando quase 100% do código atual (`npx cap init`,
+   `npx cap add ios`). Caminho mais rápido para ter algo na App Store,
+   com acesso a APIs nativas (câmara, notificações) via plugins.
+2. **Reescrita nativa em SwiftUI** — mais trabalho, mas UI verdadeiramente
+   nativa (o que a especificação original já previa). Os dados em
+   `src/data/` e a lógica de `src/lib/` traduzem-se quase diretamente
+   para Swift.
+
+Para este protótipo, a via 1 (Capacitor) é a mais coerente com o que já
+está construído.
 
 ## Rigor dos dados de marcos de desenvolvimento
 
