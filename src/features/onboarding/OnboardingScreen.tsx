@@ -6,8 +6,10 @@ interface OnboardingScreenProps {
   onConcluir: (c: Crianca) => void;
 }
 
+type Passo = "boas-vindas" | "como-funciona" | "formulario";
+
 export function OnboardingScreen({ onConcluir }: OnboardingScreenProps) {
-  const [passo, setPasso] = useState<"boas-vindas" | "formulario">("boas-vindas");
+  const [passo, setPasso] = useState<Passo>("boas-vindas");
   const [nome, setNome] = useState("");
   const [sexo, setSexo] = useState<"F" | "M">("F");
   const [dataNascimento, setDataNascimento] = useState("");
@@ -37,16 +39,56 @@ export function OnboardingScreen({ onConcluir }: OnboardingScreenProps) {
             Acompanhamento do desenvolvimento e do crescimento infantil (0–5 anos), com base em
             dados oficiais da OMS e do CDC/AAP.
           </p>
-          <p className="onboarding__disclaimer">
-            Esta app não substitui uma avaliação formal por um profissional de saúde — é um apoio
-            para as dúvidas mais frequentes do dia a dia, nunca um substituto do pediatra.
-          </p>
           <p className="onboarding__privacy">
             Tudo o que introduzir fica guardado apenas neste dispositivo. Nada é enviado para
             nenhum servidor.
           </p>
+          <button className="onboarding__btn" onClick={() => setPasso("como-funciona")}>
+            Continuar
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (passo === "como-funciona") {
+    return (
+      <div className="onboarding">
+        <div className="onboarding__card">
+          <h1>Como a Crescendo pode ajudar</h1>
+
+          <div className="onboarding__grupos">
+            <div className="onboarding__grupo">
+              <span className="onboarding__grupo-titulo">Acompanhamento</span>
+              <p>Curvas de crescimento, marcos de desenvolvimento, sinais de alerta.</p>
+            </div>
+            <div className="onboarding__grupo">
+              <span className="onboarding__grupo-titulo">Cuidados diários</span>
+              <p>Puericultura, diversificação alimentar, diário visual.</p>
+            </div>
+            <div className="onboarding__grupo">
+              <span className="onboarding__grupo-titulo">Saúde e emergência</span>
+              <p>Sintomas comuns, calculadora de dose, primeiros socorros, desengasgamento e SBV.</p>
+            </div>
+          </div>
+
+          <div className="onboarding__bom-senso">
+            <h2>Uma nota importante, antes de continuar</h2>
+            <p>
+              Esta app — como qualquer app do género — é uma <strong>ferramenta de apoio</strong>,
+              nunca um substituto do pediatra do seu filho ou filha, nem do seu próprio bom senso
+              como pai ou mãe.
+            </p>
+            <p>
+              Ninguém conhece o seu filho como você. Se algo lhe parecer errado, mesmo que nada
+              aqui assinale um problema, <strong>confie no seu instinto</strong> e fale com um
+              profissional. O conhecimento que vai ganhando sobre os sinais do seu próprio filho é
+              insubstituível — esta app existe para o complementar, nunca para o substituir.
+            </p>
+          </div>
+
           <button className="onboarding__btn" onClick={() => setPasso("formulario")}>
-            Começar
+            Entendi, continuar
           </button>
         </div>
       </div>
