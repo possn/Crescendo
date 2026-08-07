@@ -43,6 +43,7 @@ export function PuericulturaScreen({ crianca }: PuericulturaScreenProps) {
             className={
               "puericultura-screen__tab" + (temaAtivo === "todos" ? " puericultura-screen__tab--ativo" : "")
             }
+            style={temaAtivo === "todos" ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)" } : undefined}
             onClick={() => setTemaAtivo("todos")}
           >
             Todos

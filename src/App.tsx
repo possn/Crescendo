@@ -115,6 +115,14 @@ export default function App() {
   const criancaAtiva = criancas.find((c) => c.id === criancaAtivaId);
   const medicoesDaCrianca = medicoes.filter((m) => m.criancaId === criancaAtivaId);
 
+  // Ao mudar de secção pelo menu, repor o scroll no topo. Sem isto, o
+  // conteúdo (a mesma div persiste entre navegações, só os filhos mudam)
+  // mantém a posição de scroll da secção anterior, e o título novo nasce
+  // escondido atrás do botão fixo do menu em telemóvel.
+  useEffect(() => {
+    document.querySelector(".app-shell__content")?.scrollTo(0, 0);
+  }, [seccaoAtiva]);
+
   function adicionarMedicao(m: MedicaoCrescimento) {
     setMedicoes((prev) => {
       const novo = [...prev, m];
