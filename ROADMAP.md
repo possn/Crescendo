@@ -30,7 +30,10 @@ do produto.
 - [x] Identidade visual: nome, ícone, paleta
 - [x] Diário Visual — fotos/vídeos associados a marcos, timeline por idade
 - [x] Persistência local (IndexedDB) — dados sobrevivem a fechar a app, nunca saem do dispositivo
-- [x] Definições — privacidade, exportar, apagar tudo
+- [x] Definições — privacidade, exportar, apagar tudo, gestão de vários
+  filhos, unidades métrico/imperial, modo escuro, notificações locais
+  (avisadamente limitadas a app aberta/recente — sem servidor, sem push
+  verdadeiro em segundo plano)
 - [x] Puericultura — 16 conselhos AAP/WHO/NIAID, sono/alimentação/segurança/estimulação
 - [x] Sinais de Alerta — CDC "Learn the Signs", alinhado com as janelas OMS do Módulo de Marcos
 
