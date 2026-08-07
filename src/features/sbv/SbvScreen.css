@@ -118,3 +118,19 @@
   line-height: 1.6;
   font-family: var(--font-mono);
 }
+
+.sbv-screen__detalhe {
+  margin-top: 14px;
+}
+
+.sbv-screen__detalhe summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-strong);
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.sbv-screen__detalhe[open] summary {
+  margin-bottom: 10px;
+}

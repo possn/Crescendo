@@ -1,0 +1,95 @@
+.fluxo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 8px;
+}
+
+.fluxo__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fluxo__caixa {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.fluxo__caixa--acao {
+  background: var(--surface);
+  border: 1.5px solid var(--border-strong);
+  color: var(--ink);
+}
+
+.fluxo__caixa--decisao {
+  background: var(--accent-soft);
+  border: 1.5px dashed var(--accent-strong);
+  color: var(--accent-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.fluxo__decisao-icone {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  color: var(--surface);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fluxo__caixa--fim-seguro {
+  background: var(--accent-soft);
+  border: 1.5px solid var(--accent-strong);
+  color: var(--accent-strong);
+}
+
+.fluxo__caixa--fim-emergencia {
+  background: var(--warn-soft);
+  border: 1.5px solid var(--warn-strong);
+  color: var(--warn-strong);
+}
+
+.fluxo__seta {
+  color: var(--ink-faint);
+  margin: 2px 0;
+}
+
+.fluxo__ramos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 4px 0;
+  font-family: var(--font-mono);
+}
+
+.fluxo__ramo-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.fluxo__ramo-label--nao {
+  color: var(--warn-strong);
+}
+
+.fluxo__ramo-label--sim {
+  color: var(--accent-strong);
+  max-width: 300px;
+  text-align: center;
+}

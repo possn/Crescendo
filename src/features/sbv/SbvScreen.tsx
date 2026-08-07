@@ -7,6 +7,7 @@ import {
   PASSOS_SBV_BEBE,
   PASSOS_SBV_CRIANCA,
 } from "../../data/sbv/desengasgamentoSbv";
+import { Fluxograma, type NoFluxo } from "./Fluxograma";
 import "./SbvScreen.css";
 
 interface SbvScreenProps {
@@ -27,6 +28,52 @@ function ListaPassos({ passos }: { passos: PassoSBV[] }) {
       ))}
     </ol>
   );
+}
+
+function fluxoEngasgamento(faixa: "bebe" | "crianca"): NoFluxo[] {
+  const compressao =
+    faixa === "bebe" ? "5 compressões torácicas (2 dedos, abaixo da linha dos mamilos)" : "5 compressões abdominais (manobra de Heimlich)";
+  return [
+    {
+      tipo: "decisao",
+      texto: "Consegue tossir, chorar ou fazer sons?",
+      simTexto: "Incentive a tossir — não intervenha",
+    },
+    { tipo: "acao", texto: "5 pancadas nas costas" },
+    { tipo: "acao", texto: compressao },
+    {
+      tipo: "decisao",
+      texto: "Desengasgou?",
+      simTexto: "Vigie e procure avaliação médica",
+      naoTexto: "continue os ciclos 5+5",
+    },
+    {
+      tipo: "decisao",
+      texto: "Ficou inconsciente a qualquer momento?",
+      naoTexto: "continue os ciclos 5+5",
+    },
+    { tipo: "fim-emergencia", texto: "Ligue 112 e comece SBV imediatamente" },
+  ];
+}
+
+function fluxoSbv(faixa: "bebe" | "crianca"): NoFluxo[] {
+  return [
+    {
+      tipo: "decisao",
+      texto: "Responde a estímulos e respira normalmente?",
+      simTexto: "Não precisa de SBV — vigie",
+    },
+    { tipo: "acao", texto: "Ligue 112 (ou peça a alguém para ligar)" },
+    {
+      tipo: "acao",
+      texto:
+        faixa === "bebe"
+          ? "30 compressões torácicas — base de 1 mão ou 2 polegares, ~4cm, 100-120/min"
+          : "30 compressões torácicas — base de 1 mão, ~5cm, 100-120/min",
+    },
+    { tipo: "acao", texto: "2 insuflações — o suficiente para ver o peito subir" },
+    { tipo: "fim-emergencia", texto: "Continue 30:2 (ou 15:2 com 2 reanimadores) até ajuda chegar" },
+  ];
 }
 
 export function SbvScreen({ crianca }: SbvScreenProps) {
@@ -80,12 +127,20 @@ export function SbvScreen({ crianca }: SbvScreenProps) {
 
       <section className="sbv-screen__seccao">
         <h2>Engasgamento</h2>
-        <ListaPassos passos={passosEngasgamento} />
+        <Fluxograma nos={fluxoEngasgamento(faixa)} />
+        <details className="sbv-screen__detalhe">
+          <summary>Ver passos detalhados</summary>
+          <ListaPassos passos={passosEngasgamento} />
+        </details>
       </section>
 
       <section className="sbv-screen__seccao">
         <h2>Suporte Básico de Vida — se ficar inconsciente</h2>
-        <ListaPassos passos={passosSbv} />
+        <Fluxograma nos={fluxoSbv(faixa)} />
+        <details className="sbv-screen__detalhe">
+          <summary>Ver passos detalhados</summary>
+          <ListaPassos passos={passosSbv} />
+        </details>
       </section>
 
       <p className="sbv-screen__fonte">
