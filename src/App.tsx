@@ -7,9 +7,9 @@ import { DiaryScreen } from "./features/diary/DiaryScreen";
 import { PuericulturaScreen } from "./features/puericultura/PuericulturaScreen";
 import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
-import { EmConstrucao } from "./features/shared/EmConstrucao";
 import { SplashScreen } from "./components/SplashScreen";
 import { OnboardingScreen } from "./features/onboarding/OnboardingScreen";
+import { DashboardScreen } from "./features/dashboard/DashboardScreen";
 import type {
   AppSection,
   Crianca,
@@ -279,9 +279,13 @@ export default function App() {
           />
         )}
         {seccaoAtiva === "inicio" && (
-          <EmConstrucao
-            titulo="Olá! 👋"
-            descricao={`Dashboard de ${criancaAtiva.nome} — resumo dos últimos marcos e medições.`}
+          <DashboardScreen
+            crianca={criancaAtiva}
+            medicoes={medicoesDaCrianca}
+            marcosAlcancados={marcosAlcancados}
+            entradasDiario={entradasDiario.filter((e) => e.criancaId === criancaAtivaId)}
+            unidades={preferencias.unidades}
+            onNavegar={setSeccaoAtiva}
           />
         )}
         {seccaoAtiva === "marcos" && (
