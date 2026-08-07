@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { Crianca, MedicaoCrescimento, TabelaReferenciaOMS, Unidades } from "../../types";
 import { calcularZScoreEPercentil } from "../../lib/growthCalculations";
 import {
@@ -102,6 +102,14 @@ export function GrowthCurvesScreen({
   const [formPerimetro, setFormPerimetro] = useState("");
   const [aviso, setAviso] = useState<string | null>(null);
   const [dadosPendentes, setDadosPendentes] = useState<MedicaoCrescimento | null>(null);
+  const topoRef = useRef<HTMLDivElement>(null);
+
+  function irParaResultado() {
+    // Depois de guardar, o utilizador está normalmente scrolled para baixo
+    // (onde está o formulário) — sem isto, o percentil/gráfico atualizado
+    // fica escondido acima, fora de vista, e parece que "não aparece".
+    topoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   const tabelaAtiva = TABELAS[crianca.sexo][abaAtiva];
 
@@ -203,6 +211,7 @@ export function GrowthCurvesScreen({
     setFormComprimento("");
     setFormPerimetro("");
     setFormIdadeMeses("");
+    irParaResultado();
   }
 
   function confirmarMesmoAssim() {
@@ -214,12 +223,14 @@ export function GrowthCurvesScreen({
     setFormComprimento("");
     setFormPerimetro("");
     setFormIdadeMeses("");
+    irParaResultado();
   }
 
   const forAVisualizacao = abaAtiva === "length_height_for_age" ? formTipoMedicao : undefined;
 
   return (
     <div className="growth-screen">
+      <div ref={topoRef} />
       <header className="growth-screen__header">
         <h1>Curvas de Crescimento</h1>
         <p className="growth-screen__subtitle">
