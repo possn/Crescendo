@@ -34,6 +34,10 @@ do produto.
   filhos, unidades métrico/imperial, modo escuro, notificações locais
   (avisadamente limitadas a app aberta/recente — sem servidor, sem push
   verdadeiro em segundo plano)
+- [x] Onboarding real (boas-vindas + criação do 1º perfil) — já não arranca
+  com dados de exemplo; primeira utilização começa vazia a sério
+- [x] Crédito de autoria: Pedro Sampaio Nunes, Pediatria — Conceito e
+  direção clínica (em Definições → Sobre)
 - [x] Puericultura — 16 conselhos AAP/WHO/NIAID, sono/alimentação/segurança/estimulação
 - [x] Sinais de Alerta — CDC "Learn the Signs", alinhado com as janelas OMS do Módulo de Marcos
 
