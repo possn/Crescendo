@@ -5,6 +5,7 @@ import { MilestonesScreen } from "./features/milestones/MilestonesScreen";
 import { ProfileScreen } from "./features/profile/ProfileScreen";
 import { DiaryScreen } from "./features/diary/DiaryScreen";
 import { PuericulturaScreen } from "./features/puericultura/PuericulturaScreen";
+import { DiversificacaoScreen } from "./features/diversificacao/DiversificacaoScreen";
 import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SintomasScreen } from "./features/sintomas/SintomasScreen";
 import { CalculadoraScreen } from "./features/sintomas/CalculadoraScreen";
@@ -310,6 +311,7 @@ export default function App() {
           />
         )}
         {seccaoAtiva === "puericultura" && <PuericulturaScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "diversificacao" && <DiversificacaoScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "sintomas" && <SintomasScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "calculadora" && (
           <CalculadoraScreen crianca={criancaAtiva} medicoes={medicoesDaCrianca} />

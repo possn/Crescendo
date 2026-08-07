@@ -51,6 +51,7 @@ export type AppSection =
   | "crescimento"
   | "diario"
   | "puericultura"
+  | "diversificacao"
   | "sintomas"
   | "calculadora"
   | "socorros"
@@ -148,6 +149,25 @@ export interface PassoSBV {
   numero: number;
   titulo: string;
   texto: string;
+}
+
+// --- Diversificação Alimentar --------------------------------------------
+
+export interface EstagioAlimentar {
+  id: string;
+  idadeLabel: string;
+  idadeMinMeses: number;
+  idadeMaxMeses: number;
+  textura: string;
+  exemplos: string[];
+  nota: string;
+}
+
+export interface PerigoEngasgamento {
+  id: string;
+  alimento: string;
+  risco: string;
+  comoTornarSeguro: string;
 }
 
 // --- Preferências ---------------------------------------------------------

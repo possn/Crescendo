@@ -1,0 +1,166 @@
+.diversificacao-screen {
+  max-width: 980px;
+}
+
+.diversificacao-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.diversificacao-screen__subtitle {
+  color: var(--ink-muted);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0 0 22px;
+}
+
+.diversificacao-screen__card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 18px;
+}
+
+.diversificacao-screen__card h2,
+.diversificacao-screen__estagios h2,
+.diversificacao-screen__perigos h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+
+.diversificacao-screen__lista-simples {
+  margin: 0 0 12px;
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.7;
+}
+
+.diversificacao-screen__texto {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  margin: 0 0 10px;
+}
+
+.diversificacao-screen__texto em {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.diversificacao-screen__fonte {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  margin: 0;
+}
+
+.diversificacao-screen__estagios {
+  margin-bottom: 24px;
+}
+
+.diversificacao-screen__estagios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.diversificacao-screen__estagio-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+}
+
+.diversificacao-screen__estagio-idade {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.diversificacao-screen__estagio-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.diversificacao-screen__estagio-card ul {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.diversificacao-screen__estagio-nota {
+  font-size: 12px;
+  color: var(--ink-faint);
+  line-height: 1.5;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+.diversificacao-screen__perigos {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 18px;
+}
+
+.diversificacao-screen__perigos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.diversificacao-screen__perigo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+}
+
+.diversificacao-screen__perigo-alimento {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.diversificacao-screen__perigo-risco {
+  font-size: 12px;
+  color: var(--warn-strong);
+}
+
+.diversificacao-screen__perigo-solucao {
+  font-size: 12.5px;
+  color: #526152;
+  margin-top: 2px;
+}
+
+.diversificacao-screen__disclaimer {
+  font-size: 12px;
+  color: var(--ink-faint);
+  max-width: 640px;
+  line-height: 1.6;
+}
