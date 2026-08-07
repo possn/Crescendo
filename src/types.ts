@@ -57,6 +57,7 @@ export type AppSection =
   | "calculadora"
   | "socorros"
   | "sbv"
+  | "contactos"
   | "alertas"
   | "definicoes";
 
@@ -188,6 +189,21 @@ export interface VacinaAdministrada {
   criancaId: string;
   doseId: string;
   dataAdministracao: string;
+}
+
+// --- Contactos Úteis ----------------------------------------------------
+
+export type CategoriaContacto = "emergencia" | "apoio-crianca" | "recursos";
+
+export interface ContactoUtil {
+  id: string;
+  categoria: CategoriaContacto;
+  nome: string;
+  descricao: string;
+  telefone?: string;
+  telefoneExibicao?: string;
+  site?: string;
+  horario?: string;
 }
 
 // --- Preferências ---------------------------------------------------------

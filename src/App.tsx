@@ -11,6 +11,7 @@ import { SintomasScreen } from "./features/sintomas/SintomasScreen";
 import { CalculadoraScreen } from "./features/sintomas/CalculadoraScreen";
 import { PrimeirosSocorrosScreen } from "./features/primeiros-socorros/PrimeirosSocorrosScreen";
 import { SbvScreen } from "./features/sbv/SbvScreen";
+import { ContactosScreen } from "./features/contactos/ContactosScreen";
 import { VacinasScreen } from "./features/vacinas/VacinasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
@@ -377,6 +378,7 @@ export default function App() {
         )}
         {seccaoAtiva === "socorros" && <PrimeirosSocorrosScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "sbv" && <SbvScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "contactos" && <ContactosScreen />}
         {seccaoAtiva === "alertas" && <AlertasScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "perfil" && (
           <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />

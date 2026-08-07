@@ -38,6 +38,7 @@ const GRUPOS: GrupoMenu[] = [
       { id: "calculadora", label: "Calculadora de Dose", glyph: "calc" },
       { id: "socorros", label: "Primeiros Socorros", glyph: "cross" },
       { id: "sbv", label: "Desengasgamento e SBV", glyph: "heart" },
+      { id: "contactos", label: "Contactos Úteis", glyph: "phone" },
     ],
   },
 ];
@@ -101,6 +102,12 @@ function Glyph({ name }: { name: string }) {
         <svg {...common}>
           <path d="M5 3v18" />
           <path d="M5 4h11l-2.5 3.5L16 11H5" />
+        </svg>
+      );
+    case "phone":
+      return (
+        <svg {...common}>
+          <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C10.5 20 4 13.5 4 6a2 2 0 0 1 1-2Z" />
         </svg>
       );
     case "shield":

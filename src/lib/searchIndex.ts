@@ -13,6 +13,7 @@ import { MARCOS_CDC } from "../data/milestones/cdcMilestones";
 import { JANELAS_MOTORAS_OMS } from "../data/milestones/whoMotorWindows";
 import { ESTAGIOS, PERIGOS_ENGASGAMENTO } from "../data/diversificacao/diversificacao";
 import { DOSES_PNV } from "../data/vacinas/pnv";
+import { CONTACTOS } from "../data/contactos/contactos";
 
 export interface ResultadoPesquisa {
   id: string;
@@ -144,6 +145,18 @@ function construirIndice(): ResultadoPesquisa[] {
       seccao: "vacinas",
       seccaoLabel: "Vacinas — PNV",
       categoriaLabel: d.idadeLabel,
+      cor: "var(--accent-strong)",
+    });
+  }
+
+  for (const c of CONTACTOS) {
+    indice.push({
+      id: `contactos-${c.id}`,
+      titulo: c.nome,
+      resumo: c.descricao,
+      seccao: "contactos",
+      seccaoLabel: "Contactos Úteis",
+      categoriaLabel: c.telefoneExibicao ?? "",
       cor: "var(--accent-strong)",
     });
   }
