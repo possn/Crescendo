@@ -41,6 +41,9 @@ do produto.
 - [x] Puericultura — 16 conselhos AAP/WHO/NIAID, sono/alimentação/segurança/estimulação
 - [x] Sinais de Alerta — CDC "Learn the Signs", alinhado com as janelas OMS do Módulo de Marcos
 
+- [x] Dashboard (Início) real — última medição com percentil, progresso de
+  marcos da etapa atual, fotos recentes, atalho para sinais de alerta
+
 ## Todos os módulos do MVP estão construídos
 
 Próximo foco natural: testar a fundo, recolher feedback real (ver secção de
