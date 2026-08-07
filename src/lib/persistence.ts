@@ -18,13 +18,14 @@
  */
 
 import { get, set, del, keys } from "idb-keyval";
-import type { Crianca, MedicaoCrescimento, EntradaDiario, Preferencias } from "../types";
+import type { Crianca, MedicaoCrescimento, EntradaDiario, Preferencias, VacinaAdministrada } from "../types";
 
 const CHAVE_CRIANCAS = "crescendo:criancas";
 const CHAVE_MEDICOES = "crescendo:medicoes";
 const CHAVE_MARCOS_ALCANCADOS = "crescendo:marcos-alcancados"; // array de "criancaId::marcoId"
 const CHAVE_DIARIO = "crescendo:diario";
 const CHAVE_PREFERENCIAS = "crescendo:preferencias";
+const CHAVE_VACINAS = "crescendo:vacinas-administradas";
 
 export const PREFERENCIAS_OMISSAO: Preferencias = {
   unidades: "metrico",
@@ -61,6 +62,13 @@ export async function guardarDiario(v: EntradaDiario[]): Promise<void> {
   await set(CHAVE_DIARIO, v);
 }
 
+export async function carregarVacinas(): Promise<VacinaAdministrada[] | undefined> {
+  return get(CHAVE_VACINAS);
+}
+export async function guardarVacinas(v: VacinaAdministrada[]): Promise<void> {
+  await set(CHAVE_VACINAS, v);
+}
+
 export async function carregarPreferencias(): Promise<Preferencias> {
   const p = await get<Partial<Preferencias>>(CHAVE_PREFERENCIAS);
   return { ...PREFERENCIAS_OMISSAO, ...p };
@@ -71,12 +79,13 @@ export async function guardarPreferencias(v: Preferencias): Promise<void> {
 
 /** Exporta tudo num único objeto — usado pelo botão "Exportar os meus dados". */
 export async function exportarTudo() {
-  const [criancas, medicoes, marcosAlcancados, diario, preferencias] = await Promise.all([
+  const [criancas, medicoes, marcosAlcancados, diario, preferencias, vacinas] = await Promise.all([
     carregarCriancas(),
     carregarMedicoes(),
     carregarMarcosAlcancados(),
     carregarDiario(),
     carregarPreferencias(),
+    carregarVacinas(),
   ]);
   return {
     exportadoEm: new Date().toISOString(),
@@ -85,6 +94,7 @@ export async function exportarTudo() {
     marcosAlcancados: Array.from(marcosAlcancados),
     diarioVisual: diario ?? [],
     preferencias,
+    vacinasAdministradas: vacinas ?? [],
   };
 }
 

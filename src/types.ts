@@ -48,6 +48,7 @@ export type AppSection =
   | "inicio"
   | "perfil"
   | "marcos"
+  | "vacinas"
   | "crescimento"
   | "diario"
   | "puericultura"
@@ -168,6 +169,25 @@ export interface PerigoEngasgamento {
   alimento: string;
   risco: string;
   comoTornarSeguro: string;
+}
+
+// --- Vacinas (PNV) ---------------------------------------------------
+
+export interface DoseVacinaPNV {
+  id: string;
+  idadeLabel: string;
+  idadeMesesAprox: number;
+  vacina: string;
+  doencasPrevenidas: string;
+  doseLabel: string;
+  notaEspecial?: string;
+}
+
+export interface VacinaAdministrada {
+  id: string;
+  criancaId: string;
+  doseId: string;
+  dataAdministracao: string;
 }
 
 // --- Preferências ---------------------------------------------------------

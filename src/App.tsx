@@ -11,6 +11,7 @@ import { SintomasScreen } from "./features/sintomas/SintomasScreen";
 import { CalculadoraScreen } from "./features/sintomas/CalculadoraScreen";
 import { PrimeirosSocorrosScreen } from "./features/primeiros-socorros/PrimeirosSocorrosScreen";
 import { SbvScreen } from "./features/sbv/SbvScreen";
+import { VacinasScreen } from "./features/vacinas/VacinasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import { SearchOverlay } from "./components/SearchOverlay";
@@ -22,6 +23,7 @@ import type {
   EntradaDiario,
   MedicaoCrescimento,
   Preferencias,
+  VacinaAdministrada,
 } from "./types";
 import {
   carregarCriancas,
@@ -35,6 +37,8 @@ import {
   carregarPreferencias,
   guardarPreferencias,
   PREFERENCIAS_OMISSAO,
+  carregarVacinas,
+  guardarVacinas,
 } from "./lib/persistence";
 import "./App.css";
 
@@ -63,6 +67,7 @@ export default function App() {
   const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>([]);
   const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
   const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
+  const [vacinasAdministradas, setVacinasAdministradas] = useState<VacinaAdministrada[]>([]);
   const [preferencias, setPreferencias] = useState<Preferencias>(PREFERENCIAS_OMISSAO);
 
   // Carrega tudo do IndexedDB local ao arrancar. Sem dados guardados ainda
@@ -70,14 +75,21 @@ export default function App() {
   // crianças vazia — o ecrã seguinte trata disso mostrando o onboarding.
   useEffect(() => {
     (async () => {
-      const [criancasGuardadas, medicoesGuardadas, marcosGuardados, diarioGuardado, prefsGuardadas] =
-        await Promise.all([
-          carregarCriancas(),
-          carregarMedicoes(),
-          carregarMarcosAlcancados(),
-          carregarDiario(),
-          carregarPreferencias(),
-        ]);
+      const [
+        criancasGuardadas,
+        medicoesGuardadas,
+        marcosGuardados,
+        diarioGuardado,
+        prefsGuardadas,
+        vacinasGuardadas,
+      ] = await Promise.all([
+        carregarCriancas(),
+        carregarMedicoes(),
+        carregarMarcosAlcancados(),
+        carregarDiario(),
+        carregarPreferencias(),
+        carregarVacinas(),
+      ]);
 
       if (criancasGuardadas === undefined) {
         setCriancas([]);
@@ -89,6 +101,7 @@ export default function App() {
 
       setMarcosAlcancados(marcosGuardados);
       setEntradasDiario(diarioGuardado ?? []);
+      setVacinasAdministradas(vacinasGuardadas ?? []);
       setPreferencias(prefsGuardadas);
       aplicarTema(prefsGuardadas.tema);
       setPronto(true);
@@ -196,6 +209,24 @@ export default function App() {
       return novo;
     });
   }
+
+  function registarVacina(doseId: string, dataAdministracao: string) {
+    setVacinasAdministradas((prev) => {
+      const novo = [
+        ...prev.filter((v) => !(v.doseId === doseId && v.criancaId === criancaAtivaId)),
+        { id: crypto.randomUUID(), criancaId: criancaAtivaId, doseId, dataAdministracao },
+      ];
+      guardarVacinas(novo);
+      return novo;
+    });
+  }
+  function removerVacina(id: string) {
+    setVacinasAdministradas((prev) => {
+      const novo = prev.filter((v) => v.id !== id);
+      guardarVacinas(novo);
+      return novo;
+    });
+  }
   function atualizarLegendaDiario(id: string, legenda: string) {
     setEntradasDiario((prev) => {
       const novo = prev.map((e) => (e.id === id ? { ...e, legenda } : e));
@@ -229,6 +260,7 @@ export default function App() {
     setMedicoes([]);
     setMarcosAlcancados(new Set());
     setEntradasDiario([]);
+    setVacinasAdministradas([]);
     setPreferencias(PREFERENCIAS_OMISSAO);
     aplicarTema(PREFERENCIAS_OMISSAO.tema);
     // guardarCriancas/guardarMedicoes não são necessários aqui — apagarTudo()
@@ -317,6 +349,14 @@ export default function App() {
             crianca={criancaAtiva}
             marcosAlcancados={marcosAlcancados}
             onAlternarMarco={alternarMarco}
+          />
+        )}
+        {seccaoAtiva === "vacinas" && (
+          <VacinasScreen
+            crianca={criancaAtiva}
+            vacinasAdministradas={vacinasAdministradas.filter((v) => v.criancaId === criancaAtivaId)}
+            onRegistar={registarVacina}
+            onRemover={removerVacina}
           />
         )}
         {seccaoAtiva === "diario" && (

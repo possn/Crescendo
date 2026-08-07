@@ -12,6 +12,7 @@ import { SINAIS_ALERTA } from "../data/alertas/sinaisAlerta";
 import { MARCOS_CDC } from "../data/milestones/cdcMilestones";
 import { JANELAS_MOTORAS_OMS } from "../data/milestones/whoMotorWindows";
 import { ESTAGIOS, PERIGOS_ENGASGAMENTO } from "../data/diversificacao/diversificacao";
+import { DOSES_PNV } from "../data/vacinas/pnv";
 
 export interface ResultadoPesquisa {
   id: string;
@@ -132,6 +133,18 @@ function construirIndice(): ResultadoPesquisa[] {
       seccaoLabel: "Diversificação Alimentar",
       categoriaLabel: "Perigo de engasgamento",
       cor: "var(--warn-strong)",
+    });
+  }
+
+  for (const d of DOSES_PNV) {
+    indice.push({
+      id: `vacinas-${d.id}`,
+      titulo: `${d.vacina} — ${d.doseLabel}`,
+      resumo: `${d.idadeLabel}: previne ${d.doencasPrevenidas}`,
+      seccao: "vacinas",
+      seccaoLabel: "Vacinas — PNV",
+      categoriaLabel: d.idadeLabel,
+      cor: "var(--accent-strong)",
     });
   }
 

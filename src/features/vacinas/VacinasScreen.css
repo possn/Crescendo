@@ -1,0 +1,188 @@
+.vacinas-screen {
+  max-width: 760px;
+}
+
+.vacinas-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.vacinas-screen__subtitle {
+  color: var(--ink-muted);
+  max-width: 620px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.vacinas-screen__progresso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+.vacinas-screen__progresso-barra {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.vacinas-screen__progresso-fill {
+  height: 100%;
+  background: var(--accent-strong);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.vacinas-screen__grupo {
+  margin-bottom: 22px;
+}
+
+.vacinas-screen__grupo h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-strong);
+  margin: 0 0 10px;
+}
+
+.vacinas-screen__doses {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vacinas-screen__dose {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+  flex-wrap: wrap;
+}
+
+.vacinas-screen__dose--feito {
+  background: var(--accent-soft);
+  border-color: var(--accent-strong);
+}
+
+.vacinas-screen__dose--atrasada {
+  border-color: var(--warn-strong);
+}
+
+.vacinas-screen__dose-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.vacinas-screen__dose-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.vacinas-screen__dose-label {
+  font-weight: 400;
+  color: var(--ink-muted);
+  font-size: 12.5px;
+}
+
+.vacinas-screen__dose-doencas {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.vacinas-screen__dose-nota {
+  font-size: 11.5px;
+  color: var(--warn-strong);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.vacinas-screen__dose-data {
+  font-size: 12px;
+  color: var(--accent-strong);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.vacinas-screen__dose-aviso {
+  font-size: 11.5px;
+  color: var(--warn-strong);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.vacinas-screen__dose-marcar {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-strong);
+  background: transparent;
+  color: var(--accent-strong);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.vacinas-screen__dose-desfazer {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  color: var(--warn-strong);
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.vacinas-screen__dose-editor {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.vacinas-screen__dose-editor input {
+  padding: 7px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 13px;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  background: var(--surface);
+}
+
+.vacinas-screen__dose-editor button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent-strong);
+  color: var(--surface);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.vacinas-screen__disclaimer {
+  font-size: 12px;
+  color: var(--ink-faint);
+  max-width: 620px;
+  line-height: 1.6;
+  margin-top: 12px;
+}
