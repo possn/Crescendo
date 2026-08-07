@@ -18,12 +18,19 @@
  */
 
 import { get, set, del, keys } from "idb-keyval";
-import type { Crianca, MedicaoCrescimento, EntradaDiario } from "../types";
+import type { Crianca, MedicaoCrescimento, EntradaDiario, Preferencias } from "../types";
 
 const CHAVE_CRIANCAS = "crescendo:criancas";
 const CHAVE_MEDICOES = "crescendo:medicoes";
 const CHAVE_MARCOS_ALCANCADOS = "crescendo:marcos-alcancados"; // array de "criancaId::marcoId"
 const CHAVE_DIARIO = "crescendo:diario";
+const CHAVE_PREFERENCIAS = "crescendo:preferencias";
+
+export const PREFERENCIAS_OMISSAO: Preferencias = {
+  unidades: "metrico",
+  tema: "sistema",
+  notificacoesAtivas: false,
+};
 
 export async function carregarCriancas(): Promise<Crianca[] | undefined> {
   return get(CHAVE_CRIANCAS);
@@ -54,13 +61,22 @@ export async function guardarDiario(v: EntradaDiario[]): Promise<void> {
   await set(CHAVE_DIARIO, v);
 }
 
+export async function carregarPreferencias(): Promise<Preferencias> {
+  const p = await get<Partial<Preferencias>>(CHAVE_PREFERENCIAS);
+  return { ...PREFERENCIAS_OMISSAO, ...p };
+}
+export async function guardarPreferencias(v: Preferencias): Promise<void> {
+  await set(CHAVE_PREFERENCIAS, v);
+}
+
 /** Exporta tudo num único objeto — usado pelo botão "Exportar os meus dados". */
 export async function exportarTudo() {
-  const [criancas, medicoes, marcosAlcancados, diario] = await Promise.all([
+  const [criancas, medicoes, marcosAlcancados, diario, preferencias] = await Promise.all([
     carregarCriancas(),
     carregarMedicoes(),
     carregarMarcosAlcancados(),
     carregarDiario(),
+    carregarPreferencias(),
   ]);
   return {
     exportadoEm: new Date().toISOString(),
@@ -68,6 +84,7 @@ export async function exportarTudo() {
     medicoesCrescimento: medicoes ?? [],
     marcosAlcancados: Array.from(marcosAlcancados),
     diarioVisual: diario ?? [],
+    preferencias,
   };
 }
 

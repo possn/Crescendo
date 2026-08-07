@@ -9,7 +9,13 @@ import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
 import { SplashScreen } from "./components/SplashScreen";
-import type { AppSection, Crianca, EntradaDiario, MedicaoCrescimento } from "./types";
+import type {
+  AppSection,
+  Crianca,
+  EntradaDiario,
+  MedicaoCrescimento,
+  Preferencias,
+} from "./types";
 import {
   carregarCriancas,
   guardarCriancas,
@@ -19,6 +25,9 @@ import {
   guardarMarcosAlcancados,
   carregarDiario,
   guardarDiario,
+  carregarPreferencias,
+  guardarPreferencias,
+  PREFERENCIAS_OMISSAO,
 } from "./lib/persistence";
 import "./App.css";
 
@@ -39,6 +48,16 @@ const MEDICOES_EXEMPLO: MedicaoCrescimento[] = [
   { id: "m4", criancaId: "crianca-1", data: "2025-12-10", pesoKg: 9.1, comprimentoOuAlturaCm: 73.5, tipoMedicaoComprimento: "comprimento", perimetroCefalicoCm: 45.8 },
 ];
 
+function aplicarTema(tema: Preferencias["tema"]) {
+  const raiz = document.documentElement;
+  if (tema === "sistema") {
+    const escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    raiz.dataset.theme = escuro ? "dark" : "light";
+  } else {
+    raiz.dataset.theme = tema === "escuro" ? "dark" : "light";
+  }
+}
+
 export default function App() {
   const [pronto, setPronto] = useState(false);
   const [splashTerminou, setSplashTerminou] = useState(false);
@@ -49,17 +68,19 @@ export default function App() {
   const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>([]);
   const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
   const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
+  const [preferencias, setPreferencias] = useState<Preferencias>(PREFERENCIAS_OMISSAO);
 
   // Carrega tudo do IndexedDB local ao arrancar. Se for a primeira vez
   // (nada guardado ainda), semeia com os dados de exemplo e já os grava.
   useEffect(() => {
     (async () => {
-      const [criancasGuardadas, medicoesGuardadas, marcosGuardados, diarioGuardado] =
+      const [criancasGuardadas, medicoesGuardadas, marcosGuardados, diarioGuardado, prefsGuardadas] =
         await Promise.all([
           carregarCriancas(),
           carregarMedicoes(),
           carregarMarcosAlcancados(),
           carregarDiario(),
+          carregarPreferencias(),
         ]);
 
       if (criancasGuardadas === undefined) {
@@ -78,9 +99,35 @@ export default function App() {
 
       setMarcosAlcancados(marcosGuardados);
       setEntradasDiario(diarioGuardado ?? []);
+      setPreferencias(prefsGuardadas);
+      aplicarTema(prefsGuardadas.tema);
       setPronto(true);
     })();
   }, []);
+
+  // Notificação local (só funciona com a app aberta/recente — ver nota no
+  // ecrã de Definições): avisa se não há medições há mais de 60 dias.
+  useEffect(() => {
+    if (!pronto || !preferencias.notificacoesAtivas) return;
+    if (typeof Notification === "undefined" || Notification.permission !== "granted") return;
+
+    const medicoesDaCriancaAtiva = medicoes.filter((m) => m.criancaId === criancaAtivaId);
+    if (medicoesDaCriancaAtiva.length === 0) return;
+
+    const ultimaData = medicoesDaCriancaAtiva
+      .map((m) => new Date(m.data).getTime())
+      .sort((a, b) => b - a)[0];
+    const diasPassados = (Date.now() - ultimaData) / (1000 * 60 * 60 * 24);
+
+    if (diasPassados > 60) {
+      new Notification("Crescendo", {
+        body: `Já não há medições novas há ${Math.floor(diasPassados)} dias.`,
+        icon: `${import.meta.env.BASE_URL}icons/icon-192.png`,
+      });
+    }
+    // Só na abertura da app, não repetidamente — daí sem diasPassados nas deps.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pronto, preferencias.notificacoesAtivas, criancaAtivaId]);
 
   const criancaAtiva = criancas.find((c) => c.id === criancaAtivaId);
   const medicoesDaCrianca = medicoes.filter((m) => m.criancaId === criancaAtivaId);
@@ -107,6 +154,24 @@ export default function App() {
     setCriancas((prev) => {
       const novo = prev.map((x) => (x.id === c.id ? c : x));
       guardarCriancas(novo);
+      return novo;
+    });
+  }
+
+  function adicionarCrianca(c: Crianca) {
+    setCriancas((prev) => {
+      const novo = [...prev, c];
+      guardarCriancas(novo);
+      return novo;
+    });
+    setCriancaAtivaId(c.id);
+  }
+
+  function apagarCrianca(id: string) {
+    setCriancas((prev) => {
+      const novo = prev.filter((c) => c.id !== id);
+      guardarCriancas(novo);
+      if (criancaAtivaId === id && novo.length > 0) setCriancaAtivaId(novo[0].id);
       return novo;
     });
   }
@@ -140,14 +205,22 @@ export default function App() {
     });
   }
 
+  function atualizarPreferencias(p: Preferencias) {
+    setPreferencias(p);
+    guardarPreferencias(p);
+    aplicarTema(p.tema);
+  }
+
   function dadosApagados() {
     setCriancas([CRIANCA_EXEMPLO]);
     setCriancaAtivaId(CRIANCA_EXEMPLO.id);
     setMedicoes(MEDICOES_EXEMPLO);
     setMarcosAlcancados(new Set());
     setEntradasDiario([]);
+    setPreferencias(PREFERENCIAS_OMISSAO);
     guardarCriancas([CRIANCA_EXEMPLO]);
     guardarMedicoes(MEDICOES_EXEMPLO);
+    aplicarTema(PREFERENCIAS_OMISSAO.tema);
   }
 
   if (!splashTerminou) {
@@ -188,6 +261,7 @@ export default function App() {
             crianca={criancaAtiva}
             medicoes={medicoesDaCrianca}
             onAdicionarMedicao={adicionarMedicao}
+            unidades={preferencias.unidades}
           />
         )}
         {seccaoAtiva === "inicio" && (
@@ -218,7 +292,18 @@ export default function App() {
         {seccaoAtiva === "perfil" && (
           <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />
         )}
-        {seccaoAtiva === "definicoes" && <SettingsScreen onDadosApagados={dadosApagados} />}
+        {seccaoAtiva === "definicoes" && (
+          <SettingsScreen
+            onDadosApagados={dadosApagados}
+            criancas={criancas}
+            criancaAtivaId={criancaAtivaId}
+            onMudarCrianca={setCriancaAtivaId}
+            onAdicionarCrianca={adicionarCrianca}
+            onApagarCrianca={apagarCrianca}
+            preferencias={preferencias}
+            onAtualizarPreferencias={atualizarPreferencias}
+          />
+        )}
       </main>
     </div>
   );

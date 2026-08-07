@@ -109,3 +109,83 @@
   font-size: 13.5px;
   cursor: pointer;
 }
+
+.settings-screen__children {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-screen__children li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.settings-screen__child-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.settings-screen__child-remove {
+  border: none;
+  background: none;
+  color: var(--warn);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.settings-screen__child-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.settings-screen__child-form input,
+.settings-screen__child-form select {
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: var(--font-ui);
+}
+
+.settings-screen__child-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-screen__toggle-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.settings-screen__toggle-option {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.settings-screen__toggle-option--ativo {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--surface);
+  font-weight: 600;
+}

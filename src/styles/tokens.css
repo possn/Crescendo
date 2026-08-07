@@ -83,3 +83,41 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------------------------------------------------------------------
+   Modo escuro — aplicado via [data-theme="dark"] no <html>. Todos os
+   valores foram verificados para contraste WCAG AA (≥4.5:1) antes de
+   serem usados, tal como a paleta clara.
+   --------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --bg: #20241d;
+  --surface: #282d23;
+  --surface-sunken: #323829;
+  --border: #3d4433;
+  --border-strong: #4c5440;
+
+  --ink: #eee8da;
+  --ink-muted: #b3b6a4;
+  --ink-faint: #8d9280;
+
+  --accent: #a8bd9c;
+  --accent-strong: #c7d9bc;
+  --accent-strong-hover: #d8e6cf;
+  --accent-soft: #3a4433;
+
+  --ind-peso: #e0a06f;
+  --ind-comprimento: #c9ac6f;
+  --ind-perimetro: #b3a2d9;
+
+  --warn: #e0a06f;
+  --warn-soft: #3d3124;
+}
+
+[data-theme="dark"] .growth-screen__submit,
+[data-theme="dark"] .profile-screen__submit,
+[data-theme="dark"] .diary-screen__upload-btn,
+[data-theme="dark"] .settings-screen__btn,
+[data-theme="dark"] .settings-screen__toggle-option--ativo,
+[data-theme="dark"] .milestones-screen__age-tab--ativo {
+  color: var(--bg);
+}

@@ -1,6 +1,14 @@
 import { useMemo, useState } from "react";
-import type { Crianca, MedicaoCrescimento, TabelaReferenciaOMS } from "../../types";
+import type { Crianca, MedicaoCrescimento, TabelaReferenciaOMS, Unidades } from "../../types";
 import { calcularZScoreEPercentil } from "../../lib/growthCalculations";
+import {
+  formatarPeso,
+  formatarComprimento,
+  rotuloPeso,
+  rotuloComprimento,
+  paraKg,
+  paraCm,
+} from "../../lib/units";
 import { GrowthChart } from "./GrowthChart";
 import "./GrowthCurvesScreen.css";
 
@@ -53,17 +61,18 @@ interface GrowthCurvesScreenProps {
   crianca: Crianca;
   medicoes: MedicaoCrescimento[];
   onAdicionarMedicao: (m: MedicaoCrescimento) => void;
+  unidades: Unidades;
 }
 
 type Indicador = "weight_for_age" | "length_height_for_age" | "head_circumference_for_age";
 
-const ABAS: { id: Indicador; label: string; cor: string; unidade: string }[] = [
-  { id: "weight_for_age", label: "Peso", cor: "var(--ind-peso)", unidade: "kg" },
-  { id: "length_height_for_age", label: "Comprimento / Altura", cor: "var(--ind-comprimento)", unidade: "cm" },
-  { id: "head_circumference_for_age", label: "Perímetro cefálico", cor: "var(--ind-perimetro)", unidade: "cm" },
+const ABAS: { id: Indicador; label: string; cor: string }[] = [
+  { id: "weight_for_age", label: "Peso", cor: "var(--ind-peso)" },
+  { id: "length_height_for_age", label: "Comprimento / Altura", cor: "var(--ind-comprimento)" },
+  { id: "head_circumference_for_age", label: "Perímetro cefálico", cor: "var(--ind-perimetro)" },
 ];
 
-export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: GrowthCurvesScreenProps) {
+export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao, unidades }: GrowthCurvesScreenProps) {
   const [abaAtiva, setAbaAtiva] = useState<Indicador>("weight_for_age");
   const nascimentoEfetivo = dataNascimentoEfetiva(crianca);
 
@@ -114,10 +123,10 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
       id: crypto.randomUUID(),
       criancaId: crianca.id,
       data: formData,
-      pesoKg: formPeso ? parseFloat(formPeso) : undefined,
-      comprimentoOuAlturaCm: formComprimento ? parseFloat(formComprimento) : undefined,
+      pesoKg: formPeso ? paraKg(parseFloat(formPeso), unidades) : undefined,
+      comprimentoOuAlturaCm: formComprimento ? paraCm(parseFloat(formComprimento), unidades) : undefined,
       tipoMedicaoComprimento: formComprimento ? formTipoMedicao : undefined,
-      perimetroCefalicoCm: formPerimetro ? parseFloat(formPerimetro) : undefined,
+      perimetroCefalicoCm: formPerimetro ? paraCm(parseFloat(formPerimetro), unidades) : undefined,
     });
     setFormPeso("");
     setFormComprimento("");
@@ -161,8 +170,9 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
               <span className="growth-screen__readout-detail">
                 z-score {leituraAtual.zScore >= 0 ? "+" : ""}
                 {leituraAtual.zScore.toFixed(2)} · mediana esperada à idade atual:{" "}
-                {leituraAtual.medianaEsperada.toFixed(1)}
-                {ABAS.find((a) => a.id === abaAtiva)?.unidade}
+                {abaAtiva === "weight_for_age"
+                  ? formatarPeso(leituraAtual.medianaEsperada, unidades)
+                  : formatarComprimento(leituraAtual.medianaEsperada, unidades)}
               </span>
               {nascimentoEfetivo !== crianca.dataNascimento && (
                 <span className="growth-screen__corrected-badge">
@@ -204,26 +214,24 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
           </label>
 
           <label className="growth-screen__field">
-            <span>Peso (kg)</span>
+            <span>{rotuloPeso(unidades)}</span>
             <input
               type="number"
               step="0.01"
               inputMode="decimal"
-              placeholder="ex.: 8.20"
+              placeholder={unidades === "imperial" ? "ex.: 18.08" : "ex.: 8.20"}
               value={formPeso}
               onChange={(e) => setFormPeso(e.target.value)}
             />
           </label>
 
           <label className="growth-screen__field">
-            <span>
-              {formTipoMedicao === "comprimento" ? "Comprimento (deitado, cm)" : "Altura (em pé, cm)"}
-            </span>
+            <span>{rotuloComprimento(unidades, formTipoMedicao)}</span>
             <input
               type="number"
               step="0.1"
               inputMode="decimal"
-              placeholder="ex.: 68.5"
+              placeholder={unidades === "imperial" ? "ex.: 27.0" : "ex.: 68.5"}
               value={formComprimento}
               onChange={(e) => setFormComprimento(e.target.value)}
             />
@@ -239,12 +247,12 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao }: Gr
           </label>
 
           <label className="growth-screen__field">
-            <span>Perímetro cefálico (cm)</span>
+            <span>{unidades === "imperial" ? "Perímetro cefálico (in)" : "Perímetro cefálico (cm)"}</span>
             <input
               type="number"
               step="0.1"
               inputMode="decimal"
-              placeholder="ex.: 44.0"
+              placeholder={unidades === "imperial" ? "ex.: 17.3" : "ex.: 44.0"}
               value={formPerimetro}
               onChange={(e) => setFormPerimetro(e.target.value)}
             />

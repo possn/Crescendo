@@ -124,3 +124,14 @@ export interface SinalAlerta {
   idadeReferenciaMeses: number | "qualquer_idade";
   sinal: string;
 }
+
+// --- Preferências ---------------------------------------------------------
+
+export type Unidades = "metrico" | "imperial";
+export type Tema = "claro" | "escuro" | "sistema";
+
+export interface Preferencias {
+  unidades: Unidades;
+  tema: Tema;
+  notificacoesAtivas: boolean;
+}
