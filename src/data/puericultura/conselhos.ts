@@ -423,6 +423,121 @@ export const CONSELHOS: ConselhoPuericultura[] = [
     fonte: "AAP / American Speech-Language-Hearing Association",
   },
 
+  // ---- CHORO E CONFORTO ----
+  {
+    id: "conf-colicas-o-que-e",
+    tema: "conforto",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 5,
+    titulo: "Cólicas: o que são, e quando passam",
+    texto:
+      "Definição clássica (\"regra dos 3\"): choro superior a 3h/dia, mais de 3 dias/semana, durante mais de 3 semanas, num bebé de resto saudável e a ganhar peso bem. Começam por volta das 2 semanas, atingem o pico às 6 semanas, e resolvem-se sozinhas até aos 3-5 meses — não é causado por nada que os pais tenham feito, e não está relacionado com o tipo de leite.",
+    fonte: "AAP / American Family Physician — \"Infantile Colic\"",
+  },
+  {
+    id: "conf-colicas-diagnostico-exclusao",
+    tema: "conforto",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 5,
+    titulo: "Cólicas é um diagnóstico de exclusão",
+    texto:
+      "Antes de assumir que \"é só cólicas\", vale a pena o pediatra observar o bebé — para excluir outras causas de choro (refluxo, alergia, infeção). Se o choro for muito diferente do habitual, ou vier acompanhado de febre, vómitos ou pouco ganho de peso, não é só cólicas.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "conf-quando-nao-aguenta-mais",
+    tema: "conforto",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 5,
+    titulo: "Quando já não aguenta mais o choro: pouse o bebé em segurança",
+    texto:
+      "Se sentir a frustração a aumentar e ninguém o conseguir substituir, é seguro pousar o bebé de costas no berço (sem nada à volta), sair da sala, e respirar alguns minutos. Nunca abane um bebé — mesmo alguns segundos de abanão violento podem causar lesão cerebral grave e permanente (síndrome do bebé abanado). Pedir ajuda a alguém não é falhar, é a decisão certa.",
+    fonte: "\"Period of PURPLE Crying\" — National Center on Shaken Baby Syndrome / AAP",
+  },
+
+  // ---- HIGIENE E CUIDADOS ----
+  {
+    id: "hig-cordao-cuidados",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 1,
+    titulo: "Cordão umbilical: cuidado seco, sem álcool",
+    texto:
+      "A recomendação atual é \"dry cord care\" — não aplicar álcool nem produtos, deixar secar ao ar. Banhos só de esponja (não mergulhar o bebé) até o coto cair sozinho, normalmente entre 1 a 3 semanas. Dobre a fralda abaixo do coto para não o tapar. Nunca puxe, mesmo que esteja quase a cair sozinho.",
+    fonte: "AAP — HealthyChildren.org, Umbilical Cord Care",
+  },
+  {
+    id: "hig-cordao-alerta",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 1,
+    titulo: "Cordão umbilical: sinais de alerta",
+    texto:
+      "Vermelhidão a espalhar-se pela pele à volta, pus, cheiro desagradável, ou o coto ainda preso depois das 3 semanas — nestes casos, contacte o pediatra. Umas gotas de sangue quando cai é normal; sangramento ativo e persistente não é.",
+    fonte: "AAP — HealthyChildren.org, Umbilical Cord Care",
+  },
+  {
+    id: "hig-banho-frequencia",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Banho: não precisa de ser todos os dias",
+    texto:
+      "Nos primeiros meses, 2-3 banhos por semana chegam — banhos a mais podem ressecar a pele sensível do bebé. Água morna (não quente), poucos minutos, sabão neutro só onde é preciso.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "hig-dermatite-fraldas",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Dermatite das fraldas: trocar cedo, deixar arejar",
+    texto:
+      "A melhor prevenção é trocar a fralda assim que está suja, limpar bem e deixar secar ao ar uns minutos antes de fechar nova fralda. Uma camada fina de pomada de barreira (óxido de zinco) ajuda se já houver vermelhidão. Se não melhorar em 2-3 dias, tiver bolhas, ou parecer muito dorida, vale a pena mostrar ao pediatra — pode ser uma infeção fúngica que precisa de outro tratamento.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "hig-desfralde-quando",
+    tema: "higiene",
+    idadeMinMeses: 18,
+    idadeMaxMeses: 36,
+    titulo: "Desfralde: sinais de prontidão, não uma idade fixa",
+    texto:
+      "Não há uma idade certa — a maioria está pronta entre os 18 e os 30 meses, mas a variação normal é grande. Sinais de prontidão: fica seco(a) por 2h seguidas, percebe quando está a fazer, consegue seguir instruções simples, mostra interesse na sanita. Começar antes destes sinais tende a demorar mais, não menos.",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- VIDA EM FAMÍLIA ----
+  {
+    id: "fam-chegada-irmao",
+    tema: "familia",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Chegada de um irmão: ciúme é normal, prepare com antecedência",
+    texto:
+      "Envolver a criança mais velha na preparação (escolher roupa do bebé, \"ajudar\"), manter rotinas dela o mais estável possível, e reservar tempo a sós com ela nas primeiras semanas ajuda bastante. Regressões temporárias (voltar a pedir chucha, fazer chichi na cama) são reação normal, não motivo de castigo.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "fam-vestuario-temperatura",
+    tema: "familia",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Vestuário: uma camada a mais do que o adulto, não duas",
+    texto:
+      "Erro comum é agasalhar a mais. Regra prática: vestir o bebé com uma camada a mais do que a pessoa adulta sentiria necessidade para a mesma temperatura. Sobreaquecimento está associado a maior risco de SMSL — a nuca do bebé deve estar morna ao toque, não a suar.",
+    fonte: "AAP Task Force on SIDS — Safe Sleep",
+  },
+  {
+    id: "fam-viagem-aviao",
+    tema: "familia",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Viagem de avião: mamar ou chupar ajuda nos ouvidos",
+    texto:
+      "A mudança de pressão na descolagem e na aterragem pode incomodar os ouvidos do bebé — mamar, dar biberão ou chucha nesses dois momentos específicos ajuda a equalizar a pressão através da deglutição.",
+    fonte: "AAP Bright Futures",
+  },
 ];
 
 export const TEMAS: { id: ConselhoPuericultura["tema"]; label: string; cor: string }[] = [
@@ -430,4 +545,7 @@ export const TEMAS: { id: ConselhoPuericultura["tema"]; label: string; cor: stri
   { id: "alimentacao", label: "Alimentação", cor: "#ad5834" },
   { id: "seguranca", label: "Segurança", cor: "#8a6d3b" },
   { id: "estimulacao", label: "Estimulação", cor: "#5c6e54" },
+  { id: "conforto", label: "Choro e Conforto", cor: "#4a6b7a" },
+  { id: "higiene", label: "Higiene e Cuidados", cor: "#3d7a6b" },
+  { id: "familia", label: "Vida em Família", cor: "#8a4a6b" },
 ];

@@ -111,7 +111,7 @@ export interface EntradaDiario {
 
 // --- Puericultura --------------------------------------------------------
 
-export type TemaPuericultura = "sono" | "alimentacao" | "seguranca" | "estimulacao";
+export type TemaPuericultura = "sono" | "alimentacao" | "seguranca" | "estimulacao" | "conforto" | "higiene" | "familia";
 
 export interface ConselhoPuericultura {
   id: string;
