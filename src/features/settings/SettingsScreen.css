@@ -44,6 +44,13 @@
   color: var(--ink-faint);
 }
 
+.settings-screen__disclaimer-destaque {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 13px;
+}
+
 .settings-screen__btn {
   padding: 9px 16px;
   border: none;

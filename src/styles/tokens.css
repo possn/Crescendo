@@ -68,6 +68,12 @@ body {
   line-height: 1.5;
 }
 
+/* Extende a cor de fundo para dentro da zona do "notch"/barra de estado,
+   agora que a barra de estado é transparente (black-translucent). */
+html {
+  background: var(--bg);
+}
+
 button {
   font-family: inherit;
 }

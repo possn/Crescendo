@@ -95,6 +95,21 @@ export function SettingsScreen({
       </header>
 
       <section className="settings-screen__card">
+        <h2>Sobre a Crescendo</h2>
+        <p>
+          A Crescendo acompanha o desenvolvimento e o crescimento infantil (0–5 anos) com base em
+          dados oficiais da OMS e do CDC/AAP.
+        </p>
+        <p className="settings-screen__disclaimer-destaque">
+          <strong>Esta app não substitui uma avaliação formal por um profissional de saúde.</strong>{" "}
+          O conteúdo é informativo e destina-se a apoiar, não a substituir, o acompanhamento do
+          pediatra do seu filho ou filha. Perante qualquer dúvida sobre a saúde ou o desenvolvimento
+          da criança, fale sempre com um profissional.
+        </p>
+        <p className="settings-screen__note">Versão 1.0 · [Nome do pediatra] — a confirmar</p>
+      </section>
+
+      <section className="settings-screen__card">
         <h2>Privacidade</h2>
         <p>
           Todos os dados desta app — perfis, medições, marcos, fotos e vídeos — ficam guardados{" "}

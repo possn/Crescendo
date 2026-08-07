@@ -22,7 +22,20 @@
 import type { SinalAlerta } from "../../types";
 
 export const SINAIS_ALERTA: SinalAlerta[] = [
-  // ---- Socio-emocional ----
+  // ---- 2 meses ----
+  { id: "se-2m-1", dominio: "socio_emocional", idadeReferenciaMeses: 2, sinal: "Não olha para as pessoas nem as segue com o olhar" },
+  { id: "co-2m-1", dominio: "cognitivo", idadeReferenciaMeses: 2, sinal: "Não reage a sons altos" },
+  { id: "mo-2m-1", dominio: "motor", idadeReferenciaMeses: 2, sinal: "Não consegue levantar a cabeça quando está de bruços" },
+  { id: "mo-2m-2", dominio: "motor", idadeReferenciaMeses: 2, sinal: "Braços ou pernas muito moles ou muito rígidos" },
+
+  // ---- 4 meses ----
+  { id: "se-4m-1", dominio: "socio_emocional", idadeReferenciaMeses: 4, sinal: "Não sorri a pessoas familiares" },
+  { id: "li-4m-1", dominio: "linguagem", idadeReferenciaMeses: 4, sinal: "Não faz sons tipo \"oooo\" ou \"aahh\"" },
+  { id: "co-4m-1", dominio: "cognitivo", idadeReferenciaMeses: 4, sinal: "Não segue objetos em movimento com os olhos" },
+  { id: "mo-4m-1", dominio: "motor", idadeReferenciaMeses: 4, sinal: "Não consegue manter a cabeça firme quando é segurado(a) sentado(a)" },
+  { id: "mo-4m-2", dominio: "motor", idadeReferenciaMeses: 4, sinal: "Não leva as mãos à boca" },
+
+  // ---- 6 meses ----
   { id: "se-1", dominio: "socio_emocional", idadeReferenciaMeses: 6, sinal: "Não sorri nem demonstra alegria ao interagir com quem cuida dele/a" },
   { id: "se-2", dominio: "socio_emocional", idadeReferenciaMeses: 9, sinal: "Não reage nem parece reconhecer pessoas familiares" },
   { id: "se-3", dominio: "socio_emocional", idadeReferenciaMeses: 12, sinal: "Não olha na direção para onde alguém aponta" },
