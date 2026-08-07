@@ -134,7 +134,7 @@ export interface SinalAlerta {
 
 // --- Primeiros Socorros -----------------------------------------------
 
-export type CategoriaSocorro = "convulsoes" | "feridas" | "queimaduras";
+export type CategoriaSocorro = "convulsoes" | "feridas" | "queimaduras" | "trauma-craniano" | "picadas" | "corpo-estranho" | "hemorragia-nasal" | "alergia";
 
 export interface ConselhoSocorro {
   id: string;
