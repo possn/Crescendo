@@ -255,7 +255,8 @@ export default function App() {
         aberta={sidebarAberta}
         onFechar={() => setSidebarAberta(false)}
       />
-      <main className="app-shell__content">
+
+      <div className="app-shell__mobile-header">
         <button
           className="app-shell__menu-btn"
           onClick={() => setSidebarAberta(true)}
@@ -265,6 +266,9 @@ export default function App() {
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+      </div>
+
+      <main className="app-shell__content">
         {seccaoAtiva === "crescimento" && (
           <GrowthCurvesScreen
             crianca={criancaAtiva}
