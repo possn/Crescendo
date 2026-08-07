@@ -64,11 +64,9 @@ documento — não há mais nenhum módulo "em falta" da lista original.
   possível questão de conduta profissional (Ordem dos Médicos) se
   associado ao nome do autor. Se avançar, manter separado do conteúdo
   clínico, sem marcas/afiliação, e validar as regras profissionais primeiro.
-- [ ] **Rastreador de vacinas (PNV — Programa Nacional de Vacinação,
-  Portugal)** — prioridade alta segundo o utilizador: dados oficiais bem
-  definidos (DGS), problema real e universal (pais perdem o boletim,
-  esquecem datas), e vantagem competitiva real (apps genéricas
-  americanas não têm isto certo para Portugal)
+- [x] Rastreador de vacinas (PNV) — feito. 14 doses, 0-5 anos, com as
+  atualizações de 2024/2025 (pneumocócica, MenACWY). Rever periodicamente
+  contra dgs.pt — o PNV muda com regularidade.
 - [ ] Exportação em PDF (curvas + marcos + resumo de uma página) para
   levar à consulta — prioridade alta, é o tipo de coisa que faz um pai
   dizer "era mesmo isto que precisava"
