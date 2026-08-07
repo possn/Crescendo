@@ -57,13 +57,23 @@ documento — não há mais nenhum módulo "em falta" da lista original.
 
 ## Ideias fora do MVP original (avaliar antes de construir)
 
+- [x] Pesquisa global — feita (~210 itens indexados)
+- [x] Onboarding reforçado com mensagem de bom senso — feito
 - [ ] Links para recursos práticos (ex.: fraldas, roupa) — ver nota de
   17/discussão: risco de misturar conteúdo comercial com conselho clínico,
   possível questão de conduta profissional (Ordem dos Médicos) se
   associado ao nome do autor. Se avançar, manter separado do conteúdo
   clínico, sem marcas/afiliação, e validar as regras profissionais primeiro.
-- [ ] Exportação em PDF (curvas + marcos) para levar à consulta
-- [ ] Múltiplos filhos por conta (a estrutura de dados já suporta; falta UI de gestão)
+- [ ] **Rastreador de vacinas (PNV — Programa Nacional de Vacinação,
+  Portugal)** — prioridade alta segundo o utilizador: dados oficiais bem
+  definidos (DGS), problema real e universal (pais perdem o boletim,
+  esquecem datas), e vantagem competitiva real (apps genéricas
+  americanas não têm isto certo para Portugal)
+- [ ] Exportação em PDF (curvas + marcos + resumo de uma página) para
+  levar à consulta — prioridade alta, é o tipo de coisa que faz um pai
+  dizer "era mesmo isto que precisava"
+- [ ] Favoritos/atalhos — marcar 3-5 artigos usados com frequência (ex.:
+  passos do SBV, calculadora de dose) para acesso instantâneo no Dashboard
 
 ---
 
