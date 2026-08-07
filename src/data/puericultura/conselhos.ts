@@ -304,6 +304,124 @@ export const CONSELHOS: ConselhoPuericultura[] = [
       "Entre 1 e 2 anos, a linguagem ainda não acompanha as emoções — a birra é muitas vezes a única forma de expressar frustração. Manter-se calmo, validar o sentimento (\"estás zangado\") e manter limites simples ajuda mais do que castigar.",
     fonte: "AAP Bright Futures",
   },
+
+  // ---- SONO (segunda ronda) ----
+  {
+    id: "sono-rotina",
+    tema: "sono",
+    idadeMinMeses: 2,
+    idadeMaxMeses: 24,
+    titulo: "Uma rotina de deitar consistente ajuda mais do que parece",
+    texto:
+      "Uma sequência curta e previsível — banho, história, música calma, luz baixa — sinaliza ao cérebro que é hora de dormir. Estudos mostram que rotinas consistentes de deitar estão associadas a adormecer mais depressa e a acordar menos vezes durante a noite.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "sono-sestas",
+    tema: "sono",
+    idadeMinMeses: 4,
+    idadeMaxMeses: 18,
+    titulo: "Quantas sestas são normais, por idade",
+    texto:
+      "Aproximadamente: 3-4 sestas até aos 6 meses, 2 sestas dos 6 aos 12-15 meses, 1 sesta dos 15-18 meses até perto dos 3-4 anos. É uma referência geral — a variação individual é grande, e não há problema em desviar-se um pouco disto.",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- ALIMENTAÇÃO (segunda ronda) ----
+  {
+    id: "alim-vitamina-d",
+    tema: "alimentacao",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 12,
+    titulo: "Vitamina D em suplemento, se há aleitamento",
+    texto:
+      "O leite materno tem pouca vitamina D. A AAP recomenda 400 UI/dia de suplemento, começando nos primeiros dias de vida, para bebés amamentados (exclusiva ou parcialmente), até estarem a tomar pelo menos 1L/dia de fórmula ou leite fortificados. Bebés só com fórmula geralmente não precisam de suplemento extra, se tomarem a quantidade recomendada.",
+    fonte: "AAP — Prevention of Rickets and Vitamin D Deficiency",
+  },
+  {
+    id: "alim-ferro",
+    tema: "alimentacao",
+    idadeMinMeses: 6,
+    idadeMaxMeses: 12,
+    titulo: "Ferro: as reservas do bebé esgotam-se por volta dos 6 meses",
+    texto:
+      "É por isso que a diversificação alimentar por volta dos 6 meses é importante para o ferro, não só para experimentar sabores. Carnes, cereais fortificados com ferro e leguminosas são boas fontes. Bebés exclusivamente amamentados além dos 6 meses sem fontes de ferro na dieta têm mais risco de défice.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "alim-agua",
+    tema: "alimentacao",
+    idadeMinMeses: 6,
+    idadeMaxMeses: 12,
+    titulo: "Água em pequenas quantidades, a partir dos 6 meses",
+    texto:
+      "Antes dos 6 meses não é preciso (nem recomendado) dar água — o leite chega. A partir dos 6 meses, pequenas quantidades ao lado das refeições são seguras. Quantidades grandes continuam desaconselhadas nesta idade, para não substituir leite ou comida.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "alim-sumo",
+    tema: "alimentacao",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 12,
+    titulo: "Sumo de fruta: evitar antes de 1 ano",
+    texto:
+      "Mesmo 100% natural, o sumo não tem a fibra da fruta inteira e contribui para excesso de açúcar sem benefício nutricional extra. Depois de 1 ano, se for dado, a AAP recomenda limitar a quantidade e preferir sempre a fruta inteira.",
+    fonte: "AAP — Bright Futures / Fruit Juice Policy",
+  },
+  {
+    id: "alim-seletividade",
+    tema: "alimentacao",
+    idadeMinMeses: 9,
+    idadeMaxMeses: 24,
+    titulo: "Recusar alimentos novos é normal, não é birra",
+    texto:
+      "É comum uma criança precisar de ver ou provar um alimento novo entre 8 e 15 vezes antes de o aceitar. Continuar a oferecer, sem forçar nem fazer disso um drama, costuma funcionar melhor do que desistir ao terceiro \"não\".",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- SEGURANÇA (segunda ronda) ----
+  {
+    id: "seg-pilhas-imanes",
+    tema: "seguranca",
+    idadeMinMeses: 6,
+    idadeMaxMeses: 24,
+    titulo: "Pilhas-botão e ímanes pequenos: perigo sério",
+    texto:
+      "Uma pilha-botão engolida pode causar queimaduras internas graves em poucas horas — é uma emergência médica imediata, não \"esperar para ver\". Vale a pena verificar se comandos, balanças ou brinquedos com pilhas-botão em casa têm o compartimento bem fechado.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "seg-intoxicacoes-contacto",
+    tema: "seguranca",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Guarde o contacto do Centro de Informação Antivenenos",
+    texto:
+      "Em Portugal: 800 250 250 (linha gratuita, 24h). Vale a pena guardar já nos contactos do telemóvel, antes de precisar — não é o momento de andar à procura em cima da hora.",
+    fonte: "INEM / Centro de Informação Antivenenos",
+  },
+  {
+    id: "seg-detetores",
+    tema: "seguranca",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Detetores de fumo e de monóxido de carbono em casa",
+    texto:
+      "Detalhe fácil de esquecer, mas com impacto real de segurança para toda a casa, não só para a criança — verificar que existem e que as pilhas funcionam.",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- ESTIMULAÇÃO (segunda ronda) ----
+  {
+    id: "est-bilinguismo",
+    tema: "estimulacao",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Crescer com duas línguas não atrasa a fala",
+    texto:
+      "É um receio comum, mas sem base na evidência: crianças em casas bilingues podem misturar palavras das duas línguas por uns tempos, o que é normal e esperado — não é sinal de confusão nem de atraso de linguagem.",
+    fonte: "AAP / American Speech-Language-Hearing Association",
+  },
 ];
 
 export const TEMAS: { id: ConselhoPuericultura["tema"]; label: string; cor: string }[] = [
