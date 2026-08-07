@@ -341,6 +341,7 @@ export default function App() {
             medicoes={medicoesDaCrianca}
             marcosAlcancados={marcosAlcancados}
             entradasDiario={entradasDiario.filter((e) => e.criancaId === criancaAtivaId)}
+            vacinasAdministradas={vacinasAdministradas.filter((v) => v.criancaId === criancaAtivaId)}
             unidades={preferencias.unidades}
             onNavegar={setSeccaoAtiva}
           />

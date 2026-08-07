@@ -6,11 +6,13 @@ import type {
   MedicaoCrescimento,
   TabelaReferenciaOMS,
   Unidades,
+  VacinaAdministrada,
 } from "../../types";
 import { calcularIdade } from "../../lib/correctedAge";
 import { calcularZScoreEPercentil } from "../../lib/growthCalculations";
 import { formatarPeso } from "../../lib/units";
 import { MARCOS_CDC, IDADES_CHECKLIST_MESES } from "../../data/milestones/cdcMilestones";
+import { DOSES_PNV } from "../../data/vacinas/pnv";
 import "./DashboardScreen.css";
 
 import wfaFemale from "../../data/who/weight_for_age_female.json";
@@ -26,6 +28,7 @@ interface DashboardScreenProps {
   medicoes: MedicaoCrescimento[];
   marcosAlcancados: Set<string>;
   entradasDiario: EntradaDiario[];
+  vacinasAdministradas: VacinaAdministrada[];
   unidades: Unidades;
   onNavegar: (seccao: AppSection) => void;
 }
@@ -49,6 +52,7 @@ export function DashboardScreen({
   medicoes,
   marcosAlcancados,
   entradasDiario,
+  vacinasAdministradas,
   unidades,
   onNavegar,
 }: DashboardScreenProps) {
@@ -95,6 +99,17 @@ export function DashboardScreen({
     [entradasDiario]
   );
 
+  const dosesDevidas = useMemo(
+    () => DOSES_PNV.filter((d) => d.idadeMesesAprox <= idadeMeses),
+    [idadeMeses]
+  );
+  const idsRegistados = useMemo(
+    () => new Set(vacinasAdministradas.map((v) => v.doseId)),
+    [vacinasAdministradas]
+  );
+  const dosesEmDia = dosesDevidas.filter((d) => idsRegistados.has(d.id)).length;
+  const dosesPendentes = dosesDevidas.length - dosesEmDia;
+
   return (
     <div className="dashboard-screen">
       <header className="dashboard-screen__header">
@@ -132,6 +147,23 @@ export function DashboardScreen({
           </span>
           <span className="dashboard-screen__card-detail">
             marcados na etapa dos {idadeChecklist} meses
+          </span>
+        </button>
+
+        <button
+          className={
+            "dashboard-screen__card" + (dosesPendentes > 0 ? " dashboard-screen__card--aviso" : "")
+          }
+          onClick={() => onNavegar("vacinas")}
+        >
+          <span className="dashboard-screen__card-tag">Vacinas — PNV</span>
+          <span className="dashboard-screen__card-value">
+            {dosesEmDia} de {dosesDevidas.length}
+          </span>
+          <span className="dashboard-screen__card-detail">
+            {dosesPendentes > 0
+              ? `${dosesPendentes} dose${dosesPendentes > 1 ? "s" : ""} em atraso pela idade atual`
+              : "em dia com o calendário"}
           </span>
         </button>
 
