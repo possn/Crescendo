@@ -51,6 +51,7 @@ export type AppSection =
   | "crescimento"
   | "diario"
   | "puericultura"
+  | "sintomas"
   | "alertas"
   | "definicoes";
 
@@ -104,7 +105,7 @@ export interface EntradaDiario {
 
 // --- Puericultura --------------------------------------------------------
 
-export type TemaPuericultura = "sono" | "alimentacao" | "seguranca" | "estimulacao" | "sintomas";
+export type TemaPuericultura = "sono" | "alimentacao" | "seguranca" | "estimulacao";
 
 export interface ConselhoPuericultura {
   id: string;

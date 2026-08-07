@@ -31,7 +31,7 @@ export function PuericulturaScreen({ crianca }: PuericulturaScreenProps) {
       <header className="puericultura-screen__header">
         <h1>Puericultura</h1>
         <p className="puericultura-screen__subtitle">
-          Conselhos práticos para {crianca.nome} (0–5 anos), baseados em orientações
+          Conselhos práticos para os primeiros 24 meses de {crianca.nome}, baseados em orientações
           da AAP e da OMS. Não substitui o pediatra — é apoio para as dúvidas mais frequentes do
           dia a dia.
         </p>

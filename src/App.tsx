@@ -6,6 +6,7 @@ import { ProfileScreen } from "./features/profile/ProfileScreen";
 import { DiaryScreen } from "./features/diary/DiaryScreen";
 import { PuericulturaScreen } from "./features/puericultura/PuericulturaScreen";
 import { AlertasScreen } from "./features/alertas/AlertasScreen";
+import { SintomasScreen } from "./features/sintomas/SintomasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import { OnboardingScreen } from "./features/onboarding/OnboardingScreen";
@@ -306,6 +307,9 @@ export default function App() {
           />
         )}
         {seccaoAtiva === "puericultura" && <PuericulturaScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "sintomas" && (
+          <SintomasScreen crianca={criancaAtiva} medicoes={medicoesDaCrianca} />
+        )}
         {seccaoAtiva === "alertas" && <AlertasScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "perfil" && (
           <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />
