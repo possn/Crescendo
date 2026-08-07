@@ -50,7 +50,7 @@ function aplicarTema(tema: Preferencias["tema"]) {
 export default function App() {
   const [pronto, setPronto] = useState(false);
   const [splashTerminou, setSplashTerminou] = useState(false);
-  const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("crescimento");
+  const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("inicio");
   const [sidebarAberta, setSidebarAberta] = useState(false);
   const [criancas, setCriancas] = useState<Crianca[]>([]);
   const [criancaAtivaId, setCriancaAtivaId] = useState("");
