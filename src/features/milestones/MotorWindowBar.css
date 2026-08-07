@@ -1,5 +1,5 @@
 .motor-window {
-  padding: 14px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -24,6 +24,7 @@
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 .motor-window__badge--dentro_da_janela {
@@ -38,59 +39,82 @@
 
 .motor-window__badge--fora_da_janela {
   background: var(--warn-soft);
-  color: var(--warn);
+  color: var(--warn-strong);
 }
 
-.motor-window__track {
-  position: relative;
-  height: 8px;
-  background: var(--surface-sunken);
-  border-radius: 999px;
-  margin-bottom: 4px;
+.motor-window__curva {
+  width: 100%;
+  height: 78px;
+  display: block;
 }
 
-.motor-window__range {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  background: var(--accent);
-  opacity: 0.28;
-  border-radius: 999px;
+.motor-window__area {
+  fill: var(--accent);
+  opacity: 0.16;
 }
 
-.motor-window__median-tick {
-  position: absolute;
-  top: -2px;
-  width: 2px;
-  height: 12px;
-  background: var(--border-strong);
+.motor-window__linha {
+  stroke: var(--accent-strong);
+  stroke-width: 1.6;
 }
 
-.motor-window__current {
-  position: absolute;
-  top: -4px;
-  width: 10px;
-  height: 16px;
-  border-radius: 4px;
-  transform: translateX(-50%);
-  border: 2px solid var(--surface);
+.motor-window__base {
+  stroke: var(--border-strong);
+  stroke-width: 1;
 }
 
-.motor-window__current--dentro_da_janela {
-  background: var(--accent);
+.motor-window__linha-mediana {
+  stroke: var(--accent-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+  opacity: 0.6;
 }
 
-.motor-window__current--ainda_nao_esperado {
-  background: var(--ink-faint);
+.motor-window__linha-atual {
+  stroke-width: 2;
 }
 
-.motor-window__current--fora_da_janela {
-  background: var(--warn);
+.motor-window__linha-atual--dentro_da_janela {
+  stroke: var(--accent-strong);
 }
 
-.motor-window__scale {
+.motor-window__linha-atual--ainda_nao_esperado {
+  stroke: var(--ink-faint);
+  stroke-dasharray: 2 2;
+}
+
+.motor-window__linha-atual--fora_da_janela {
+  stroke: var(--warn-strong);
+}
+
+.motor-window__ponto-atual--dentro_da_janela {
+  fill: var(--accent-strong);
+}
+
+.motor-window__ponto-atual--ainda_nao_esperado {
+  fill: var(--ink-faint);
+}
+
+.motor-window__ponto-atual--fora_da_janela {
+  fill: var(--warn-strong);
+}
+
+.motor-window__legendas {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 2px;
+}
+
+.motor-window__legenda-mediana {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.motor-window__legenda-extremos {
   font-family: var(--font-mono);
   font-size: 10.5px;
   color: var(--ink-faint);
@@ -100,4 +124,5 @@
   font-size: 12.5px;
   color: var(--ink-muted);
   margin: 6px 0 0;
+  line-height: 1.5;
 }

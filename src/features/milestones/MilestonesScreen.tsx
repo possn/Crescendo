@@ -34,10 +34,22 @@ export function MilestonesScreen({ crianca, marcosAlcancados, onAlternarMarco }:
   );
   const idadeAtual = resultadoIdade.idadeCorrigidaMeses;
   const [idadeChecklist, setIdadeChecklist] = useState(idadeChecklistMaisProxima(idadeAtual));
+  const [mostrarTodosMotores, setMostrarTodosMotores] = useState(false);
 
   const marcosDoChecklist = useMemo(
     () => MARCOS_CDC.filter((m) => m.idadeReferenciaMeses === idadeChecklist),
     [idadeChecklist]
+  );
+
+  // Só mostra janelas motoras cuja idade de início (P1) já está próxima ou
+  // passada — evita mostrar uma barra quase vazia para um marco a meses de
+  // distância, o que lia mal e não ajudava em nada.
+  const janelasRelevantes = useMemo(
+    () =>
+      mostrarTodosMotores
+        ? JANELAS_MOTORAS_OMS
+        : JANELAS_MOTORAS_OMS.filter((j) => idadeAtual >= j.p1Meses - 2),
+    [idadeAtual, mostrarTodosMotores]
   );
 
   return (
@@ -104,13 +116,30 @@ export function MilestonesScreen({ crianca, marcosAlcancados, onAlternarMarco }:
         <h2>Marcos motores — janelas de percentil da OMS</h2>
         <p className="milestones-screen__who-intro">
           Estes 6 marcos vêm de um estudo diferente (WHO Motor Development Study, 2006), com uma
-          janela real de percentil P1–P99 por marco — mais precisa do que um único ponto de corte.
-          A barra mostra onde {crianca.nome} está face ao intervalo observado em crianças saudáveis
-          de 5 países.
+          janela real de percentil P1–P99 por marco. A curva mostra a distribuição — a maioria das
+          crianças agrupa-se à volta da mediana (linha tracejada), os extremos são raros.
         </p>
-        {JANELAS_MOTORAS_OMS.map((janela) => (
-          <MotorWindowBar key={janela.id} janela={janela} idadeAtualMeses={idadeAtual} />
-        ))}
+
+        {janelasRelevantes.length > 0 ? (
+          janelasRelevantes.map((janela) => (
+            <MotorWindowBar key={janela.id} janela={janela} idadeAtualMeses={idadeAtual} />
+          ))
+        ) : (
+          <p className="milestones-screen__who-vazio">
+            Ainda é cedo para qualquer um destes marcos — a primeira janela relevante começa por
+            volta dos {(JANELAS_MOTORAS_OMS[0].p1Meses - 2).toFixed(1)} meses.
+          </p>
+        )}
+
+        <label className="milestones-screen__who-toggle">
+          <input
+            type="checkbox"
+            checked={mostrarTodosMotores}
+            onChange={(e) => setMostrarTodosMotores(e.target.checked)}
+          />
+          <span>Mostrar todos os 6 marcos, incluindo os ainda muito distantes</span>
+        </label>
+
         <p className="milestones-screen__who-note">{NOTA_SEQUENCIA_OMS}</p>
       </section>
 

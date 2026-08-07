@@ -138,6 +138,25 @@
   line-height: 1.5;
 }
 
+.milestones-screen__who-vazio {
+  font-size: 13px;
+  color: var(--ink-muted);
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  line-height: 1.6;
+}
+
+.milestones-screen__who-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  margin-top: 12px;
+}
+
 .milestones-screen__disclaimer {
   font-size: 12px;
   color: var(--ink-faint);
