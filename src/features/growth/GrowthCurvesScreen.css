@@ -124,6 +124,7 @@
   border: 1px solid var(--border-strong);
   font-size: 14px;
   color: var(--ink);
+  background: var(--surface);
   font-family: var(--font-ui);
 }
 
