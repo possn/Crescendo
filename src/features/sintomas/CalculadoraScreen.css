@@ -1,0 +1,152 @@
+.calculadora-screen {
+  max-width: 640px;
+}
+
+.calculadora-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.calculadora-screen__subtitle {
+  color: var(--ink-muted);
+  max-width: 560px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.calculadora-screen__card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.calculadora-screen__calc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 24px;
+}
+
+.calculadora-screen__calc h2 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.calculadora-screen__calc-intro {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.calculadora-screen__peso-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--ink-muted);
+  max-width: 220px;
+  margin-bottom: 14px;
+}
+
+.calculadora-screen__peso-field input {
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 15px;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  background: var(--surface);
+}
+
+.calculadora-screen__peso-aviso {
+  font-size: 12.5px;
+  color: var(--warn);
+  margin: 0 0 12px;
+}
+
+.calculadora-screen__aviso-critico {
+  background: var(--warn-soft);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.calculadora-screen__doses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calculadora-screen__dose-card {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.calculadora-screen__dose-card--bloqueado {
+  background: var(--warn-soft);
+}
+
+.calculadora-screen__dose-nome {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-muted);
+}
+
+.calculadora-screen__dose-valor {
+  font-size: 26px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--ink);
+}
+
+.calculadora-screen__dose-detalhe {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+.calculadora-screen__dose-max {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+.calculadora-screen__dose-bloqueado-texto {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.calculadora-screen__disclaimer {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.calculadora-screen__disclaimer p {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.calculadora-screen__disclaimer strong {
+  color: var(--ink);
+}

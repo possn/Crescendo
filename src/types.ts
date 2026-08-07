@@ -52,6 +52,7 @@ export type AppSection =
   | "diario"
   | "puericultura"
   | "sintomas"
+  | "calculadora"
   | "alertas"
   | "definicoes";
 

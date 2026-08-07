@@ -14,6 +14,7 @@ const ITENS: ItemMenu[] = [
   { id: "diario", label: "Diário Visual", glyph: "camera" },
   { id: "puericultura", label: "Puericultura", glyph: "bulb" },
   { id: "sintomas", label: "Sintomas Comuns", glyph: "pulse" },
+  { id: "calculadora", label: "Calculadora de Dose", glyph: "calc" },
   { id: "alertas", label: "Sinais de Alerta", glyph: "flag" },
 ];
 
@@ -82,6 +83,13 @@ function Glyph({ name }: { name: string }) {
       return (
         <svg {...common}>
           <path d="M3 12h4l2 6 4-14 2 8h6" />
+        </svg>
+      );
+    case "calc":
+      return (
+        <svg {...common}>
+          <rect x="5" y="3" width="14" height="18" rx="2" />
+          <path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01M16 17h.01" />
         </svg>
       );
     case "user":
