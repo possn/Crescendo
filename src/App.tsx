@@ -13,6 +13,7 @@ import { PrimeirosSocorrosScreen } from "./features/primeiros-socorros/Primeiros
 import { SbvScreen } from "./features/sbv/SbvScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
+import { SearchOverlay } from "./components/SearchOverlay";
 import { OnboardingScreen } from "./features/onboarding/OnboardingScreen";
 import { DashboardScreen } from "./features/dashboard/DashboardScreen";
 import type {
@@ -56,6 +57,7 @@ export default function App() {
   const [splashTerminou, setSplashTerminou] = useState(false);
   const [seccaoAtiva, setSeccaoAtiva] = useState<AppSection>("inicio");
   const [sidebarAberta, setSidebarAberta] = useState(false);
+  const [pesquisaAberta, setPesquisaAberta] = useState(false);
   const [criancas, setCriancas] = useState<Crianca[]>([]);
   const [criancaAtivaId, setCriancaAtivaId] = useState("");
   const [medicoes, setMedicoes] = useState<MedicaoCrescimento[]>([]);
@@ -259,6 +261,7 @@ export default function App() {
         onMudarCrianca={setCriancaAtivaId}
         aberta={sidebarAberta}
         onFechar={() => setSidebarAberta(false)}
+        onAbrirPesquisa={() => setPesquisaAberta(true)}
       />
 
       <div className="app-shell__mobile-header">
@@ -271,7 +274,23 @@ export default function App() {
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+        <button
+          className="app-shell__menu-btn app-shell__pesquisa-btn"
+          onClick={() => setPesquisaAberta(true)}
+          aria-label="Pesquisar"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </button>
       </div>
+
+      <SearchOverlay
+        aberta={pesquisaAberta}
+        onFechar={() => setPesquisaAberta(false)}
+        onNavegar={setSeccaoAtiva}
+      />
 
       <main className="app-shell__content">
         {seccaoAtiva === "crescimento" && (

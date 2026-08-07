@@ -162,6 +162,7 @@ interface SidebarProps {
   onMudarCrianca: (id: string) => void;
   aberta: boolean;
   onFechar: () => void;
+  onAbrirPesquisa: () => void;
 }
 
 export function Sidebar({
@@ -172,6 +173,7 @@ export function Sidebar({
   onMudarCrianca,
   aberta,
   onFechar,
+  onAbrirPesquisa,
 }: SidebarProps) {
   function selecionar(s: AppSection) {
     onMudarSeccao(s);
@@ -193,6 +195,14 @@ export function Sidebar({
         />
         <span className="sidebar__brand-name">Crescendo</span>
       </div>
+
+      <button className="sidebar__pesquisa" onClick={onAbrirPesquisa}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <span>Pesquisar…</span>
+      </button>
 
       {criancas.length > 0 && (
         <div className="sidebar__child-switch">

@@ -62,4 +62,8 @@
     box-shadow: var(--shadow-card);
     cursor: pointer;
   }
+
+  .app-shell__pesquisa-btn {
+    margin-left: 10px;
+  }
 }
