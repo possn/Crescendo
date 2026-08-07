@@ -34,6 +34,7 @@
 
   /* Estado */
   --warn: #a15c2f;
+  --warn-strong: #8f4f28;
   --warn-soft: #f5e9df;
 
   /* Tipografia */
@@ -116,6 +117,7 @@ button {
   --ind-perimetro: #b3a2d9;
 
   --warn: #e0a06f;
+  --warn-strong: #eeb98f;
   --warn-soft: #3d3124;
 }
 

@@ -8,6 +8,8 @@ import { PuericulturaScreen } from "./features/puericultura/PuericulturaScreen";
 import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SintomasScreen } from "./features/sintomas/SintomasScreen";
 import { CalculadoraScreen } from "./features/sintomas/CalculadoraScreen";
+import { PrimeirosSocorrosScreen } from "./features/primeiros-socorros/PrimeirosSocorrosScreen";
+import { SbvScreen } from "./features/sbv/SbvScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import { OnboardingScreen } from "./features/onboarding/OnboardingScreen";
@@ -312,6 +314,8 @@ export default function App() {
         {seccaoAtiva === "calculadora" && (
           <CalculadoraScreen crianca={criancaAtiva} medicoes={medicoesDaCrianca} />
         )}
+        {seccaoAtiva === "socorros" && <PrimeirosSocorrosScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "sbv" && <SbvScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "alertas" && <AlertasScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "perfil" && (
           <ProfileScreen crianca={criancaAtiva} onGuardar={guardarPerfil} />

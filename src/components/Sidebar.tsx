@@ -7,15 +7,37 @@ interface ItemMenu {
   glyph: string;
 }
 
-const ITENS: ItemMenu[] = [
-  { id: "inicio", label: "Início", glyph: "home" },
-  { id: "marcos", label: "Marcos de Desenvolvimento", glyph: "chart" },
-  { id: "crescimento", label: "Curvas de Crescimento", glyph: "ruler" },
-  { id: "diario", label: "Diário Visual", glyph: "camera" },
-  { id: "puericultura", label: "Puericultura", glyph: "bulb" },
-  { id: "sintomas", label: "Sintomas Comuns", glyph: "pulse" },
-  { id: "calculadora", label: "Calculadora de Dose", glyph: "calc" },
-  { id: "alertas", label: "Sinais de Alerta", glyph: "flag" },
+interface GrupoMenu {
+  titulo: string;
+  itens: ItemMenu[];
+}
+
+const GRUPOS: GrupoMenu[] = [
+  {
+    titulo: "Acompanhamento",
+    itens: [
+      { id: "inicio", label: "Início", glyph: "home" },
+      { id: "marcos", label: "Marcos de Desenvolvimento", glyph: "chart" },
+      { id: "alertas", label: "Sinais de Alerta", glyph: "flag" },
+      { id: "crescimento", label: "Curvas de Crescimento", glyph: "ruler" },
+    ],
+  },
+  {
+    titulo: "Cuidados Diários",
+    itens: [
+      { id: "puericultura", label: "Puericultura", glyph: "bulb" },
+      { id: "diario", label: "Diário Visual", glyph: "camera" },
+    ],
+  },
+  {
+    titulo: "Saúde e Emergência",
+    itens: [
+      { id: "sintomas", label: "Sintomas Comuns", glyph: "pulse" },
+      { id: "calculadora", label: "Calculadora de Dose", glyph: "calc" },
+      { id: "socorros", label: "Primeiros Socorros", glyph: "cross" },
+      { id: "sbv", label: "Desengasgamento e SBV", glyph: "heart" },
+    ],
+  },
 ];
 
 const ITENS_RODAPE: ItemMenu[] = [
@@ -90,6 +112,19 @@ function Glyph({ name }: { name: string }) {
         <svg {...common}>
           <rect x="5" y="3" width="14" height="18" rx="2" />
           <path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01M16 17h.01" />
+        </svg>
+      );
+    case "cross":
+      return (
+        <svg {...common}>
+          <path d="M12 3v7M12 14v7M3 12h7M14 12h7" strokeLinecap="round" />
+        </svg>
+      );
+    case "heart":
+      return (
+        <svg {...common}>
+          <path d="M12 20s-7-4.4-9.5-8.8C1 8 2.5 5 5.8 5c1.9 0 3.2 1 4.2 2.3C11 6 12.3 5 14.2 5c3.3 0 4.8 3 3.3 6.2C15 15.6 12 20 12 20Z" />
+          <path d="M6 12h2.5l1.5-2.5L11.5 14 13 11h4.5" />
         </svg>
       );
     case "user":
@@ -171,19 +206,24 @@ export function Sidebar({
       )}
 
       <nav className="sidebar__nav" aria-label="Secções principais">
-        {ITENS.map((item) => (
-          <button
-            key={item.id}
-            className={
-              "sidebar__item" +
-              (seccaoAtiva === item.id ? " sidebar__item--ativo" : "")
-            }
-            onClick={() => selecionar(item.id)}
-            aria-current={seccaoAtiva === item.id ? "page" : undefined}
-          >
-            <Glyph name={item.glyph} />
-            <span>{item.label}</span>
-          </button>
+        {GRUPOS.map((grupo) => (
+          <div key={grupo.titulo} className="sidebar__grupo">
+            <span className="sidebar__grupo-titulo">{grupo.titulo}</span>
+            {grupo.itens.map((item) => (
+              <button
+                key={item.id}
+                className={
+                  "sidebar__item" +
+                  (seccaoAtiva === item.id ? " sidebar__item--ativo" : "")
+                }
+                onClick={() => selecionar(item.id)}
+                aria-current={seccaoAtiva === item.id ? "page" : undefined}
+              >
+                <Glyph name={item.glyph} />
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
         ))}
       </nav>
 

@@ -1,0 +1,120 @@
+.sbv-screen {
+  max-width: 720px;
+}
+
+.sbv-screen__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+
+.sbv-screen__aviso-critico {
+  background: var(--warn-soft);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.sbv-screen__aviso-critico strong {
+  color: var(--warn-strong);
+}
+
+.sbv-screen__faixa-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.sbv-screen__faixa-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sbv-screen__faixa-btn--ativo {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--surface);
+}
+
+.sbv-screen__faixa-nota {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin: 0 0 26px;
+}
+
+.sbv-screen__seccao {
+  margin-bottom: 30px;
+}
+
+.sbv-screen__seccao h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.sbv-screen__passos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sbv-screen__passo {
+  display: flex;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+}
+
+.sbv-screen__passo-numero {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  color: var(--surface);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.sbv-screen__passo-conteudo h3 {
+  font-size: 14.5px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.sbv-screen__passo-conteudo p {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.sbv-screen__fonte {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  line-height: 1.6;
+  font-family: var(--font-mono);
+}

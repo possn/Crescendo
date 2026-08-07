@@ -66,6 +66,22 @@
   flex: 1;
 }
 
+.sidebar__grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.sidebar__grupo-titulo {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 4px 10px 4px;
+}
+
 .sidebar__footer {
   display: flex;
   flex-direction: column;

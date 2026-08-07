@@ -31,6 +31,7 @@ export function SintomasScreen({ crianca }: SintomasScreenProps) {
           className={
             "sintomas-screen__tab" + (categoriaAtiva === "todos" ? " sintomas-screen__tab--ativo" : "")
           }
+          style={categoriaAtiva === "todos" ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)" } : undefined}
           onClick={() => setCategoriaAtiva("todos")}
         >
           Todos

@@ -53,6 +53,8 @@ export type AppSection =
   | "puericultura"
   | "sintomas"
   | "calculadora"
+  | "socorros"
+  | "sbv"
   | "alertas"
   | "definicoes";
 
@@ -125,6 +127,27 @@ export interface SinalAlerta {
   dominio: DominioDesenvolvimento;
   idadeReferenciaMeses: number | "qualquer_idade";
   sinal: string;
+}
+
+// --- Primeiros Socorros -----------------------------------------------
+
+export type CategoriaSocorro = "convulsoes" | "feridas" | "queimaduras";
+
+export interface ConselhoSocorro {
+  id: string;
+  categoria: CategoriaSocorro;
+  titulo: string;
+  texto: string;
+  fonte: string;
+}
+
+// --- Desengasgamento e SBV --------------------------------------------
+
+export interface PassoSBV {
+  id: string;
+  numero: number;
+  titulo: string;
+  texto: string;
 }
 
 // --- Preferências ---------------------------------------------------------
