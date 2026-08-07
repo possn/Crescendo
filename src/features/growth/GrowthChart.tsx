@@ -52,6 +52,17 @@ export function GrowthChart({
     alturaUtil -
     ((valor - (valorMin - pad)) / (valorMax - valorMin + 2 * pad)) * alturaUtil;
 
+  // Proteção: um valor extremo (erro de digitação, ex. 128 em vez de 8.20)
+  // não deve fazer o ponto "explodir" para fora da caixa do gráfico, já que
+  // o SVG usa overflow:visible de propósito para os rótulos P3-P97 não
+  // ficarem cortados. Sem isto, um único valor mau desenha uma linha reta
+  // até muito acima/abaixo da página inteira.
+  const yClampado = (valor: number) => {
+    const yBruto = y(valor);
+    const folga = alturaUtil * 0.15;
+    return Math.min(Math.max(yBruto, MARGEM.top - folga), ALTURA - MARGEM.bottom + folga);
+  };
+
   const linhaSVG = (pontos: { idadeMeses: number; valor: number }[]) =>
     pontos.map((p, i) => `${i === 0 ? "M" : "L"}${x(p.idadeMeses)},${y(p.valor)}`).join(" ");
 
@@ -136,7 +147,7 @@ export function GrowthChart({
             d={pontosCrianca
               .map((p, i) => {
                 const idade = idadeMesesDeData(p.data);
-                return `${i === 0 ? "M" : "L"}${x(idade)},${y(p.valor)}`;
+                return `${i === 0 ? "M" : "L"}${x(idade)},${yClampado(p.valor)}`;
               })
               .join(" ")}
             className="growth-chart__child-line"
@@ -149,7 +160,7 @@ export function GrowthChart({
               <circle
                 key={p.data}
                 cx={x(idade)}
-                cy={y(p.valor)}
+                cy={yClampado(p.valor)}
                 r={4}
                 className="growth-chart__child-point"
                 style={{ fill: corIndicador }}

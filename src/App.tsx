@@ -123,6 +123,14 @@ export default function App() {
     });
   }
 
+  function removerMedicao(id: string) {
+    setMedicoes((prev) => {
+      const novo = prev.filter((m) => m.id !== id);
+      guardarMedicoes(novo);
+      return novo;
+    });
+  }
+
   function alternarMarco(marcoId: string) {
     setMarcosAlcancados((prev) => {
       const novo = new Set(prev);
@@ -254,6 +262,7 @@ export default function App() {
             crianca={criancaAtiva}
             medicoes={medicoesDaCrianca}
             onAdicionarMedicao={adicionarMedicao}
+            onRemoverMedicao={removerMedicao}
             unidades={preferencias.unidades}
           />
         )}

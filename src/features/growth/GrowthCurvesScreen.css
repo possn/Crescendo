@@ -149,3 +149,114 @@
 .growth-screen__submit:hover {
   background: var(--accent-strong-hover);
 }
+
+.growth-screen__mode-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.growth-screen__mode-btn {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.growth-screen__mode-btn--ativo {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+.growth-screen__aviso {
+  background: var(--warn-soft);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.growth-screen__aviso p {
+  font-size: 12.5px;
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.growth-screen__aviso-btn {
+  padding: 7px 12px;
+  border: 1px solid var(--warn);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--warn);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.growth-screen__lista {
+  margin-top: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.growth-screen__lista h2 {
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+.growth-screen__lista ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.growth-screen__lista li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.growth-screen__lista li:last-child {
+  border-bottom: none;
+}
+
+.growth-screen__lista-idade {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 42px;
+}
+
+.growth-screen__lista-data {
+  color: var(--ink-faint);
+  font-size: 12px;
+}
+
+.growth-screen__lista-valores {
+  flex: 1;
+  color: var(--ink-muted);
+}
+
+.growth-screen__lista-apagar {
+  border: none;
+  background: none;
+  color: var(--warn);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 6px;
+}

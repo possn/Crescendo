@@ -61,6 +61,7 @@ interface GrowthCurvesScreenProps {
   crianca: Crianca;
   medicoes: MedicaoCrescimento[];
   onAdicionarMedicao: (m: MedicaoCrescimento) => void;
+  onRemoverMedicao: (id: string) => void;
   unidades: Unidades;
 }
 
@@ -72,17 +73,35 @@ const ABAS: { id: Indicador; label: string; cor: string }[] = [
   { id: "head_circumference_for_age", label: "Perímetro cefálico", cor: "var(--ind-perimetro)" },
 ];
 
-export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao, unidades }: GrowthCurvesScreenProps) {
+// Limites de plausibilidade (0-5 anos), em métrico — só para apanhar erros
+// óbvios de digitação (ex.: "820" em vez de "8.20"), não são limites
+// clínicos. Gera um aviso, não bloqueia — o utilizador pode confirmar na
+// mesma se o valor for mesmo esse.
+const LIMITES_KG: [number, number] = [1.5, 35];
+const LIMITES_CM: [number, number] = [30, 130];
+const LIMITES_PC_CM: [number, number] = [25, 58];
+
+export function GrowthCurvesScreen({
+  crianca,
+  medicoes,
+  onAdicionarMedicao,
+  onRemoverMedicao,
+  unidades,
+}: GrowthCurvesScreenProps) {
   const [abaAtiva, setAbaAtiva] = useState<Indicador>("weight_for_age");
   const nascimentoEfetivo = dataNascimentoEfetiva(crianca);
 
+  const [modoData, setModoData] = useState<"data" | "idade">("data");
   const [formData, setFormData] = useState(new Date().toISOString().slice(0, 10));
+  const [formIdadeMeses, setFormIdadeMeses] = useState("");
   const [formPeso, setFormPeso] = useState("");
   const [formComprimento, setFormComprimento] = useState("");
   const [formTipoMedicao, setFormTipoMedicao] = useState<"comprimento" | "altura">(
     idadeEmMeses(nascimentoEfetivo, new Date().toISOString()) <= 24 ? "comprimento" : "altura"
   );
   const [formPerimetro, setFormPerimetro] = useState("");
+  const [aviso, setAviso] = useState<string | null>(null);
+  const [dadosPendentes, setDadosPendentes] = useState<MedicaoCrescimento | null>(null);
 
   const tabelaAtiva = TABELAS[crianca.sexo][abaAtiva];
 
@@ -117,20 +136,84 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao, unid
     );
   }, [ultimaMedicaoComValor, abaAtiva, tabelaAtiva, nascimentoEfetivo, extratores]);
 
+  function dataAPartirDaIdade(idadeMeses: number): string {
+    const d = new Date(nascimentoEfetivo);
+    const diasTotais = idadeMeses * 30.4375;
+    d.setDate(d.getDate() + Math.round(diasTotais));
+    return d.toISOString().slice(0, 10);
+  }
+
   function submeter(e: React.FormEvent) {
     e.preventDefault();
+    setAviso(null);
+
+    const dataFinal =
+      modoData === "idade" && formIdadeMeses
+        ? dataAPartirDaIdade(parseFloat(formIdadeMeses))
+        : formData;
+
+    const pesoKg = formPeso ? paraKg(parseFloat(formPeso), unidades) : undefined;
+    const comprimentoCm = formComprimento ? paraCm(parseFloat(formComprimento), unidades) : undefined;
+    const perimetroCm = formPerimetro ? paraCm(parseFloat(formPerimetro), unidades) : undefined;
+
+    // Aviso de plausibilidade — não bloqueia, só confirma. É isto que teria
+    // apanhado o erro que gerou "percentil 100 / z-score +25".
+    const foraDosLimites: string[] = [];
+    if (pesoKg !== undefined && (pesoKg < LIMITES_KG[0] || pesoKg > LIMITES_KG[1])) {
+      foraDosLimites.push(`peso (${formatarPeso(pesoKg, unidades)})`);
+    }
+    if (
+      comprimentoCm !== undefined &&
+      (comprimentoCm < LIMITES_CM[0] || comprimentoCm > LIMITES_CM[1])
+    ) {
+      foraDosLimites.push(`comprimento/altura (${formatarComprimento(comprimentoCm, unidades)})`);
+    }
+    if (
+      perimetroCm !== undefined &&
+      (perimetroCm < LIMITES_PC_CM[0] || perimetroCm > LIMITES_PC_CM[1])
+    ) {
+      foraDosLimites.push(`perímetro cefálico (${formatarComprimento(perimetroCm, unidades)})`);
+    }
+    if (foraDosLimites.length > 0) {
+      setAviso(
+        `Isto parece fora do plausível para 0-5 anos: ${foraDosLimites.join(", ")}. Verifique se não trocou a unidade ou um dígito. Pode confirmar mesmo assim se tiver a certeza.`
+      );
+      setDadosPendentes({
+        id: crypto.randomUUID(),
+        criancaId: crianca.id,
+        data: dataFinal,
+        pesoKg,
+        comprimentoOuAlturaCm: comprimentoCm,
+        tipoMedicaoComprimento: formComprimento ? formTipoMedicao : undefined,
+        perimetroCefalicoCm: perimetroCm,
+      });
+      return;
+    }
+
     onAdicionarMedicao({
       id: crypto.randomUUID(),
       criancaId: crianca.id,
-      data: formData,
-      pesoKg: formPeso ? paraKg(parseFloat(formPeso), unidades) : undefined,
-      comprimentoOuAlturaCm: formComprimento ? paraCm(parseFloat(formComprimento), unidades) : undefined,
+      data: dataFinal,
+      pesoKg,
+      comprimentoOuAlturaCm: comprimentoCm,
       tipoMedicaoComprimento: formComprimento ? formTipoMedicao : undefined,
-      perimetroCefalicoCm: formPerimetro ? paraCm(parseFloat(formPerimetro), unidades) : undefined,
+      perimetroCefalicoCm: perimetroCm,
     });
     setFormPeso("");
     setFormComprimento("");
     setFormPerimetro("");
+    setFormIdadeMeses("");
+  }
+
+  function confirmarMesmoAssim() {
+    if (!dadosPendentes) return;
+    onAdicionarMedicao(dadosPendentes);
+    setDadosPendentes(null);
+    setAviso(null);
+    setFormPeso("");
+    setFormComprimento("");
+    setFormPerimetro("");
+    setFormIdadeMeses("");
   }
 
   const forAVisualizacao = abaAtiva === "length_height_for_age" ? formTipoMedicao : undefined;
@@ -208,10 +291,44 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao, unid
         <form className="growth-screen__form" onSubmit={submeter}>
           <h2>Nova medição</h2>
 
-          <label className="growth-screen__field">
-            <span>Data</span>
-            <input type="date" value={formData} onChange={(e) => setFormData(e.target.value)} required />
-          </label>
+          <div className="growth-screen__mode-toggle">
+            <button
+              type="button"
+              className={"growth-screen__mode-btn" + (modoData === "data" ? " growth-screen__mode-btn--ativo" : "")}
+              onClick={() => setModoData("data")}
+            >
+              Por data
+            </button>
+            <button
+              type="button"
+              className={"growth-screen__mode-btn" + (modoData === "idade" ? " growth-screen__mode-btn--ativo" : "")}
+              onClick={() => setModoData("idade")}
+            >
+              Por idade
+            </button>
+          </div>
+
+          {modoData === "data" ? (
+            <label className="growth-screen__field">
+              <span>Data</span>
+              <input type="date" value={formData} onChange={(e) => setFormData(e.target.value)} required />
+            </label>
+          ) : (
+            <label className="growth-screen__field">
+              <span>Idade (meses)</span>
+              <input
+                type="number"
+                step="0.1"
+                min="0"
+                max="60"
+                inputMode="decimal"
+                placeholder="ex.: 9"
+                value={formIdadeMeses}
+                onChange={(e) => setFormIdadeMeses(e.target.value)}
+                required
+              />
+            </label>
+          )}
 
           <label className="growth-screen__field">
             <span>{rotuloPeso(unidades)}</span>
@@ -258,11 +375,53 @@ export function GrowthCurvesScreen({ crianca, medicoes, onAdicionarMedicao, unid
             />
           </label>
 
+          {aviso && (
+            <div className="growth-screen__aviso">
+              <p>{aviso}</p>
+              <button type="button" className="growth-screen__aviso-btn" onClick={confirmarMesmoAssim}>
+                Guardar mesmo assim
+              </button>
+            </div>
+          )}
+
           <button type="submit" className="growth-screen__submit">
             Guardar medição
           </button>
         </form>
       </div>
+
+      {medicoesOrdenadas.length > 0 && (
+        <div className="growth-screen__lista">
+          <h2>Medições registadas</h2>
+          <ul>
+            {[...medicoesOrdenadas].reverse().map((m) => {
+              const idadeM = idadeEmMeses(nascimentoEfetivo, m.data);
+              return (
+                <li key={m.id}>
+                  <span className="growth-screen__lista-idade">{idadeM.toFixed(1)}m</span>
+                  <span className="growth-screen__lista-data">
+                    {new Date(m.data).toLocaleDateString("pt-PT")}
+                  </span>
+                  <span className="growth-screen__lista-valores">
+                    {m.pesoKg !== undefined && formatarPeso(m.pesoKg, unidades)}
+                    {m.comprimentoOuAlturaCm !== undefined &&
+                      ` · ${formatarComprimento(m.comprimentoOuAlturaCm, unidades)}`}
+                    {m.perimetroCefalicoCm !== undefined &&
+                      ` · PC ${formatarComprimento(m.perimetroCefalicoCm, unidades)}`}
+                  </span>
+                  <button
+                    className="growth-screen__lista-apagar"
+                    onClick={() => onRemoverMedicao(m.id)}
+                    aria-label="Apagar esta medição"
+                  >
+                    Apagar
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
