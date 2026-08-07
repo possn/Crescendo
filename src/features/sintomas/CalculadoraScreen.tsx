@@ -67,9 +67,15 @@ export function CalculadoraScreen({ crianca, medicoes }: CalculadoraScreenProps)
 
         {alertaFebreJovem && (
           <div className="calculadora-screen__aviso-critico">
-            {crianca.nome} tem menos de 3 meses — qualquer febre é motivo de contacto imediato com
-            o pediatra. Esta calculadora não é para uso em bebés tão pequenos sem orientação médica
-            direta.
+            <span className="calculadora-screen__aviso-icone" aria-hidden>⚠</span>
+            <div>
+              <strong>Contacte o pediatra — não use esta calculadora.</strong>
+              <p>
+                {crianca.nome} tem menos de 3 meses. Nesta idade, qualquer febre é motivo de
+                contacto imediato com o pediatra, mesmo que pareça bem-disposto(a) — não é
+                situação para tratar em casa sozinho(a).
+              </p>
+            </div>
           </div>
         )}
 

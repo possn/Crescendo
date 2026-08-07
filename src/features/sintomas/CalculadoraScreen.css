@@ -72,13 +72,36 @@
 }
 
 .calculadora-screen__aviso-critico {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   background: var(--warn-soft);
+  border: 2px solid var(--warn-strong);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 10px rgba(143, 79, 40, 0.15);
+}
+
+.calculadora-screen__aviso-icone {
+  flex-shrink: 0;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--warn-strong);
+}
+
+.calculadora-screen__aviso-critico strong {
+  display: block;
+  font-size: 15px;
+  color: var(--warn-strong);
+  margin-bottom: 6px;
+}
+
+.calculadora-screen__aviso-critico p {
   font-size: 13px;
   color: var(--ink);
   line-height: 1.55;
-  margin-bottom: 14px;
+  margin: 0;
 }
 
 .calculadora-screen__doses {
