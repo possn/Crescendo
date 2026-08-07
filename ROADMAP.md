@@ -44,6 +44,11 @@ do produto.
 - [x] Dashboard (Início) real — última medição com percentil, progresso de
   marcos da etapa atual, fotos recentes, atalho para sinais de alerta
 
+- [x] Sintomas Comuns — secção própria no menu (separada da Puericultura),
+  10 itens (febre, vómitos, gastroenterite, tosse/constipação) + calculadora
+  de dose de paracetamol/ibuprofeno por peso, com bloqueio de segurança
+  para ibuprofeno <6 meses e aviso crítico para febre <3 meses
+
 ## Todos os módulos do MVP estão construídos
 
 Próximo foco natural: testar a fundo, recolher feedback real (ver secção de
