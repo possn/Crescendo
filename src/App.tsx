@@ -9,6 +9,7 @@ import { AlertasScreen } from "./features/alertas/AlertasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { EmConstrucao } from "./features/shared/EmConstrucao";
 import { SplashScreen } from "./components/SplashScreen";
+import { OnboardingScreen } from "./features/onboarding/OnboardingScreen";
 import type {
   AppSection,
   Crianca,
@@ -31,22 +32,9 @@ import {
 } from "./lib/persistence";
 import "./App.css";
 
-// Dados de exemplo (sintéticos) — usados só na primeiríssima utilização,
-// antes de existir qualquer dado guardado localmente. Nenhuma criança real.
-const CRIANCA_EXEMPLO: Crianca = {
-  id: "crianca-1",
-  nome: "Matilde",
-  sexo: "F",
-  dataNascimento: "2025-02-10",
-  prematura: false,
-};
-
-const MEDICOES_EXEMPLO: MedicaoCrescimento[] = [
-  { id: "m1", criancaId: "crianca-1", data: "2025-02-10", pesoKg: 3.3, comprimentoOuAlturaCm: 49.5, tipoMedicaoComprimento: "comprimento", perimetroCefalicoCm: 34.2 },
-  { id: "m2", criancaId: "crianca-1", data: "2025-04-10", pesoKg: 5.4, comprimentoOuAlturaCm: 58.0, tipoMedicaoComprimento: "comprimento", perimetroCefalicoCm: 38.5 },
-  { id: "m3", criancaId: "crianca-1", data: "2025-08-10", pesoKg: 7.6, comprimentoOuAlturaCm: 67.0, tipoMedicaoComprimento: "comprimento", perimetroCefalicoCm: 43.5 },
-  { id: "m4", criancaId: "crianca-1", data: "2025-12-10", pesoKg: 9.1, comprimentoOuAlturaCm: 73.5, tipoMedicaoComprimento: "comprimento", perimetroCefalicoCm: 45.8 },
-];
+// Nenhum dado de exemplo é semeado automaticamente — a primeira utilização
+// passa sempre pelo onboarding, e o utilizador introduz os seus próprios
+// dados desde o início. Nenhuma criança fictícia por defeito.
 
 function aplicarTema(tema: Preferencias["tema"]) {
   const raiz = document.documentElement;
@@ -70,8 +58,9 @@ export default function App() {
   const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
   const [preferencias, setPreferencias] = useState<Preferencias>(PREFERENCIAS_OMISSAO);
 
-  // Carrega tudo do IndexedDB local ao arrancar. Se for a primeira vez
-  // (nada guardado ainda), semeia com os dados de exemplo e já os grava.
+  // Carrega tudo do IndexedDB local ao arrancar. Sem dados guardados ainda
+  // (primeira utilização, ou depois de "Apagar tudo"), fica com a lista de
+  // crianças vazia — o ecrã seguinte trata disso mostrando o onboarding.
   useEffect(() => {
     (async () => {
       const [criancasGuardadas, medicoesGuardadas, marcosGuardados, diarioGuardado, prefsGuardadas] =
@@ -84,13 +73,7 @@ export default function App() {
         ]);
 
       if (criancasGuardadas === undefined) {
-        setCriancas([CRIANCA_EXEMPLO]);
-        setCriancaAtivaId(CRIANCA_EXEMPLO.id);
-        setMedicoes(MEDICOES_EXEMPLO);
-        await Promise.all([
-          guardarCriancas([CRIANCA_EXEMPLO]),
-          guardarMedicoes(MEDICOES_EXEMPLO),
-        ]);
+        setCriancas([]);
       } else {
         setCriancas(criancasGuardadas);
         setCriancaAtivaId(criancasGuardadas[0]?.id ?? "");
@@ -211,28 +194,38 @@ export default function App() {
     aplicarTema(p.tema);
   }
 
+  function concluirOnboarding(c: Crianca) {
+    setCriancas([c]);
+    setCriancaAtivaId(c.id);
+    guardarCriancas([c]);
+  }
+
   function dadosApagados() {
-    setCriancas([CRIANCA_EXEMPLO]);
-    setCriancaAtivaId(CRIANCA_EXEMPLO.id);
-    setMedicoes(MEDICOES_EXEMPLO);
+    setCriancas([]);
+    setCriancaAtivaId("");
+    setMedicoes([]);
     setMarcosAlcancados(new Set());
     setEntradasDiario([]);
     setPreferencias(PREFERENCIAS_OMISSAO);
-    guardarCriancas([CRIANCA_EXEMPLO]);
-    guardarMedicoes(MEDICOES_EXEMPLO);
     aplicarTema(PREFERENCIAS_OMISSAO.tema);
+    // guardarCriancas/guardarMedicoes não são necessários aqui — apagarTudo()
+    // já limpou as chaves todas no IndexedDB antes desta função ser chamada.
   }
 
   if (!splashTerminou) {
     return <SplashScreen onTerminar={() => setSplashTerminou(true)} />;
   }
 
-  if (!pronto || !criancaAtiva) {
+  if (!pronto) {
     return (
       <div className="app-shell app-shell--loading">
         <p>A carregar…</p>
       </div>
     );
+  }
+
+  if (criancas.length === 0 || !criancaAtiva) {
+    return <OnboardingScreen onConcluir={concluirOnboarding} />;
   }
 
   return (

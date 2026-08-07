@@ -106,7 +106,9 @@ export function SettingsScreen({
           pediatra do seu filho ou filha. Perante qualquer dúvida sobre a saúde ou o desenvolvimento
           da criança, fale sempre com um profissional.
         </p>
-        <p className="settings-screen__note">Versão 1.0 · [Nome do pediatra] — a confirmar</p>
+        <p className="settings-screen__note">
+          Versão 1.0 · Conceito e direção clínica: Pedro Sampaio Nunes, Pediatria
+        </p>
       </section>
 
       <section className="settings-screen__card">

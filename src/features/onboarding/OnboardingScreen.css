@@ -1,0 +1,110 @@
+.onboarding {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  padding-top: max(24px, env(safe-area-inset-top));
+  background: var(--bg);
+}
+
+.onboarding__card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.onboarding__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+
+.onboarding__card h1 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+}
+
+.onboarding__card > p {
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.onboarding__disclaimer {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 12.5px !important;
+  text-align: left;
+}
+
+.onboarding__privacy {
+  font-size: 12px !important;
+  color: var(--ink-faint) !important;
+}
+
+.onboarding__subtitle {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  text-align: left;
+  margin: 0 0 20px;
+}
+
+.onboarding__btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent-strong);
+  color: var(--surface);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.onboarding__btn:hover {
+  background: var(--accent-strong-hover);
+}
+
+.onboarding__form {
+  text-align: left;
+}
+
+.onboarding__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.onboarding__field input[type="text"],
+.onboarding__field input[type="number"],
+.onboarding__field input[type="date"],
+.onboarding__field select {
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 14px;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  background: var(--surface);
+}
+
+.onboarding__field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+}
