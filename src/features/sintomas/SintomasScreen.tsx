@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Crianca } from "../../types";
-import { CONSELHOS_SINTOMAS, CATEGORIAS, type CategoriaSintoma } from "../../data/sintomas/sintomasComuns";
+import { CONSELHOS_SINTOMAS, CATEGORIAS } from "../../data/sintomas/sintomasComuns";
+import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
 import "./SintomasScreen.css";
 
 interface SintomasScreenProps {
@@ -8,10 +9,24 @@ interface SintomasScreenProps {
 }
 
 export function SintomasScreen({ crianca }: SintomasScreenProps) {
-  const [categoriaAtiva, setCategoriaAtiva] = useState<CategoriaSintoma | "todos">("todos");
+  const [abertas, setAbertas] = useState<Set<string>>(new Set());
 
-  const conselhosFiltrados = CONSELHOS_SINTOMAS.filter(
-    (c) => categoriaAtiva === "todos" || c.categoria === categoriaAtiva
+  function alternar(categoriaId: string) {
+    setAbertas((prev) => {
+      const novo = new Set(prev);
+      if (novo.has(categoriaId)) novo.delete(categoriaId);
+      else novo.add(categoriaId);
+      return novo;
+    });
+  }
+
+  const porCategoria = useMemo(
+    () =>
+      CATEGORIAS.map((cat) => ({
+        cat,
+        conselhos: CONSELHOS_SINTOMAS.filter((c) => c.categoria === cat.id),
+      })),
+    []
   );
 
   return (
@@ -26,45 +41,24 @@ export function SintomasScreen({ crianca }: SintomasScreenProps) {
         </p>
       </header>
 
-      <div className="sintomas-screen__tabs" role="tablist">
-        <button
-          className={
-            "sintomas-screen__tab" + (categoriaAtiva === "todos" ? " sintomas-screen__tab--ativo" : "")
-          }
-          style={categoriaAtiva === "todos" ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)" } : undefined}
-          onClick={() => setCategoriaAtiva("todos")}
+      {porCategoria.map(({ cat, conselhos }) => (
+        <SeccaoColapsavel
+          key={cat.id}
+          titulo={cat.label}
+          cor={cat.cor}
+          contagem={conselhos.length}
+          aberta={abertas.has(cat.id)}
+          onToggle={() => alternar(cat.id)}
         >
-          Todos
-        </button>
-        {CATEGORIAS.map((cat) => (
-          <button
-            key={cat.id}
-            className={
-              "sintomas-screen__tab" + (categoriaAtiva === cat.id ? " sintomas-screen__tab--ativo" : "")
-            }
-            style={categoriaAtiva === cat.id ? { background: cat.cor, borderColor: cat.cor } : undefined}
-            onClick={() => setCategoriaAtiva(cat.id)}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="sintomas-screen__grid">
-        {conselhosFiltrados.map((c) => {
-          const cat = CATEGORIAS.find((x) => x.id === c.categoria)!;
-          return (
+          {conselhos.map((c) => (
             <article key={c.id} className="sintomas-screen__card">
-              <span className="sintomas-screen__card-tag" style={{ color: cat.cor }}>
-                {cat.label}
-              </span>
               <h2>{c.titulo}</h2>
               <p>{c.texto}</p>
               <span className="sintomas-screen__card-fonte">{c.fonte}</span>
             </article>
-          );
-        })}
-      </div>
+          ))}
+        </SeccaoColapsavel>
+      ))}
     </div>
   );
 }

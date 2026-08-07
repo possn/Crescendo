@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
-import type { Crianca, TemaPuericultura } from "../../types";
+import type { Crianca } from "../../types";
 import { CONSELHOS, TEMAS } from "../../data/puericultura/conselhos";
+import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
 import "./PuericulturaScreen.css";
 
 interface PuericulturaScreenProps {
@@ -14,17 +15,29 @@ function idadeEmMeses(dataNascimento: string): number {
 
 export function PuericulturaScreen({ crianca }: PuericulturaScreenProps) {
   const idadeAtual = idadeEmMeses(crianca.dataNascimento);
-  const [temaAtivo, setTemaAtivo] = useState<TemaPuericultura | "todos">("todos");
   const [apenasRelevantes, setApenasRelevantes] = useState(true);
+  const [abertas, setAbertas] = useState<Set<string>>(new Set());
 
-  const conselhosFiltrados = useMemo(() => {
-    return CONSELHOS.filter((c) => {
-      if (temaAtivo !== "todos" && c.tema !== temaAtivo) return false;
-      if (apenasRelevantes && (idadeAtual < c.idadeMinMeses || idadeAtual > c.idadeMaxMeses + 1))
-        return false;
-      return true;
+  function alternar(temaId: string) {
+    setAbertas((prev) => {
+      const novo = new Set(prev);
+      if (novo.has(temaId)) novo.delete(temaId);
+      else novo.add(temaId);
+      return novo;
     });
-  }, [temaAtivo, apenasRelevantes, idadeAtual]);
+  }
+
+  const porTema = useMemo(() => {
+    return TEMAS.map((tema) => ({
+      tema,
+      conselhos: CONSELHOS.filter((c) => {
+        if (c.tema !== tema.id) return false;
+        if (apenasRelevantes && (idadeAtual < c.idadeMinMeses || idadeAtual > c.idadeMaxMeses + 1))
+          return false;
+        return true;
+      }),
+    }));
+  }, [apenasRelevantes, idadeAtual]);
 
   return (
     <div className="puericultura-screen">
@@ -33,64 +46,40 @@ export function PuericulturaScreen({ crianca }: PuericulturaScreenProps) {
         <p className="puericultura-screen__subtitle">
           Conselhos práticos para os primeiros 24 meses de {crianca.nome}, baseados em orientações
           da AAP e da OMS. Não substitui o pediatra — é apoio para as dúvidas mais frequentes do
-          dia a dia.
+          dia a dia. Toque num tema para abrir.
         </p>
       </header>
 
-      <div className="puericultura-screen__controls">
-        <div className="puericultura-screen__tabs" role="tablist">
-          <button
-            className={
-              "puericultura-screen__tab" + (temaAtivo === "todos" ? " puericultura-screen__tab--ativo" : "")
-            }
-            style={temaAtivo === "todos" ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)" } : undefined}
-            onClick={() => setTemaAtivo("todos")}
+      <label className="puericultura-screen__toggle">
+        <input
+          type="checkbox"
+          checked={apenasRelevantes}
+          onChange={(e) => setApenasRelevantes(e.target.checked)}
+        />
+        <span>Só mostrar o relevante para a idade atual</span>
+      </label>
+
+      {porTema.map(({ tema, conselhos }) => {
+        if (conselhos.length === 0) return null;
+        return (
+          <SeccaoColapsavel
+            key={tema.id}
+            titulo={tema.label}
+            cor={tema.cor}
+            contagem={conselhos.length}
+            aberta={abertas.has(tema.id)}
+            onToggle={() => alternar(tema.id)}
           >
-            Todos
-          </button>
-          {TEMAS.map((t) => (
-            <button
-              key={t.id}
-              className={
-                "puericultura-screen__tab" + (temaAtivo === t.id ? " puericultura-screen__tab--ativo" : "")
-              }
-              style={temaAtivo === t.id ? { background: t.cor, borderColor: t.cor } : undefined}
-              onClick={() => setTemaAtivo(t.id)}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-
-        <label className="puericultura-screen__toggle">
-          <input
-            type="checkbox"
-            checked={apenasRelevantes}
-            onChange={(e) => setApenasRelevantes(e.target.checked)}
-          />
-          <span>Só mostrar o relevante para a idade atual</span>
-        </label>
-      </div>
-
-      {conselhosFiltrados.length === 0 ? (
-        <div className="puericultura-screen__empty">Sem conselhos para este filtro.</div>
-      ) : (
-        <div className="puericultura-screen__grid">
-          {conselhosFiltrados.map((c) => {
-            const tema = TEMAS.find((t) => t.id === c.tema)!;
-            return (
+            {conselhos.map((c) => (
               <article key={c.id} className="puericultura-screen__card">
-                <span className="puericultura-screen__card-tag" style={{ color: tema.cor }}>
-                  {tema.label}
-                </span>
                 <h2>{c.titulo}</h2>
                 <p>{c.texto}</p>
                 <span className="puericultura-screen__card-fonte">{c.fonte}</span>
               </article>
-            );
-          })}
-        </div>
-      )}
+            ))}
+          </SeccaoColapsavel>
+        );
+      })}
     </div>
   );
 }
