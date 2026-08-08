@@ -71,9 +71,9 @@ documento — não há mais nenhum módulo "em falta" da lista original.
 - [x] Rastreador de vacinas (PNV) — feito. 14 doses, 0-5 anos, com as
   atualizações de 2024/2025 (pneumocócica, MenACWY). Rever periodicamente
   contra dgs.pt — o PNV muda com regularidade.
-- [ ] Exportação em PDF (curvas + marcos + resumo de uma página) para
-  levar à consulta — prioridade alta, é o tipo de coisa que faz um pai
-  dizer "era mesmo isto que precisava"
+- [x] Exportação em PDF (curvas + marcos + resumo de uma página) para
+  levar à consulta — feito como "Resumo para a Consulta": impressão nativa
+  do browser, sem bibliotecas pesadas.
 - [x] Contactos Úteis (112, CIAV, SNS24, Linha de Apoio à Criança, APSI,
   DGS-PNV, SPP) — feito, por pedido do utilizador
 - [x] Favoritos/atalhos — feito. Botão de estrela em Puericultura, Sintomas
@@ -96,9 +96,9 @@ Checklist mínimo, para não descobrir tarde demais:
 
 - [ ] Revisão clínica de **todo** o conteúdo de texto por outro pediatra (não só por ti) — especialmente Sinais de Alerta, Calculadora de Dose, e Desengasgamento/SBV (estes três já não são "conteúdo informativo genérico", são instrução de ação — o risco de um erro aqui é maior do que era há uma semana)
 - [x] Substituir a fonte de dados LMS (atualmente via `pygrowup`) pelos ficheiros oficiais da OMS descarregados diretamente — feito, todos os 6 ficheiros (peso, comprimento/altura, perímetro cefálico × 2 sexos) verificados linha a linha, 100% idênticos aos anteriores. Bónus: corrigido bug real encontrado no processo — o gráfico estava fixo em 24 meses desde o MVP original, agora adapta-se até aos 60 meses.
-- [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica). Nota: a arquitetura já é 100% local-first (IndexedDB, sem servidor) — o que falta é o *texto legal*, não a engenharia. Isto é também uma vantagem real a comunicar: "não recolhemos dados" é uma etiqueta de privacidade da App Store muito favorável.
-- [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio
-- [ ] Aconselhamento jurídico sobre termos de uso e disclaimers
+- [ ] Política de privacidade real — **rascunho feito**, específico à arquitetura local-first da app, atualmente com o teu advogado para revisão. Falta: preencher os campos em aberto (titular legal, email de contacto) e aprovação final.
+- [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio. **Levantado com o advogado** (calculadora de dose / MDCG 2019-11).
+- [ ] Aconselhamento jurídico sobre termos de uso e disclaimers — **rascunho feito**, atualmente com o teu advogado.
 - [ ] Verificação formal de marca registada para "Crescendo" (a minha verificação foi só uma busca rápida, não é clearance legal)
 - [ ] Plano de monetização decidido (grátis com prática associada? freemium? pago?) — ver nota de mercado abaixo
 
