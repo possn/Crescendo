@@ -49,7 +49,11 @@ do produto.
   de dose de paracetamol/ibuprofeno por peso, com bloqueio de segurança
   para ibuprofeno <6 meses e aviso crítico para febre <3 meses
 
-## Todos os módulos do MVP estão construídos
+## Todos os módulos do MVP estão construídos, mais alguns pós-MVP:
+Puericultura, Sintomas Comuns, Primeiros Socorros, Desengasgamento e SBV,
+Calculadora de Dose, Diversificação Alimentar, Vacinas — PNV, Contactos
+Úteis, Consultas de Vigilância (registo fotográfico + dúvidas, 14 etapas
+PNSIJ/DGS), Pesquisa Global.
 
 Próximo foco natural: testar a fundo, recolher feedback real (ver secção de
 backlog abaixo), e trabalhar a checklist pré-App Store mais abaixo neste
