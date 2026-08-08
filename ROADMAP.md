@@ -90,13 +90,34 @@ só registar. Trio isto contigo de vez em quando para priorizar.*
 
 Checklist mínimo, para não descobrir tarde demais:
 
-- [ ] Revisão clínica de **todo** o conteúdo de texto por outro pediatra (não só por ti) — especialmente Sinais de Alerta
+- [ ] Revisão clínica de **todo** o conteúdo de texto por outro pediatra (não só por ti) — especialmente Sinais de Alerta, Calculadora de Dose, e Desengasgamento/SBV (estes três já não são "conteúdo informativo genérico", são instrução de ação — o risco de um erro aqui é maior do que era há uma semana)
 - [ ] Substituir a fonte de dados LMS (atualmente via `pygrowup`) pelos ficheiros oficiais da OMS descarregados diretamente
-- [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica). Nota: a arquitetura já é 100% local-first (IndexedDB, sem servidor) — o que falta é o *texto legal*, não a engenharia.
+- [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica). Nota: a arquitetura já é 100% local-first (IndexedDB, sem servidor) — o que falta é o *texto legal*, não a engenharia. Isto é também uma vantagem real a comunicar: "não recolhemos dados" é uma etiqueta de privacidade da App Store muito favorável.
 - [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio
 - [ ] Aconselhamento jurídico sobre termos de uso e disclaimers
 - [ ] Verificação formal de marca registada para "Crescendo" (a minha verificação foi só uma busca rápida, não é clearance legal)
 - [ ] Plano de monetização decidido (grátis com prática associada? freemium? pago?) — ver nota de mercado abaixo
+
+## Fase 2 — Preparação técnica (Capacitor → Xcode)
+
+- [ ] `npx cap init` + `npx cap add ios` no projeto atual — embrulha o React já feito, não reescreve nada
+- [ ] Confirmar todos os tamanhos de ícone exigidos pela Apple (já temos o 1024 base)
+- [ ] Ecrã de arranque nativo (mecanismo diferente do splash web que já construímos — a Apple usa Storyboard/Info.plist, não o nosso `SplashScreen.tsx`)
+- [ ] Capturas de ecrã para a ficha da App Store (vários tamanhos de dispositivo)
+- [ ] Conta Apple Developer Program (99 USD/ano) — isto tens de ser tu a criar, precisa da tua identidade
+- [ ] TestFlight com um grupo pequeno antes de submeter para revisão pública
+
+## Fase 3 — Riscos específicos de revisão da Apple para este tipo de app
+
+- [ ] Categoria provável: **Médica** ou **Saúde e Fitness** — a categoria Médica tem escrutínio mais apertado (Guideline 1.4.1, informação que pode causar dano físico se mal utilizada)
+- [ ] A Calculadora de Dose e o SBV são exatamente o tipo de conteúdo que pode gerar um pedido de esclarecimento da Apple — já têm salvaguardas fortes (limites de idade, doses máximas, "confirme com a bula"), mas vale a pena preparar uma resposta pronta a explicar isto, e destacar a tua credencial como pediatra
+- [ ] Etiqueta de privacidade da App Store (App Privacy) — dado seres 100% local-first, isto deve poder dizer "não recolhemos dados nenhuns", que é raro e forte
+- [ ] Questionário de classificação etária e de conformidade de exportação (encriptação) — mais simples do que parece, mas é preciso preencher com cuidado
+
+## Fase 4 — Antes do lançamento em si
+
+- [ ] Uso real com pacientes/rede profissional tua — continua a ser o passo de maior retorno que falta, mais do que qualquer funcionalidade nova
+- [ ] Feedback de pelo menos 5-10 famílias reais fora do teu círculo mais próximo
 
 ---
 
