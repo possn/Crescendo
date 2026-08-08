@@ -2,6 +2,14 @@
   max-width: 980px;
 }
 
+.dashboard-screen__header {
+  text-align: center;
+}
+
+.dashboard-screen__header svg {
+  margin-bottom: 4px;
+}
+
 .dashboard-screen__header h1 {
   font-size: 26px;
   font-weight: 600;

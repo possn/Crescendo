@@ -32,6 +32,9 @@
   --ind-comprimento: #8a6d3b;
   --ind-perimetro: #6b5b95;
 
+  --mascote-pelo: #c9a876;
+  --mascote-pelo-claro: #e0c9a0;
+
   /* Estado */
   --warn: #a15c2f;
   --warn-strong: #8f4f28;
@@ -115,6 +118,9 @@ button {
   --ind-peso: #e0a06f;
   --ind-comprimento: #c9ac6f;
   --ind-perimetro: #b3a2d9;
+
+  --mascote-pelo: #8a7a5c;
+  --mascote-pelo-claro: #a8977c;
 
   --warn: #e0a06f;
   --warn-strong: #eeb98f;

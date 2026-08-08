@@ -13,6 +13,7 @@ import { calcularZScoreEPercentil } from "../../lib/growthCalculations";
 import { formatarPeso } from "../../lib/units";
 import { MARCOS_CDC, IDADES_CHECKLIST_MESES } from "../../data/milestones/cdcMilestones";
 import { DOSES_PNV } from "../../data/vacinas/pnv";
+import { IlustracaoBebe } from "../../components/IlustracaoBebe";
 import "./DashboardScreen.css";
 
 import wfaFemale from "../../data/who/weight_for_age_female.json";
@@ -113,6 +114,7 @@ export function DashboardScreen({
   return (
     <div className="dashboard-screen">
       <header className="dashboard-screen__header">
+        <IlustracaoBebe idadeMeses={idadeMeses} />
         <h1>Olá! 👋</h1>
         <p className="dashboard-screen__subtitle">
           {crianca.nome} tem {formatarIdade(idadeMeses)}
