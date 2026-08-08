@@ -17,6 +17,8 @@ do produto.
 | Stack do protótipo | React + TypeScript + Vite, PWA | Rápido de testar, reaproveitável via Capacitor para iOS nativo depois |
 | Estratégia de lançamento | **PWA até estar "perfeita"**, só depois App Store | Testar e iterar sem o atrito de builds Xcode/App Store Review a cada alteração |
 | Caminho para App Store | Capacitor (embrulha o React existente num projeto Xcode) | Mais rápido do que reescrever em SwiftUI; reaproveita ~100% do código |
+| Monetização | **PWA (web) sempre grátis** · versão nativa da App Store **compra única** | PWA continua a ser o canal direto para pacientes da consulta (sem fricção, sem gestão); App Store cobra ao público em geral que descobre a app por conta própria. Se precisar de dar a versão paga de borla a alguém specific, usar códigos promocionais da Apple. |
+| Nome — risco identificado | **A confirmar com advogado** — existe "Clínica Crescendo" (Évora, pediatria) e uma marca "CRESCENDO" registada no USPTO (2019, Classe 9, áudio). Verificação formal INPI/EUIPO ainda por fazer (portais interativos, não pesquisáveis remotamente). Não mudar o nome sem essa resposta. |
 
 ---
 
@@ -99,8 +101,8 @@ Checklist mínimo, para não descobrir tarde demais:
 - [ ] Política de privacidade real — **rascunho feito**, específico à arquitetura local-first da app, atualmente com o teu advogado para revisão. Falta: preencher os campos em aberto (titular legal, email de contacto) e aprovação final.
 - [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio. **Levantado com o advogado** (calculadora de dose / MDCG 2019-11).
 - [ ] Aconselhamento jurídico sobre termos de uso e disclaimers — **rascunho feito**, atualmente com o teu advogado.
-- [ ] Verificação formal de marca registada para "Crescendo" (a minha verificação foi só uma busca rápida, não é clearance legal)
-- [ ] Plano de monetização decidido (grátis com prática associada? freemium? pago?) — ver nota de mercado abaixo
+- [ ] Verificação formal de marca registada para "Crescendo" — pesquisa informal já feita (ver decisão acima: Clínica Crescendo em Évora é o achado mais relevante); falta a verificação formal INPI/EUIPO, a fazer pelo advogado
+- [x] Plano de monetização decidido — PWA sempre grátis (canal direto para pacientes), versão nativa App Store como compra única
 
 ## Fase 2 — Preparação técnica (Capacitor → Xcode)
 
