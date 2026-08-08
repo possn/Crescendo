@@ -91,7 +91,7 @@ só registar. Trio isto contigo de vez em quando para priorizar.*
 Checklist mínimo, para não descobrir tarde demais:
 
 - [ ] Revisão clínica de **todo** o conteúdo de texto por outro pediatra (não só por ti) — especialmente Sinais de Alerta, Calculadora de Dose, e Desengasgamento/SBV (estes três já não são "conteúdo informativo genérico", são instrução de ação — o risco de um erro aqui é maior do que era há uma semana)
-- [ ] Substituir a fonte de dados LMS (atualmente via `pygrowup`) pelos ficheiros oficiais da OMS descarregados diretamente
+- [x] Substituir a fonte de dados LMS (atualmente via `pygrowup`) pelos ficheiros oficiais da OMS descarregados diretamente — feito, todos os 6 ficheiros (peso, comprimento/altura, perímetro cefálico × 2 sexos) verificados linha a linha, 100% idênticos aos anteriores. Bónus: corrigido bug real encontrado no processo — o gráfico estava fixo em 24 meses desde o MVP original, agora adapta-se até aos 60 meses.
 - [ ] Política de privacidade real (RGPD — dados de menores são categoria reforçada; se houver utilizadores nos EUA, COPPA também se aplica). Nota: a arquitetura já é 100% local-first (IndexedDB, sem servidor) — o que falta é o *texto legal*, não a engenharia. Isto é também uma vantagem real a comunicar: "não recolhemos dados" é uma etiqueta de privacidade da App Store muito favorável.
 - [ ] Decisão consciente sobre se algo na app se aproxima de "Software as a Medical Device" (SaMD) — a app **não deve** gerar scores de risco automáticos; mantém-se ferramenta de vigilância parental, não de rastreio
 - [ ] Aconselhamento jurídico sobre termos de uso e disclaimers
