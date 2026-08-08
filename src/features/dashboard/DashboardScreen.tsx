@@ -125,6 +125,26 @@ export function DashboardScreen({
         </p>
       </header>
 
+      {favoritos.length > 0 && (
+        <section className="dashboard-screen__favoritos">
+          <h2>⭐ Favoritos</h2>
+          <div className="dashboard-screen__favoritos-lista">
+            {favoritos.map((f) => (
+              <button
+                key={f.id}
+                className="dashboard-screen__favorito-item"
+                onClick={() => onNavegar(f.seccao)}
+              >
+                <span className="dashboard-screen__favorito-categoria" style={{ color: f.cor }}>
+                  {f.categoriaLabel}
+                </span>
+                <span className="dashboard-screen__favorito-titulo">{f.titulo}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       <div className="dashboard-screen__grid">
         <button className="dashboard-screen__card" onClick={() => onNavegar("crescimento")}>
           <span className="dashboard-screen__card-tag">Curvas de Crescimento</span>
@@ -200,26 +220,6 @@ export function DashboardScreen({
           </span>
         </button>
       </div>
-
-      {favoritos.length > 0 && (
-        <section className="dashboard-screen__favoritos">
-          <h2>⭐ Favoritos</h2>
-          <div className="dashboard-screen__favoritos-lista">
-            {favoritos.map((f) => (
-              <button
-                key={f.id}
-                className="dashboard-screen__favorito-item"
-                onClick={() => onNavegar(f.seccao)}
-              >
-                <span className="dashboard-screen__favorito-categoria" style={{ color: f.cor }}>
-                  {f.categoriaLabel}
-                </span>
-                <span className="dashboard-screen__favorito-titulo">{f.titulo}</span>
-              </button>
-            ))}
-          </div>
-        </section>
-      )}
 
       <p className="dashboard-screen__disclaimer">
         Este resumo é um atalho, não uma avaliação — para uma leitura completa, veja cada secção
