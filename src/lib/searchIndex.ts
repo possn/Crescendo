@@ -180,6 +180,15 @@ function construirIndice(): ResultadoPesquisa[] {
       seccaoLabel: "Desengasgamento e SBV",
       categoriaLabel: "Atalho",
       cor: "var(--warn-strong)",
+    },
+    {
+      id: "atalho-consultas",
+      titulo: "Consultas de Vigilância",
+      resumo: "Registo de consultas e dúvidas para o pediatra, por idade-chave (PNSIJ)",
+      seccao: "consultas",
+      seccaoLabel: "Consultas de Vigilância",
+      categoriaLabel: "Atalho",
+      cor: "var(--accent-strong)",
     }
   );
 

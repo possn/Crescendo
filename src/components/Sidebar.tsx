@@ -19,6 +19,7 @@ const GRUPOS: GrupoMenu[] = [
       { id: "inicio", label: "Início", glyph: "home" },
       { id: "marcos", label: "Marcos de Desenvolvimento", glyph: "chart" },
       { id: "vacinas", label: "Vacinas — PNV", glyph: "shield" },
+      { id: "consultas", label: "Consultas de Vigilância", glyph: "clipboard" },
       { id: "alertas", label: "Sinais de Alerta", glyph: "flag" },
       { id: "crescimento", label: "Curvas de Crescimento", glyph: "ruler" },
     ],
@@ -108,6 +109,13 @@ function Glyph({ name }: { name: string }) {
       return (
         <svg {...common}>
           <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C10.5 20 4 13.5 4 6a2 2 0 0 1 1-2Z" />
+        </svg>
+      );
+    case "clipboard":
+      return (
+        <svg {...common}>
+          <rect x="6" y="4" width="12" height="17" rx="2" />
+          <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4" />
         </svg>
       );
     case "shield":

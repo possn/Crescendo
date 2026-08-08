@@ -49,6 +49,7 @@ export type AppSection =
   | "perfil"
   | "marcos"
   | "vacinas"
+  | "consultas"
   | "crescimento"
   | "diario"
   | "puericultura"
@@ -204,6 +205,30 @@ export interface ContactoUtil {
   telefoneExibicao?: string;
   site?: string;
   horario?: string;
+}
+
+// --- Consultas de Vigilância --------------------------------------------
+
+export interface EtapaConsulta {
+  id: string;
+  idadeLabel: string;
+  idadeMesesAprox: number;
+}
+
+export interface RegistoConsulta {
+  id: string;
+  criancaId: string;
+  etapaId: string;
+  data: string;
+  dataUrl: string;
+}
+
+export interface DuvidaConsulta {
+  id: string;
+  criancaId: string;
+  etapaId: string;
+  texto: string;
+  respondida: boolean;
 }
 
 // --- Preferências ---------------------------------------------------------

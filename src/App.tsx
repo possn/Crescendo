@@ -13,6 +13,7 @@ import { PrimeirosSocorrosScreen } from "./features/primeiros-socorros/Primeiros
 import { SbvScreen } from "./features/sbv/SbvScreen";
 import { ContactosScreen } from "./features/contactos/ContactosScreen";
 import { VacinasScreen } from "./features/vacinas/VacinasScreen";
+import { ConsultasScreen } from "./features/consultas/ConsultasScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import { SearchOverlay } from "./components/SearchOverlay";
@@ -25,6 +26,8 @@ import type {
   MedicaoCrescimento,
   Preferencias,
   VacinaAdministrada,
+  RegistoConsulta,
+  DuvidaConsulta,
 } from "./types";
 import {
   carregarCriancas,
@@ -40,6 +43,10 @@ import {
   PREFERENCIAS_OMISSAO,
   carregarVacinas,
   guardarVacinas,
+  carregarRegistosConsulta,
+  guardarRegistosConsulta,
+  carregarDuvidasConsulta,
+  guardarDuvidasConsulta,
 } from "./lib/persistence";
 import "./App.css";
 
@@ -69,6 +76,8 @@ export default function App() {
   const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
   const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
   const [vacinasAdministradas, setVacinasAdministradas] = useState<VacinaAdministrada[]>([]);
+  const [registosConsulta, setRegistosConsulta] = useState<RegistoConsulta[]>([]);
+  const [duvidasConsulta, setDuvidasConsulta] = useState<DuvidaConsulta[]>([]);
   const [preferencias, setPreferencias] = useState<Preferencias>(PREFERENCIAS_OMISSAO);
 
   // Carrega tudo do IndexedDB local ao arrancar. Sem dados guardados ainda
@@ -83,6 +92,8 @@ export default function App() {
         diarioGuardado,
         prefsGuardadas,
         vacinasGuardadas,
+        registosConsultaGuardados,
+        duvidasConsultaGuardadas,
       ] = await Promise.all([
         carregarCriancas(),
         carregarMedicoes(),
@@ -90,6 +101,8 @@ export default function App() {
         carregarDiario(),
         carregarPreferencias(),
         carregarVacinas(),
+        carregarRegistosConsulta(),
+        carregarDuvidasConsulta(),
       ]);
 
       if (criancasGuardadas === undefined) {
@@ -103,6 +116,8 @@ export default function App() {
       setMarcosAlcancados(marcosGuardados);
       setEntradasDiario(diarioGuardado ?? []);
       setVacinasAdministradas(vacinasGuardadas ?? []);
+      setRegistosConsulta(registosConsultaGuardados ?? []);
+      setDuvidasConsulta(duvidasConsultaGuardadas ?? []);
       setPreferencias(prefsGuardadas);
       aplicarTema(prefsGuardadas.tema);
       setPronto(true);
@@ -228,6 +243,42 @@ export default function App() {
       return novo;
     });
   }
+
+  function adicionarRegistoConsulta(r: RegistoConsulta) {
+    setRegistosConsulta((prev) => {
+      const novo = [...prev, r];
+      guardarRegistosConsulta(novo);
+      return novo;
+    });
+  }
+  function removerRegistoConsulta(id: string) {
+    setRegistosConsulta((prev) => {
+      const novo = prev.filter((r) => r.id !== id);
+      guardarRegistosConsulta(novo);
+      return novo;
+    });
+  }
+  function adicionarDuvidaConsulta(d: DuvidaConsulta) {
+    setDuvidasConsulta((prev) => {
+      const novo = [...prev, d];
+      guardarDuvidasConsulta(novo);
+      return novo;
+    });
+  }
+  function alternarDuvidaConsulta(id: string) {
+    setDuvidasConsulta((prev) => {
+      const novo = prev.map((d) => (d.id === id ? { ...d, respondida: !d.respondida } : d));
+      guardarDuvidasConsulta(novo);
+      return novo;
+    });
+  }
+  function removerDuvidaConsulta(id: string) {
+    setDuvidasConsulta((prev) => {
+      const novo = prev.filter((d) => d.id !== id);
+      guardarDuvidasConsulta(novo);
+      return novo;
+    });
+  }
   function atualizarLegendaDiario(id: string, legenda: string) {
     setEntradasDiario((prev) => {
       const novo = prev.map((e) => (e.id === id ? { ...e, legenda } : e));
@@ -262,6 +313,8 @@ export default function App() {
     setMarcosAlcancados(new Set());
     setEntradasDiario([]);
     setVacinasAdministradas([]);
+    setRegistosConsulta([]);
+    setDuvidasConsulta([]);
     setPreferencias(PREFERENCIAS_OMISSAO);
     aplicarTema(PREFERENCIAS_OMISSAO.tema);
     // guardarCriancas/guardarMedicoes não são necessários aqui — apagarTudo()
@@ -359,6 +412,18 @@ export default function App() {
             vacinasAdministradas={vacinasAdministradas.filter((v) => v.criancaId === criancaAtivaId)}
             onRegistar={registarVacina}
             onRemover={removerVacina}
+          />
+        )}
+        {seccaoAtiva === "consultas" && (
+          <ConsultasScreen
+            crianca={criancaAtiva}
+            registos={registosConsulta.filter((r) => r.criancaId === criancaAtivaId)}
+            duvidas={duvidasConsulta.filter((d) => d.criancaId === criancaAtivaId)}
+            onAdicionarRegisto={adicionarRegistoConsulta}
+            onRemoverRegisto={removerRegistoConsulta}
+            onAdicionarDuvida={adicionarDuvidaConsulta}
+            onAlternarDuvida={alternarDuvidaConsulta}
+            onRemoverDuvida={removerDuvidaConsulta}
           />
         )}
         {seccaoAtiva === "diario" && (
