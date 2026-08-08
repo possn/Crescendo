@@ -14,6 +14,7 @@ import { SbvScreen } from "./features/sbv/SbvScreen";
 import { ContactosScreen } from "./features/contactos/ContactosScreen";
 import { VacinasScreen } from "./features/vacinas/VacinasScreen";
 import { ConsultasScreen } from "./features/consultas/ConsultasScreen";
+import { ResumoConsultaScreen } from "./features/resumo/ResumoConsultaScreen";
 import { SettingsScreen } from "./features/settings/SettingsScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import { SearchOverlay } from "./components/SearchOverlay";
@@ -424,6 +425,15 @@ export default function App() {
             onAdicionarDuvida={adicionarDuvidaConsulta}
             onAlternarDuvida={alternarDuvidaConsulta}
             onRemoverDuvida={removerDuvidaConsulta}
+          />
+        )}
+        {seccaoAtiva === "resumo" && (
+          <ResumoConsultaScreen
+            crianca={criancaAtiva}
+            medicoes={medicoesDaCrianca}
+            marcosAlcancados={marcosAlcancados}
+            vacinasAdministradas={vacinasAdministradas.filter((v) => v.criancaId === criancaAtivaId)}
+            duvidasConsulta={duvidasConsulta.filter((d) => d.criancaId === criancaAtivaId)}
           />
         )}
         {seccaoAtiva === "diario" && (

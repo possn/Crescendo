@@ -189,6 +189,15 @@ function construirIndice(): ResultadoPesquisa[] {
       seccaoLabel: "Consultas de Vigilância",
       categoriaLabel: "Atalho",
       cor: "var(--accent-strong)",
+    },
+    {
+      id: "atalho-resumo",
+      titulo: "Resumo para a Consulta",
+      resumo: "Uma página pronta a imprimir: crescimento, marcos, vacinas e dúvidas pendentes",
+      seccao: "resumo",
+      seccaoLabel: "Resumo para a Consulta",
+      categoriaLabel: "Atalho",
+      cor: "var(--accent-strong)",
     }
   );
 

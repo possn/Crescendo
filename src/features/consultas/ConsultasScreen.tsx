@@ -102,7 +102,8 @@ export function ConsultasScreen({
         <p className="consultas-screen__subtitle">
           Calendário de idades-chave do Programa Nacional de Saúde Infantil e Juvenil (DGS), para{" "}
           {crianca.nome}. Guarde um registo da observação (ex.: foto do boletim) e vá apontando
-          dúvidas para não se esquecer na consulta seguinte.
+          dúvidas para não se esquecer na consulta seguinte. Para um resumo de uma página pronto a
+          imprimir, veja Resumo para a Consulta no menu.
         </p>
         <p className="consultas-screen__nota">
           As idades não são rígidas — se a consulta acontecer um pouco antes ou depois, use a

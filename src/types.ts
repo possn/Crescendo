@@ -50,6 +50,7 @@ export type AppSection =
   | "marcos"
   | "vacinas"
   | "consultas"
+  | "resumo"
   | "crescimento"
   | "diario"
   | "puericultura"
