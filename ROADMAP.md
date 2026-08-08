@@ -76,8 +76,8 @@ documento — não há mais nenhum módulo "em falta" da lista original.
   dizer "era mesmo isto que precisava"
 - [x] Contactos Úteis (112, CIAV, SNS24, Linha de Apoio à Criança, APSI,
   DGS-PNV, SPP) — feito, por pedido do utilizador
-- [ ] Favoritos/atalhos — marcar 3-5 artigos usados com frequência (ex.:
-  passos do SBV, calculadora de dose) para acesso instantâneo no Dashboard
+- [x] Favoritos/atalhos — feito. Botão de estrela em Puericultura, Sintomas
+  Comuns e Primeiros Socorros; cartão dedicado no Dashboard.
 
 ---
 
