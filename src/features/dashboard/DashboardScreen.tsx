@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type {
   AppSection,
   Crianca,
@@ -15,6 +15,7 @@ import { formatarPeso } from "../../lib/units";
 import { MARCOS_CDC, IDADES_CHECKLIST_MESES } from "../../data/milestones/cdcMilestones";
 import { DOSES_PNV } from "../../data/vacinas/pnv";
 import { IlustracaoIdade } from "../../components/IlustracaoIdade";
+import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
 import "./DashboardScreen.css";
 
 import wfaFemale from "../../data/who/weight_for_age_female.json";
@@ -67,6 +68,7 @@ export function DashboardScreen({
     crianca.semanasGestacaoNoNascimento
   );
   const idadeMeses = resultadoIdade.idadeCorrigidaMeses;
+  const [favoritosAbertos, setFavoritosAbertos] = useState(false);
 
   const ultimaMedicaoPeso = useMemo(
     () =>
@@ -126,23 +128,30 @@ export function DashboardScreen({
       </header>
 
       {favoritos.length > 0 && (
-        <section className="dashboard-screen__favoritos">
-          <h2>⭐ Favoritos</h2>
-          <div className="dashboard-screen__favoritos-lista">
-            {favoritos.map((f) => (
-              <button
-                key={f.id}
-                className="dashboard-screen__favorito-item"
-                onClick={() => onNavegar(f.seccao)}
-              >
-                <span className="dashboard-screen__favorito-categoria" style={{ color: f.cor }}>
-                  {f.categoriaLabel}
-                </span>
-                <span className="dashboard-screen__favorito-titulo">{f.titulo}</span>
-              </button>
-            ))}
-          </div>
-        </section>
+        <div className="dashboard-screen__favoritos-wrap">
+          <SeccaoColapsavel
+            titulo="⭐ Favoritos"
+            cor="var(--accent-strong)"
+            contagem={favoritos.length}
+            aberta={favoritosAbertos}
+            onToggle={() => setFavoritosAbertos((v) => !v)}
+          >
+            <div className="dashboard-screen__favoritos-lista">
+              {favoritos.map((f) => (
+                <button
+                  key={f.id}
+                  className="dashboard-screen__favorito-item"
+                  onClick={() => onNavegar(f.seccao)}
+                >
+                  <span className="dashboard-screen__favorito-categoria" style={{ color: f.cor }}>
+                    {f.categoriaLabel}
+                  </span>
+                  <span className="dashboard-screen__favorito-titulo">{f.titulo}</span>
+                </button>
+              ))}
+            </div>
+          </SeccaoColapsavel>
+        </div>
       )}
 
       <div className="dashboard-screen__grid">

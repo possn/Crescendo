@@ -103,16 +103,9 @@
   display: block;
 }
 
-.dashboard-screen__favoritos {
+.dashboard-screen__favoritos-wrap {
   margin-top: 4px;
   margin-bottom: 22px;
-}
-
-.dashboard-screen__favoritos h2 {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-  margin: 0 0 10px;
 }
 
 .dashboard-screen__favoritos-lista {
