@@ -2,7 +2,7 @@
   "indicador": "head_circumference_for_age",
   "sexo": "M",
   "unidade": "cm",
-  "fonte": "WHO Child Growth Standards (2006) \u2014 Multicentre Growth Reference Study",
+  "fonte": "WHO Child Growth Standards (2006) — ficheiro oficial descarregado diretamente de who.int/tools/child-growth-standards/standards/head-circumference-for-age, verificado linha a linha em 08/2026",
   "pontos": [
     {
       "idadeMeses": 0.0,

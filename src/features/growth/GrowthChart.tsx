@@ -89,9 +89,10 @@ export function GrowthChart({
     return (d - n) / (1000 * 60 * 60 * 24 * 30.4375);
   };
 
+  const intervaloMarcos = idadeMaximaMeses <= 24 ? 3 : 6;
   const marcosIdade = Array.from(
-    { length: Math.floor(idadeMaximaMeses / 3) + 1 },
-    (_, i) => i * 3
+    { length: Math.floor(idadeMaximaMeses / intervaloMarcos) + 1 },
+    (_, i) => i * intervaloMarcos
   ).filter((m) => m <= idadeMaximaMeses);
 
   return (

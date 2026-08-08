@@ -91,6 +91,21 @@ export function GrowthCurvesScreen({
   const [abaAtiva, setAbaAtiva] = useState<Indicador>("weight_for_age");
   const nascimentoEfetivo = dataNascimentoEfetiva(crianca);
 
+  // Escala do gráfico: acompanha a idade da criança (ou a medição mais
+  // antiga registada, se for maior), em vez de ficar sempre fixa nos 24m.
+  const idadeMaximaMeses = useMemo(() => {
+    const idadeAtual = idadeEmMeses(nascimentoEfetivo, new Date().toISOString());
+    const idadeMaisVelhaRegistada = medicoes.reduce(
+      (max, m) => Math.max(max, idadeEmMeses(nascimentoEfetivo, m.data)),
+      0
+    );
+    const referencia = Math.max(idadeAtual, idadeMaisVelhaRegistada);
+    if (referencia <= 24) return 24;
+    if (referencia <= 36) return 36;
+    if (referencia <= 48) return 48;
+    return 60;
+  }, [nascimentoEfetivo, medicoes]);
+
   const [modoData, setModoData] = useState<"data" | "idade">("data");
   const [formData, setFormData] = useState(new Date().toISOString().slice(0, 10));
   const [formIdadeMeses, setFormIdadeMeses] = useState("");
@@ -289,6 +304,7 @@ export function GrowthCurvesScreen({
               dataNascimento={nascimentoEfetivo}
               tipoMedicaoPreferido={forAVisualizacao}
               corIndicador={ABAS.find((a) => a.id === abaAtiva)!.cor}
+              idadeMaximaMeses={idadeMaximaMeses}
             />
           )}
 
