@@ -40,17 +40,6 @@
   transition: width 0.3s ease;
 }
 
-.vacinas-screen__grupo {
-  margin-bottom: 22px;
-}
-
-.vacinas-screen__grupo h2 {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--accent-strong);
-  margin: 0 0 10px;
-}
-
 .vacinas-screen__doses {
   display: flex;
   flex-direction: column;

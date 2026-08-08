@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { Crianca, VacinaAdministrada } from "../../types";
 import { DOSES_PNV } from "../../data/vacinas/pnv";
 import { calcularIdade } from "../../lib/correctedAge";
+import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
 import "./VacinasScreen.css";
 
 interface VacinasScreenProps {
@@ -34,6 +35,26 @@ export function VacinasScreen({ crianca, vacinasAdministradas, onRegistar, onRem
     crianca.prematura,
     crianca.semanasGestacaoNoNascimento
   ).idadeCorrigidaMeses;
+
+  const grupoMaisProximo = useMemo(
+    () =>
+      GRUPOS.reduce((maisProximo, atual) =>
+        Math.abs(atual.idadeMesesAprox - idadeMeses) < Math.abs(maisProximo.idadeMesesAprox - idadeMeses)
+          ? atual
+          : maisProximo
+      ).idadeLabel,
+    [idadeMeses]
+  );
+  const [abertas, setAbertas] = useState<Set<string>>(() => new Set([grupoMaisProximo]));
+
+  function alternar(idadeLabel: string) {
+    setAbertas((prev) => {
+      const novo = new Set(prev);
+      if (novo.has(idadeLabel)) novo.delete(idadeLabel);
+      else novo.add(idadeLabel);
+      return novo;
+    });
+  }
 
   const [dataEmEdicao, setDataEmEdicao] = useState<string | null>(null);
   const [dataInput, setDataInput] = useState(new Date().toISOString().slice(0, 10));
@@ -78,9 +99,18 @@ export function VacinasScreen({ crianca, vacinasAdministradas, onRegistar, onRem
 
       {GRUPOS.map((grupo) => {
         const emAtraso = idadeMeses > grupo.idadeMesesAprox + 1;
+        const registadasDoGrupo = grupo.doses.filter((d) => registoPorDose.has(d.id)).length;
+        const corGrupo =
+          emAtraso && registadasDoGrupo < grupo.doses.length ? "var(--warn-strong)" : "var(--accent-strong)";
         return (
-          <section key={grupo.idadeLabel} className="vacinas-screen__grupo">
-            <h2>{grupo.idadeLabel}</h2>
+          <SeccaoColapsavel
+            key={grupo.idadeLabel}
+            titulo={grupo.idadeLabel}
+            cor={corGrupo}
+            contagem={grupo.doses.length}
+            aberta={abertas.has(grupo.idadeLabel)}
+            onToggle={() => alternar(grupo.idadeLabel)}
+          >
             <div className="vacinas-screen__doses">
               {grupo.doses.map((dose) => {
                 const registo = registoPorDose.get(dose.id);
@@ -141,7 +171,7 @@ export function VacinasScreen({ crianca, vacinasAdministradas, onRegistar, onRem
                 );
               })}
             </div>
-          </section>
+          </SeccaoColapsavel>
         );
       })}
 
