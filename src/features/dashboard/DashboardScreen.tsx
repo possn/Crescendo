@@ -7,6 +7,7 @@ import type {
   TabelaReferenciaOMS,
   Unidades,
   VacinaAdministrada,
+  Favorito,
 } from "../../types";
 import { calcularIdade } from "../../lib/correctedAge";
 import { calcularZScoreEPercentil } from "../../lib/growthCalculations";
@@ -30,6 +31,7 @@ interface DashboardScreenProps {
   marcosAlcancados: Set<string>;
   entradasDiario: EntradaDiario[];
   vacinasAdministradas: VacinaAdministrada[];
+  favoritos: Favorito[];
   unidades: Unidades;
   onNavegar: (seccao: AppSection) => void;
 }
@@ -54,6 +56,7 @@ export function DashboardScreen({
   marcosAlcancados,
   entradasDiario,
   vacinasAdministradas,
+  favoritos,
   unidades,
   onNavegar,
 }: DashboardScreenProps) {
@@ -197,6 +200,26 @@ export function DashboardScreen({
           </span>
         </button>
       </div>
+
+      {favoritos.length > 0 && (
+        <section className="dashboard-screen__favoritos">
+          <h2>⭐ Favoritos</h2>
+          <div className="dashboard-screen__favoritos-lista">
+            {favoritos.map((f) => (
+              <button
+                key={f.id}
+                className="dashboard-screen__favorito-item"
+                onClick={() => onNavegar(f.seccao)}
+              >
+                <span className="dashboard-screen__favorito-categoria" style={{ color: f.cor }}>
+                  {f.categoriaLabel}
+                </span>
+                <span className="dashboard-screen__favorito-titulo">{f.titulo}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <p className="dashboard-screen__disclaimer">
         Este resumo é um atalho, não uma avaliação — para uma leitura completa, veja cada secção

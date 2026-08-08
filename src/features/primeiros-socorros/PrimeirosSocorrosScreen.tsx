@@ -1,14 +1,17 @@
 import { useMemo, useState } from "react";
-import type { Crianca } from "../../types";
+import type { Crianca, Favorito } from "../../types";
 import { CONSELHOS_SOCORRO, CATEGORIAS_SOCORRO } from "../../data/primeiros-socorros/primeirosSocorros";
 import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
+import { BotaoFavorito } from "../../components/BotaoFavorito";
 import "./PrimeirosSocorrosScreen.css";
 
 interface PrimeirosSocorrosScreenProps {
   crianca: Crianca;
+  favoritos: Favorito[];
+  onAlternarFavorito: (favorito: Omit<Favorito, "id">) => void;
 }
 
-export function PrimeirosSocorrosScreen({ crianca }: PrimeirosSocorrosScreenProps) {
+export function PrimeirosSocorrosScreen({ crianca, favoritos, onAlternarFavorito }: PrimeirosSocorrosScreenProps) {
   const [abertas, setAbertas] = useState<Set<string>>(new Set());
 
   function alternar(categoriaId: string) {
@@ -52,13 +55,30 @@ export function PrimeirosSocorrosScreen({ crianca }: PrimeirosSocorrosScreenProp
           aberta={abertas.has(cat.id)}
           onToggle={() => alternar(cat.id)}
         >
-          {conselhos.map((c) => (
-            <article key={c.id} className="socorros-screen__card">
-              <h2>{c.titulo}</h2>
-              <p>{c.texto}</p>
-              <span className="socorros-screen__card-fonte">{c.fonte}</span>
-            </article>
-          ))}
+          {conselhos.map((c) => {
+            const favorito = favoritos.find((f) => f.itemId === c.id);
+            return (
+              <article key={c.id} className="socorros-screen__card">
+                <div className="socorros-screen__card-topo">
+                  <h2>{c.titulo}</h2>
+                  <BotaoFavorito
+                    ativo={!!favorito}
+                    onToggle={() =>
+                      onAlternarFavorito({
+                        itemId: c.id,
+                        seccao: "socorros",
+                        titulo: c.titulo,
+                        categoriaLabel: cat.label,
+                        cor: cat.cor,
+                      })
+                    }
+                  />
+                </div>
+                <p>{c.texto}</p>
+                <span className="socorros-screen__card-fonte">{c.fonte}</span>
+              </article>
+            );
+          })}
         </SeccaoColapsavel>
       ))}
     </div>

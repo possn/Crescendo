@@ -26,6 +26,7 @@ import type {
   VacinaAdministrada,
   RegistoConsulta,
   DuvidaConsulta,
+  Favorito,
 } from "../types";
 
 const CHAVE_CRIANCAS = "crescendo:criancas";
@@ -36,6 +37,7 @@ const CHAVE_PREFERENCIAS = "crescendo:preferencias";
 const CHAVE_VACINAS = "crescendo:vacinas-administradas";
 const CHAVE_REGISTOS_CONSULTA = "crescendo:registos-consulta";
 const CHAVE_DUVIDAS_CONSULTA = "crescendo:duvidas-consulta";
+const CHAVE_FAVORITOS = "crescendo:favoritos";
 
 export const PREFERENCIAS_OMISSAO: Preferencias = {
   unidades: "metrico",
@@ -93,6 +95,13 @@ export async function guardarDuvidasConsulta(v: DuvidaConsulta[]): Promise<void>
   await set(CHAVE_DUVIDAS_CONSULTA, v);
 }
 
+export async function carregarFavoritos(): Promise<Favorito[] | undefined> {
+  return get(CHAVE_FAVORITOS);
+}
+export async function guardarFavoritos(v: Favorito[]): Promise<void> {
+  await set(CHAVE_FAVORITOS, v);
+}
+
 export async function carregarPreferencias(): Promise<Preferencias> {
   const p = await get<Partial<Preferencias>>(CHAVE_PREFERENCIAS);
   return { ...PREFERENCIAS_OMISSAO, ...p };
@@ -103,17 +112,27 @@ export async function guardarPreferencias(v: Preferencias): Promise<void> {
 
 /** Exporta tudo num único objeto — usado pelo botão "Exportar os meus dados". */
 export async function exportarTudo() {
-  const [criancas, medicoes, marcosAlcancados, diario, preferencias, vacinas, registosConsulta, duvidasConsulta] =
-    await Promise.all([
-      carregarCriancas(),
-      carregarMedicoes(),
-      carregarMarcosAlcancados(),
-      carregarDiario(),
-      carregarPreferencias(),
-      carregarVacinas(),
-      carregarRegistosConsulta(),
-      carregarDuvidasConsulta(),
-    ]);
+  const [
+    criancas,
+    medicoes,
+    marcosAlcancados,
+    diario,
+    preferencias,
+    vacinas,
+    registosConsulta,
+    duvidasConsulta,
+    favoritos,
+  ] = await Promise.all([
+    carregarCriancas(),
+    carregarMedicoes(),
+    carregarMarcosAlcancados(),
+    carregarDiario(),
+    carregarPreferencias(),
+    carregarVacinas(),
+    carregarRegistosConsulta(),
+    carregarDuvidasConsulta(),
+    carregarFavoritos(),
+  ]);
   return {
     exportadoEm: new Date().toISOString(),
     criancas: criancas ?? [],
@@ -124,6 +143,7 @@ export async function exportarTudo() {
     vacinasAdministradas: vacinas ?? [],
     registosConsulta: registosConsulta ?? [],
     duvidasConsulta: duvidasConsulta ?? [],
+    favoritos: favoritos ?? [],
   };
 }
 

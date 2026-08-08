@@ -1,14 +1,17 @@
 import { useMemo, useState } from "react";
-import type { Crianca } from "../../types";
+import type { Crianca, Favorito } from "../../types";
 import { CONSELHOS_SINTOMAS, CATEGORIAS } from "../../data/sintomas/sintomasComuns";
 import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
+import { BotaoFavorito } from "../../components/BotaoFavorito";
 import "./SintomasScreen.css";
 
 interface SintomasScreenProps {
   crianca: Crianca;
+  favoritos: Favorito[];
+  onAlternarFavorito: (favorito: Omit<Favorito, "id">) => void;
 }
 
-export function SintomasScreen({ crianca }: SintomasScreenProps) {
+export function SintomasScreen({ crianca, favoritos, onAlternarFavorito }: SintomasScreenProps) {
   const [abertas, setAbertas] = useState<Set<string>>(new Set());
 
   function alternar(categoriaId: string) {
@@ -50,13 +53,30 @@ export function SintomasScreen({ crianca }: SintomasScreenProps) {
           aberta={abertas.has(cat.id)}
           onToggle={() => alternar(cat.id)}
         >
-          {conselhos.map((c) => (
-            <article key={c.id} className="sintomas-screen__card">
-              <h2>{c.titulo}</h2>
-              <p>{c.texto}</p>
-              <span className="sintomas-screen__card-fonte">{c.fonte}</span>
-            </article>
-          ))}
+          {conselhos.map((c) => {
+            const favorito = favoritos.find((f) => f.itemId === c.id);
+            return (
+              <article key={c.id} className="sintomas-screen__card">
+                <div className="sintomas-screen__card-topo">
+                  <h2>{c.titulo}</h2>
+                  <BotaoFavorito
+                    ativo={!!favorito}
+                    onToggle={() =>
+                      onAlternarFavorito({
+                        itemId: c.id,
+                        seccao: "sintomas",
+                        titulo: c.titulo,
+                        categoriaLabel: cat.label,
+                        cor: cat.cor,
+                      })
+                    }
+                  />
+                </div>
+                <p>{c.texto}</p>
+                <span className="sintomas-screen__card-fonte">{c.fonte}</span>
+              </article>
+            );
+          })}
         </SeccaoColapsavel>
       ))}
     </div>

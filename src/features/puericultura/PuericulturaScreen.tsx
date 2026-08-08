@@ -1,11 +1,14 @@
 import { useMemo, useState } from "react";
-import type { Crianca } from "../../types";
+import type { Crianca, Favorito } from "../../types";
 import { CONSELHOS, TEMAS } from "../../data/puericultura/conselhos";
 import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
+import { BotaoFavorito } from "../../components/BotaoFavorito";
 import "./PuericulturaScreen.css";
 
 interface PuericulturaScreenProps {
   crianca: Crianca;
+  favoritos: Favorito[];
+  onAlternarFavorito: (favorito: Omit<Favorito, "id">) => void;
 }
 
 function idadeEmMeses(dataNascimento: string): number {
@@ -13,7 +16,7 @@ function idadeEmMeses(dataNascimento: string): number {
   return (Date.now() - n) / (1000 * 60 * 60 * 24 * 30.4375);
 }
 
-export function PuericulturaScreen({ crianca }: PuericulturaScreenProps) {
+export function PuericulturaScreen({ crianca, favoritos, onAlternarFavorito }: PuericulturaScreenProps) {
   const idadeAtual = idadeEmMeses(crianca.dataNascimento);
   const [apenasRelevantes, setApenasRelevantes] = useState(true);
   const [abertas, setAbertas] = useState<Set<string>>(new Set());
@@ -70,13 +73,30 @@ export function PuericulturaScreen({ crianca }: PuericulturaScreenProps) {
             aberta={abertas.has(tema.id)}
             onToggle={() => alternar(tema.id)}
           >
-            {conselhos.map((c) => (
-              <article key={c.id} className="puericultura-screen__card">
-                <h2>{c.titulo}</h2>
-                <p>{c.texto}</p>
-                <span className="puericultura-screen__card-fonte">{c.fonte}</span>
-              </article>
-            ))}
+            {conselhos.map((c) => {
+              const favorito = favoritos.find((f) => f.itemId === c.id);
+              return (
+                <article key={c.id} className="puericultura-screen__card">
+                  <div className="puericultura-screen__card-topo">
+                    <h2>{c.titulo}</h2>
+                    <BotaoFavorito
+                      ativo={!!favorito}
+                      onToggle={() =>
+                        onAlternarFavorito({
+                          itemId: c.id,
+                          seccao: "puericultura",
+                          titulo: c.titulo,
+                          categoriaLabel: tema.label,
+                          cor: tema.cor,
+                        })
+                      }
+                    />
+                  </div>
+                  <p>{c.texto}</p>
+                  <span className="puericultura-screen__card-fonte">{c.fonte}</span>
+                </article>
+              );
+            })}
           </SeccaoColapsavel>
         );
       })}

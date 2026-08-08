@@ -29,6 +29,7 @@ import type {
   VacinaAdministrada,
   RegistoConsulta,
   DuvidaConsulta,
+  Favorito,
 } from "./types";
 import {
   carregarCriancas,
@@ -48,6 +49,8 @@ import {
   guardarRegistosConsulta,
   carregarDuvidasConsulta,
   guardarDuvidasConsulta,
+  carregarFavoritos,
+  guardarFavoritos,
 } from "./lib/persistence";
 import "./App.css";
 
@@ -79,6 +82,7 @@ export default function App() {
   const [vacinasAdministradas, setVacinasAdministradas] = useState<VacinaAdministrada[]>([]);
   const [registosConsulta, setRegistosConsulta] = useState<RegistoConsulta[]>([]);
   const [duvidasConsulta, setDuvidasConsulta] = useState<DuvidaConsulta[]>([]);
+  const [favoritos, setFavoritos] = useState<Favorito[]>([]);
   const [preferencias, setPreferencias] = useState<Preferencias>(PREFERENCIAS_OMISSAO);
 
   // Carrega tudo do IndexedDB local ao arrancar. Sem dados guardados ainda
@@ -95,6 +99,7 @@ export default function App() {
         vacinasGuardadas,
         registosConsultaGuardados,
         duvidasConsultaGuardadas,
+        favoritosGuardados,
       ] = await Promise.all([
         carregarCriancas(),
         carregarMedicoes(),
@@ -104,6 +109,7 @@ export default function App() {
         carregarVacinas(),
         carregarRegistosConsulta(),
         carregarDuvidasConsulta(),
+        carregarFavoritos(),
       ]);
 
       if (criancasGuardadas === undefined) {
@@ -119,6 +125,7 @@ export default function App() {
       setVacinasAdministradas(vacinasGuardadas ?? []);
       setRegistosConsulta(registosConsultaGuardados ?? []);
       setDuvidasConsulta(duvidasConsultaGuardadas ?? []);
+      setFavoritos(favoritosGuardados ?? []);
       setPreferencias(prefsGuardadas);
       aplicarTema(prefsGuardadas.tema);
       setPronto(true);
@@ -280,6 +287,17 @@ export default function App() {
       return novo;
     });
   }
+
+  function alternarFavorito(favorito: Omit<Favorito, "id">) {
+    setFavoritos((prev) => {
+      const existe = prev.find((f) => f.itemId === favorito.itemId);
+      const novo = existe
+        ? prev.filter((f) => f.itemId !== favorito.itemId)
+        : [...prev, { id: crypto.randomUUID(), ...favorito }];
+      guardarFavoritos(novo);
+      return novo;
+    });
+  }
   function atualizarLegendaDiario(id: string, legenda: string) {
     setEntradasDiario((prev) => {
       const novo = prev.map((e) => (e.id === id ? { ...e, legenda } : e));
@@ -316,6 +334,7 @@ export default function App() {
     setVacinasAdministradas([]);
     setRegistosConsulta([]);
     setDuvidasConsulta([]);
+    setFavoritos([]);
     setPreferencias(PREFERENCIAS_OMISSAO);
     aplicarTema(PREFERENCIAS_OMISSAO.tema);
     // guardarCriancas/guardarMedicoes não são necessários aqui — apagarTudo()
@@ -396,6 +415,7 @@ export default function App() {
             marcosAlcancados={marcosAlcancados}
             entradasDiario={entradasDiario.filter((e) => e.criancaId === criancaAtivaId)}
             vacinasAdministradas={vacinasAdministradas.filter((v) => v.criancaId === criancaAtivaId)}
+            favoritos={favoritos}
             unidades={preferencias.unidades}
             onNavegar={setSeccaoAtiva}
           />
@@ -446,13 +466,31 @@ export default function App() {
             onAssociarMarco={associarMarcoDiario}
           />
         )}
-        {seccaoAtiva === "puericultura" && <PuericulturaScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "puericultura" && (
+          <PuericulturaScreen
+            crianca={criancaAtiva}
+            favoritos={favoritos}
+            onAlternarFavorito={alternarFavorito}
+          />
+        )}
         {seccaoAtiva === "diversificacao" && <DiversificacaoScreen crianca={criancaAtiva} />}
-        {seccaoAtiva === "sintomas" && <SintomasScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "sintomas" && (
+          <SintomasScreen
+            crianca={criancaAtiva}
+            favoritos={favoritos}
+            onAlternarFavorito={alternarFavorito}
+          />
+        )}
         {seccaoAtiva === "calculadora" && (
           <CalculadoraScreen crianca={criancaAtiva} medicoes={medicoesDaCrianca} />
         )}
-        {seccaoAtiva === "socorros" && <PrimeirosSocorrosScreen crianca={criancaAtiva} />}
+        {seccaoAtiva === "socorros" && (
+          <PrimeirosSocorrosScreen
+            crianca={criancaAtiva}
+            favoritos={favoritos}
+            onAlternarFavorito={alternarFavorito}
+          />
+        )}
         {seccaoAtiva === "sbv" && <SbvScreen crianca={criancaAtiva} />}
         {seccaoAtiva === "contactos" && <ContactosScreen />}
         {seccaoAtiva === "alertas" && <AlertasScreen crianca={criancaAtiva} />}

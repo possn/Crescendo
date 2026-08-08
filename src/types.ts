@@ -232,6 +232,17 @@ export interface DuvidaConsulta {
   respondida: boolean;
 }
 
+// --- Favoritos ------------------------------------------------------------
+
+export interface Favorito {
+  id: string;
+  itemId: string;
+  seccao: AppSection;
+  titulo: string;
+  categoriaLabel: string;
+  cor: string;
+}
+
 // --- Preferências ---------------------------------------------------------
 
 export type Unidades = "metrico" | "imperial";
