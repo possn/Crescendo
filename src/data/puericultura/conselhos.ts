@@ -423,6 +423,128 @@ export const CONSELHOS: ConselhoPuericultura[] = [
     fonte: "AAP / American Speech-Language-Hearing Association",
   },
 
+  // ---- ESTIMULAÇÃO — BRINCADEIRA POR IDADE (terceira ronda) ----
+  {
+    id: "est-brinquedo-nao-e-obrigatorio",
+    tema: "estimulacao",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Nenhum brinquedo é obrigatório para nenhum marco",
+    texto:
+      "Vale a pena dizer isto antes de mais nada: nenhum brinquedo específico é necessário para a criança atingir o marco seguinte, e não existe nenhuma aplicação que \"ensine a ler\" sozinha. Os pais continuam a ser o melhor estímulo que existe — os objetos abaixo são apoio, não substituição.",
+    fonte: "AAP — HealthyChildren.org, Toy Buying Tips",
+  },
+  {
+    id: "est-0-2m-contraste",
+    tema: "estimulacao",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 2,
+    titulo: "0-2 meses: imagens a preto e branco, alto contraste",
+    texto:
+      "Nesta idade a visão ainda está a desenvolver-se — padrões a preto e branco ou de cores muito contrastantes (não pastel) são mais fáceis de focar do que cores suaves. Um móbile simples por cima do berço, fora do alcance, também ajuda a treinar o seguimento visual.",
+    fonte: "American Red Cross / AAP",
+  },
+  {
+    id: "est-2-4m-chocalho",
+    tema: "estimulacao",
+    idadeMinMeses: 2,
+    idadeMaxMeses: 4,
+    titulo: "2-4 meses: chocalhos e espelho de bebé",
+    texto:
+      "Por volta dos 4 meses começa a trazer as mãos para o centro do corpo e a coordenar o olhar com o movimento — um chocalho leve (fácil de agarrar) e um espelho próprio para bebé (inquebrável) ajudam a treinar essa coordenação, além de estimular o interesse social pela própria imagem.",
+    fonte: "UnityPoint Health — Early Childhood Development Toys by Age",
+  },
+  {
+    id: "est-4-6m-textura",
+    tema: "estimulacao",
+    idadeMinMeses: 4,
+    idadeMaxMeses: 6,
+    titulo: "4-6 meses: texturas, mordedores, tapete de atividades",
+    texto:
+      "Tudo vai à boca nesta fase — é assim que exploram o mundo, não é um problema a corrigir. Objetos de texturas diferentes (macio, áspero, com relevo) e mordedores próprios (sem BPA) dão-lhe informação sensorial variada, em segurança.",
+    fonte: "American Red Cross — Toys and Games for Child Development",
+  },
+  {
+    id: "est-6-9m-causa-efeito",
+    tema: "estimulacao",
+    idadeMinMeses: 6,
+    idadeMaxMeses: 9,
+    titulo: "6-9 meses: esconde-esconde e brinquedos de causa-efeito",
+    texto:
+      "É a idade em que começa a perceber que um objeto continua a existir mesmo escondido (permanência do objeto) — jogos simples de esconder e mostrar, ou brinquedos que reagem a uma ação (aperta e faz som), reforçam essa descoberta e a noção de que as suas ações têm efeito no mundo.",
+    fonte: "HSS — Child Development Toys by Age",
+  },
+  {
+    id: "est-9-12m-empilhar",
+    tema: "estimulacao",
+    idadeMinMeses: 9,
+    idadeMaxMeses: 12,
+    titulo: "9-12 meses: copos para empilhar, livros de pano/cartão",
+    texto:
+      "Empilhar e encaixar copos treina a preensão fina e a noção de tamanho relativo. Livros simples e resistentes (pano ou cartão grosso), com imagens de rostos ou animais, aproveitam o interesse crescente por imagens e ajudam a construir vocabulário — mesmo que ainda não fale.",
+    fonte: "UnityPoint Health / AAP Bright Futures",
+  },
+  {
+    id: "est-12-18m-empurrar",
+    tema: "estimulacao",
+    idadeMinMeses: 12,
+    idadeMaxMeses: 18,
+    titulo: "12-18 meses: brinquedos para empurrar, blocos grandes",
+    texto:
+      "Quem está a começar a andar beneficia de brinquedos para empurrar (dão apoio e incentivam a caminhar mais), e blocos grandes e leves para empilhar e derrubar — a repetição de construir/derrubar é, por si só, uma forma de aprendizagem nesta idade.",
+    fonte: "American Red Cross — Toys and Games for Child Development",
+  },
+  {
+    id: "est-18-24m-lapis-encaixe",
+    tema: "estimulacao",
+    idadeMinMeses: 18,
+    idadeMaxMeses: 24,
+    titulo: "18-24 meses: lápis de cera, puzzles de encaixe simples",
+    texto:
+      "Lápis de cera grossos (mais fáceis de agarrar) começam a treinar a pega em pinça, essencial mais tarde para escrever. Puzzles com 2-4 peças grandes, de encaixe simples, desenvolvem resolução de problemas e coordenação olho-mão.",
+    fonte: "AAP Bright Futures / Thoughtful Parent",
+  },
+  {
+    id: "est-2-3a-faz-de-conta",
+    tema: "estimulacao",
+    idadeMinMeses: 24,
+    idadeMaxMeses: 36,
+    titulo: "2-3 anos: jogo do faz-de-conta, triciclo",
+    texto:
+      "Brincar aos \"faz-de-conta\" (cozinhar, cuidar de um boneco) desenvolve linguagem e competências sociais — não precisa de brinquedos realistas, objetos genéricos servem tão bem ou melhor. Um triciclo ou bicicleta de equilíbrio (sem pedais) desenvolve coordenação motora grossa.",
+    fonte: "Red Cross / HSS",
+  },
+  {
+    id: "est-3-4a-tesoura-desenho",
+    tema: "estimulacao",
+    idadeMinMeses: 36,
+    idadeMaxMeses: 48,
+    titulo: "3-4 anos: tesoura de pontas redondas, materiais de desenho",
+    texto:
+      "Cortar com tesoura de pontas redondas (sempre com supervisão) e desenhar com lápis de cor ou marcadores treinam motricidade fina de forma mais exigente. Jogos de tabuleiro muito simples (com regras curtas, tipo \"tirar à sorte e avançar\") introduzem a noção de esperar a vez.",
+    fonte: "Red Cross — Toys and Games for Child Development",
+  },
+  {
+    id: "est-4-5a-construcao-tabuleiro",
+    tema: "estimulacao",
+    idadeMinMeses: 48,
+    idadeMaxMeses: 60,
+    titulo: "4-5 anos: construção, jogos de tabuleiro com regras, bicicleta",
+    texto:
+      "Peças de construção mais pequenas e detalhadas apoiam o pensamento espacial. Jogos de tabuleiro com regras um pouco mais elaboradas ensinam a seguir instruções e a lidar com perder. Uma bicicleta (com ou sem estabilizadores) continua a desenvolver equilíbrio e coordenação motora grossa.",
+    fonte: "HSS / Thoughtful Parent — Developmental Toys by Age",
+  },
+  {
+    id: "est-ecras-limite",
+    tema: "estimulacao",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Ecrãs: evitar antes dos 2 anos, limitar depois",
+    texto:
+      "A AAP recomenda evitar ecrãs (incluindo vídeo-chamadas com familiares à parte) antes dos 2 anos, e limitar a menos de 1 hora/dia dos 2 aos 5 anos, sempre que possível em conjunto com um adulto. Aplicações \"educativas\" costumam treinar só memorização (letras, formas) — não substituem brincadeira ativa.",
+    fonte: "AAP — HealthyChildren.org, Healthy Digital Media Use Habits",
+  },
+
   // ---- CHORO E CONFORTO ----
   {
     id: "conf-colicas-o-que-e",
