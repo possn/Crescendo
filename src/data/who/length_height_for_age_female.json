@@ -2,8 +2,7 @@
   "indicador": "length_height_for_age",
   "sexo": "F",
   "unidade": "cm",
-  "fonte": "WHO Child Growth Standards (2006) \u2014 Multicentre Growth Reference Study",
-  "nota": "Ate aos 24 meses usa-se comprimento (deitado); dos 24 aos 60 meses usa-se altura (em pe). A OMS fornece series distintas para os 24 meses porque a medicao em pe da, em media, ~0.7cm menos que deitado.",
+  "fonte": "WHO Child Growth Standards (2006) — ficheiro oficial descarregado diretamente de who.int/tools/child-growth-standards/standards/length-height-for-age, verificado linha a linha em 08/2026",
   "pontos": [
     {
       "idadeMeses": 0.0,
