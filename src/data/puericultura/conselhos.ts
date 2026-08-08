@@ -230,16 +230,6 @@ export const CONSELHOS: ConselhoPuericultura[] = [
       "Uvas inteiras, frutos secos, pipocas, cenoura crua em pedaços e salsichas são das causas mais comuns de engasgamento grave nesta idade — cortar sempre em pedaços pequenos e finos (ou evitar inteiros) até bem depois dos 2 anos.",
     fonte: "AAP Bright Futures",
   },
-  {
-    id: "alim-febre-jovem",
-    tema: "alimentacao",
-    idadeMinMeses: 0,
-    idadeMaxMeses: 3,
-    titulo: "Febre antes dos 3 meses é sempre urgente",
-    texto:
-      "Num bebé com menos de 3 meses, qualquer febre (≥38°C retal) justifica contacto médico no próprio dia, mesmo que pareça bem-disposto — o sistema imunitário ainda é muito imaturo para se assumir que é \"só uma virose\".",
-    fonte: "AAP Bright Futures",
-  },
 
   // ---- SEGURANÇA (adicionais) ----
   {

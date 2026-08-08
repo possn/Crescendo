@@ -17,11 +17,11 @@ const GRUPOS: GrupoMenu[] = [
     titulo: "Acompanhamento",
     itens: [
       { id: "inicio", label: "Início", glyph: "home" },
-      { id: "marcos", label: "Marcos de Desenvolvimento", glyph: "chart" },
-      { id: "vacinas", label: "Vacinas — PNV", glyph: "shield" },
-      { id: "consultas", label: "Consultas de Vigilância", glyph: "clipboard" },
-      { id: "alertas", label: "Sinais de Alerta", glyph: "flag" },
       { id: "crescimento", label: "Curvas de Crescimento", glyph: "ruler" },
+      { id: "marcos", label: "Marcos de Desenvolvimento", glyph: "chart" },
+      { id: "alertas", label: "Sinais de Alerta", glyph: "flag" },
+      { id: "consultas", label: "Consultas de Vigilância", glyph: "clipboard" },
+      { id: "vacinas", label: "Vacinas — PNV", glyph: "shield" },
     ],
   },
   {
