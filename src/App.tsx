@@ -338,6 +338,7 @@ export default function App() {
     setFavoritos([]);
     setPreferencias(PREFERENCIAS_OMISSAO);
     aplicarTema(PREFERENCIAS_OMISSAO.tema);
+    setSeccaoAtiva("inicio");
     // guardarCriancas/guardarMedicoes não são necessários aqui — apagarTudo()
     // já limpou as chaves todas no IndexedDB antes desta função ser chamada.
   }
