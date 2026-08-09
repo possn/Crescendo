@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Crianca } from "../../types";
+import { desfocarCampoAtivo } from "../../lib/desfocarCampoAtivo";
 import "./OnboardingScreen.css";
 
 interface OnboardingScreenProps {
@@ -19,6 +20,7 @@ export function OnboardingScreen({ onConcluir }: OnboardingScreenProps) {
   function submeter(e: React.FormEvent) {
     e.preventDefault();
     if (!nome || !dataNascimento) return;
+    desfocarCampoAtivo();
     onConcluir({
       id: crypto.randomUUID(),
       nome,

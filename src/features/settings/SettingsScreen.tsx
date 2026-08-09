@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { exportarTudo, apagarTudo } from "../../lib/persistence";
+import { desfocarCampoAtivo } from "../../lib/desfocarCampoAtivo";
 import type { Crianca, Preferencias, Unidades, Tema } from "../../types";
 import "./SettingsScreen.css";
 
@@ -59,6 +60,7 @@ export function SettingsScreen({
   function submeterNovaCrianca(e: React.FormEvent) {
     e.preventDefault();
     if (!novoNome || !novaData) return;
+    desfocarCampoAtivo();
     onAdicionarCrianca({
       id: crypto.randomUUID(),
       nome: novoNome,
