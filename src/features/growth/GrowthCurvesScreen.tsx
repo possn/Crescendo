@@ -8,6 +8,8 @@ import {
   rotuloComprimento,
   paraKg,
   paraCm,
+  kgParaExibir,
+  cmParaExibir,
 } from "../../lib/units";
 import { GrowthChart } from "./GrowthChart";
 import "./GrowthCurvesScreen.css";
@@ -61,6 +63,7 @@ interface GrowthCurvesScreenProps {
   crianca: Crianca;
   medicoes: MedicaoCrescimento[];
   onAdicionarMedicao: (m: MedicaoCrescimento) => void;
+  onEditarMedicao: (m: MedicaoCrescimento) => void;
   onRemoverMedicao: (id: string) => void;
   unidades: Unidades;
 }
@@ -85,6 +88,7 @@ export function GrowthCurvesScreen({
   crianca,
   medicoes,
   onAdicionarMedicao,
+  onEditarMedicao,
   onRemoverMedicao,
   unidades,
 }: GrowthCurvesScreenProps) {
@@ -117,7 +121,36 @@ export function GrowthCurvesScreen({
   const [formPerimetro, setFormPerimetro] = useState("");
   const [aviso, setAviso] = useState<string | null>(null);
   const [dadosPendentes, setDadosPendentes] = useState<MedicaoCrescimento | null>(null);
+  const [idEmEdicao, setIdEmEdicao] = useState<string | null>(null);
   const topoRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  function iniciarEdicao(m: MedicaoCrescimento) {
+    setIdEmEdicao(m.id);
+    setModoData("data");
+    setFormData(m.data);
+    setFormIdadeMeses("");
+    setFormPeso(m.pesoKg !== undefined ? String(kgParaExibir(m.pesoKg, unidades)) : "");
+    setFormComprimento(
+      m.comprimentoOuAlturaCm !== undefined ? String(cmParaExibir(m.comprimentoOuAlturaCm, unidades)) : ""
+    );
+    setFormTipoMedicao(m.tipoMedicaoComprimento ?? "comprimento");
+    setFormPerimetro(
+      m.perimetroCefalicoCm !== undefined ? String(cmParaExibir(m.perimetroCefalicoCm, unidades)) : ""
+    );
+    setAviso(null);
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function cancelarEdicao() {
+    setIdEmEdicao(null);
+    setFormPeso("");
+    setFormComprimento("");
+    setFormPerimetro("");
+    setFormIdadeMeses("");
+    setFormData(new Date().toISOString().slice(0, 10));
+    setAviso(null);
+  }
 
   function irParaResultado() {
     // Depois de guardar, o utilizador está normalmente scrolled para baixo
@@ -202,7 +235,7 @@ export function GrowthCurvesScreen({
         `Isto parece fora do plausível para 0-5 anos: ${foraDosLimites.join(", ")}. Verifique se não trocou a unidade ou um dígito. Pode confirmar mesmo assim se tiver a certeza.`
       );
       setDadosPendentes({
-        id: crypto.randomUUID(),
+        id: idEmEdicao ?? crypto.randomUUID(),
         criancaId: crianca.id,
         data: dataFinal,
         pesoKg,
@@ -213,15 +246,21 @@ export function GrowthCurvesScreen({
       return;
     }
 
-    onAdicionarMedicao({
-      id: crypto.randomUUID(),
+    const medicao: MedicaoCrescimento = {
+      id: idEmEdicao ?? crypto.randomUUID(),
       criancaId: crianca.id,
       data: dataFinal,
       pesoKg,
       comprimentoOuAlturaCm: comprimentoCm,
       tipoMedicaoComprimento: formComprimento ? formTipoMedicao : undefined,
       perimetroCefalicoCm: perimetroCm,
-    });
+    };
+    if (idEmEdicao) {
+      onEditarMedicao(medicao);
+    } else {
+      onAdicionarMedicao(medicao);
+    }
+    setIdEmEdicao(null);
     setFormPeso("");
     setFormComprimento("");
     setFormPerimetro("");
@@ -231,7 +270,12 @@ export function GrowthCurvesScreen({
 
   function confirmarMesmoAssim() {
     if (!dadosPendentes) return;
-    onAdicionarMedicao(dadosPendentes);
+    if (idEmEdicao) {
+      onEditarMedicao(dadosPendentes);
+    } else {
+      onAdicionarMedicao(dadosPendentes);
+    }
+    setIdEmEdicao(null);
     setDadosPendentes(null);
     setAviso(null);
     setFormPeso("");
@@ -315,8 +359,15 @@ export function GrowthCurvesScreen({
           </p>
         </div>
 
-        <form className="growth-screen__form" onSubmit={submeter}>
-          <h2>Nova medição</h2>
+        <form className="growth-screen__form" onSubmit={submeter} ref={formRef}>
+          <div className="growth-screen__form-titulo">
+            <h2>{idEmEdicao ? "Editar medição" : "Nova medição"}</h2>
+            {idEmEdicao && (
+              <button type="button" className="growth-screen__cancelar-edicao" onClick={cancelarEdicao}>
+                Cancelar
+              </button>
+            )}
+          </div>
 
           <div className="growth-screen__mode-toggle">
             <button
@@ -412,7 +463,7 @@ export function GrowthCurvesScreen({
           )}
 
           <button type="submit" className="growth-screen__submit">
-            Guardar medição
+            {idEmEdicao ? "Guardar alterações" : "Guardar medição"}
           </button>
         </form>
       </div>
@@ -436,13 +487,22 @@ export function GrowthCurvesScreen({
                     {m.perimetroCefalicoCm !== undefined &&
                       ` · PC ${formatarComprimento(m.perimetroCefalicoCm, unidades)}`}
                   </span>
-                  <button
-                    className="growth-screen__lista-apagar"
-                    onClick={() => onRemoverMedicao(m.id)}
-                    aria-label="Apagar esta medição"
-                  >
-                    Apagar
-                  </button>
+                  <div className="growth-screen__lista-acoes">
+                    <button
+                      className="growth-screen__lista-editar"
+                      onClick={() => iniciarEdicao(m)}
+                      aria-label="Editar esta medição"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="growth-screen__lista-apagar"
+                      onClick={() => onRemoverMedicao(m.id)}
+                      aria-label="Apagar esta medição"
+                    >
+                      Apagar
+                    </button>
+                  </div>
                 </li>
               );
             })}

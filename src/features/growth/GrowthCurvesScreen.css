@@ -102,9 +102,25 @@
   line-height: 1.5;
 }
 
+.growth-screen__form-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
 .growth-screen__form h2 {
   font-size: 15px;
-  margin: 0 0 14px;
+  margin: 0;
+}
+
+.growth-screen__cancelar-edicao {
+  border: none;
+  background: none;
+  color: var(--ink-faint);
+  font-size: 12.5px;
+  cursor: pointer;
+  padding: 2px 4px;
 }
 
 .growth-screen__field {
@@ -251,6 +267,20 @@
 .growth-screen__lista-valores {
   flex: 1;
   color: var(--ink-muted);
+}
+
+.growth-screen__lista-acoes {
+  display: flex;
+  gap: 4px;
+}
+
+.growth-screen__lista-editar {
+  border: none;
+  background: none;
+  color: var(--accent-strong);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 6px;
 }
 
 .growth-screen__lista-apagar {

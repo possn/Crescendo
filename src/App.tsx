@@ -183,6 +183,14 @@ export default function App() {
     });
   }
 
+  function editarMedicao(m: MedicaoCrescimento) {
+    setMedicoes((prev) => {
+      const novo = prev.map((existente) => (existente.id === m.id ? m : existente));
+      guardarMedicoes(novo);
+      return novo;
+    });
+  }
+
   function alternarMarco(marcoId: string) {
     setMarcosAlcancados((prev) => {
       const novo = new Set(prev);
@@ -406,6 +414,7 @@ export default function App() {
             crianca={criancaAtiva}
             medicoes={medicoesDaCrianca}
             onAdicionarMedicao={adicionarMedicao}
+            onEditarMedicao={editarMedicao}
             onRemoverMedicao={removerMedicao}
             unidades={preferencias.unidades}
           />
