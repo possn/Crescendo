@@ -4,10 +4,9 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
-  // O site fica em possn.github.io/Crescendo/ (página de projeto, não de
-  // utilizador) — sem isto, todos os ficheiros (JS, CSS, ícones) seriam
-  // pedidos a partir da raiz e dariam 404.
-  base: "/Crescendo/",
+  // O site fica em appcrescendo.com (domínio próprio, apontado via
+  // Cloudflare DNS para o GitHub Pages) — raiz, sem subpasta.
+  base: "/",
   plugins: [
     react(),
     VitePWA({
@@ -18,14 +17,14 @@ export default defineConfig({
         "icons/apple-touch-icon.png",
       ],
       manifest: {
-        id: "/Crescendo/",
+        id: "/",
         name: "Crescendo — Desenvolvimento & Crescimento Infantil",
         short_name: "Crescendo",
         description:
           "Acompanhamento do desenvolvimento e crescimento infantil (0-5 anos), com curvas de crescimento e marcos baseados em dados oficiais da OMS e CDC/AAP.",
         lang: "pt-PT",
-        start_url: "/Crescendo/",
-        scope: "/Crescendo/",
+        start_url: "/",
+        scope: "/",
         display: "standalone",
         orientation: "portrait",
         background_color: "#fef5e8",
@@ -51,7 +50,7 @@ export default defineConfig({
         // App-shell + dados estáticos (JSON da OMS) em cache; sem cache de
         // pedidos de rede dinâmicos porque o protótipo ainda não tem backend.
         globPatterns: ["**/*.{js,css,html,json,png,svg,ico}"],
-        navigateFallback: "/Crescendo/index.html",
+        navigateFallback: "/index.html",
         // Ativa a nova versão do service worker imediatamente em vez de
         // esperar que todos os separadores antigos fechem — sem isto, uma
         // vez instalada uma versão com bug, o telemóvel fica preso nela
