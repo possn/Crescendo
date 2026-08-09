@@ -208,6 +208,7 @@ export default function App() {
       return novo;
     });
     setCriancaAtivaId(c.id);
+    setSeccaoAtiva("inicio");
   }
 
   function apagarCrianca(id: string) {
