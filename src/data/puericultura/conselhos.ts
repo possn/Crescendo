@@ -650,6 +650,156 @@ export const CONSELHOS: ConselhoPuericultura[] = [
       "A mudança de pressão na descolagem e na aterragem pode incomodar os ouvidos do bebé — mamar, dar biberão ou chucha nesses dois momentos específicos ajuda a equalizar a pressão através da deglutição.",
     fonte: "AAP Bright Futures",
   },
+
+  // ---- CHORO E CONFORTO (segunda ronda) ----
+  {
+    id: "conf-hora-bruxa",
+    tema: "conforto",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 4,
+    titulo: "\"Hora da bruxa\": choro concentrado ao fim da tarde",
+    texto:
+      "Muitos bebés têm um período previsível de choro e agitação a meio/fim da tarde, sem causa identificável — cansaço acumulado do dia é a explicação mais aceite. Tende a atenuar-se por volta dos 3-4 meses, ao mesmo tempo que as cólicas.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "conf-tecnicas-acalmar",
+    tema: "conforto",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 4,
+    titulo: "Técnicas que costumam ajudar a acalmar",
+    texto:
+      "Enfaixar bem (braços contidos), embalar ou balançar suavemente, sons \"sh\" constantes ou ruído branco, colocar de lado ou de barriga para baixo só ao colo (nunca para dormir), e permitir sucção (peito, biberão ou chucha) — combinações destas técnicas imitam o ambiente uterino e ajudam muitos bebés a acalmar.",
+    fonte: "Dr. Harvey Karp — \"The Happiest Baby on the Block\" (popularizado, sem ensaio clínico robusto, mas amplamente recomendado)",
+  },
+  {
+    id: "conf-quando-preocupar",
+    tema: "conforto",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 4,
+    titulo: "Quando o choro deixa de ser \"só cólicas\"",
+    texto:
+      "Febre, vómitos persistentes, sangue nas fezes, recusa alimentar prolongada, choro agudo diferente do habitual, ou um bebé que não consegue ser consolado de forma nenhuma por longos períodos — nestes casos, vale a pena contactar o pediatra, mesmo que pareça \"só mais um episódio de cólicas\".",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- HIGIENE E CUIDADOS (segunda ronda) ----
+  {
+    id: "hig-corte-unhas",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Cortar as unhas: melhor a dormir ou depois do banho",
+    texto:
+      "As unhas dos bebés crescem depressa e são afiadas o suficiente para arranhar a cara deles próprios. É mais fácil e seguro cortar com o bebé a dormir ou logo após o banho (unhas mais moles), usando tesoura de pontas redondas ou corta-unhas de bebé.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "hig-pele-eczema",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Pele seca e eczema são comuns — hidratar todos os dias",
+    texto:
+      "Pele seca ou com manchas ásperas (eczema/dermatite atópica) é frequente em bebés e crianças pequenas. Hidratante sem perfume aplicado diariamente, banhos mais curtos e mornos (não quentes), e evitar produtos perfumados ajudam a maioria dos casos. Se persistir ou piorar muito, vale a pena avaliação do pediatra.",
+    fonte: "AAP — HealthyChildren.org, Eczema and Atopic Dermatitis",
+  },
+  {
+    id: "hig-primeira-escovagem",
+    tema: "higiene",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 24,
+    titulo: "Escovar os dentes assim que sair o primeiro",
+    texto:
+      "Logo que surge o primeiro dente, deve começar a ser escovado 2x por dia com escova macia de criança e uma quantidade mínima de pasta fluoretada (\"grão de arroz\" até aos 3 anos, \"ervilha\" depois). Antes dos dentes saírem, limpar as gengivas com uma gaze húmida já ajuda a criar o hábito.",
+    fonte: "AAP / American Academy of Pediatric Dentistry",
+  },
+  {
+    id: "hig-protetor-solar",
+    tema: "higiene",
+    idadeMinMeses: 6,
+    idadeMaxMeses: 60,
+    titulo: "Protetor solar a partir dos 6 meses; antes disso, sombra e roupa",
+    texto:
+      "Antes dos 6 meses, a recomendação é evitar exposição solar direta — usar sombra, chapéu e roupa que cubra em vez de protetor solar. A partir dos 6 meses, protetor solar (FPS 30+, de largo espectro) nas zonas expostas, reaplicado a cada 2 horas.",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- VIDA EM FAMÍLIA (segunda ronda) ----
+  {
+    id: "fam-volta-trabalho",
+    tema: "familia",
+    idadeMinMeses: 2,
+    idadeMaxMeses: 24,
+    titulo: "Volta ao trabalho / início da creche: um período de adaptação é normal",
+    texto:
+      "É comum a criança (e os pais) levarem 1-2 semanas a adaptar-se a uma nova rotina de creche ou ama — choro na despedida, sono mais instável, ou regressão temporária de comportamentos são esperados e tendem a passar. Uma despedida breve e consistente costuma funcionar melhor do que prolongar a saída.",
+    fonte: "AAP Bright Futures",
+  },
+  {
+    id: "fam-modelagem-ecras",
+    tema: "familia",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "O tempo de ecrã dos pais também conta",
+    texto:
+      "Crianças pequenas aprendem por imitação — reduzir o telemóvel durante refeições e brincadeira não é só para a criança, é modelar o comportamento que se quer ensinar. Não precisa de ser perfeito, mas vale a pena ter consciência disto.",
+    fonte: "AAP — HealthyChildren.org, Healthy Digital Media Use Habits",
+  },
+  {
+    id: "fam-viagens-carro",
+    tema: "familia",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Viagens de carro longas: paragens regulares",
+    texto:
+      "Em viagens superiores a 2 horas, planeie paragens a cada 1,5-2h para retirar o bebé da cadeira — passar muito tempo seguido na cadeira-auto (posição semi-reclinada) pode comprimir a via aérea em bebés pequenos, sobretudo prematuros.",
+    fonte: "AAP — Car Safety Seats: A Guide for Families",
+  },
+
+  // ---- ALIMENTAÇÃO (terceira ronda) ----
+  {
+    id: "alim-leite-vaca-1ano",
+    tema: "alimentacao",
+    idadeMinMeses: 9,
+    idadeMaxMeses: 24,
+    titulo: "Leite de vaca inteiro só a partir dos 12 meses",
+    texto:
+      "Antes de 1 ano, o leite de vaca tem pouco ferro e pode até interferir na sua absorção, além de sobrecarregar os rins do bebé com sódio e proteína em excesso. Depois de 1 ano, o leite de vaca inteiro (não meio-gordo) é adequado como parte de uma dieta equilibrada, até aos 2 anos.",
+    fonte: "AAP — Committee on Nutrition / Bright Futures",
+  },
+  {
+    id: "alim-apetite-variavel",
+    tema: "alimentacao",
+    idadeMinMeses: 12,
+    idadeMaxMeses: 60,
+    titulo: "Comer pouco numa refeição e muito na seguinte é normal",
+    texto:
+      "O apetite de crianças pequenas varia bastante de refeição para refeição e de dia para dia, ligado ao ritmo de crescimento mais irregular depois do 1º ano. Olhar para o padrão ao longo de uma semana, não para uma refeição isolada, dá uma imagem mais realista.",
+    fonte: "AAP Bright Futures",
+  },
+
+  // ---- SEGURANÇA (terceira ronda) ----
+  {
+    id: "seg-imanes-pequenos",
+    tema: "seguranca",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Ímanes pequenos (e de alta potência): risco sério se engolidos",
+    texto:
+      "Ímanes pequenos e fortes (brinquedos de construção magnética, alguns brinquedos ou peças soltas de casa) podem causar lesões intestinais graves se mais do que um for engolido — atraem-se através das paredes do intestino. Guarde fora do alcance e procure ajuda médica imediata se suspeitar de ingestão.",
+    fonte: "AAP — HealthyChildren.org, Magnet Safety",
+  },
+  {
+    id: "seg-piscinas-afogamento",
+    tema: "seguranca",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Afogamento é silencioso — supervisão ativa e constante junto de água",
+    texto:
+      "Ao contrário do que se vê nos filmes, afogamento não costuma ter gritos nem chapinhar visível — pode acontecer em segundos e em silêncio. Perto de piscinas, banheiras ou água (mesmo pouca), mantenha sempre um adulto a supervisionar ativamente, sem distrações do telemóvel.",
+    fonte: "AAP — HealthyChildren.org, Water Safety",
+  },
 ];
 
 export const TEMAS: { id: ConselhoPuericultura["tema"]; label: string; cor: string }[] = [
