@@ -30,15 +30,21 @@
 }
 
 @media (max-width: 760px) {
+  .app-shell {
+    height: auto;
+    min-height: 100dvh;
+  }
+
   .app-shell__content {
+    overflow-y: visible;
     padding: 20px;
-    padding-top: calc(64px + env(safe-area-inset-top));
+    padding-top: 20px;
   }
 
   .app-shell__mobile-header {
     display: flex;
     align-items: center;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;

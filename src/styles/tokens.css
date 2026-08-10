@@ -62,6 +62,15 @@ body,
   height: 100%;
 }
 
+@media (max-width: 760px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+  }
+}
+
 body {
   margin: 0;
   background: var(--bg);
