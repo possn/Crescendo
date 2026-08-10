@@ -162,9 +162,11 @@ export interface EstagioAlimentar {
   idadeLabel: string;
   idadeMinMeses: number;
   idadeMaxMeses: number;
-  textura: string;
-  exemplos: string[];
-  nota: string;
+  titulo: string;
+  pontos: string[];
+  evidencia?: string;
+  dicas?: string[];
+  avisoAlergia?: string[];
 }
 
 export interface PerigoEngasgamento {
@@ -172,6 +174,23 @@ export interface PerigoEngasgamento {
   alimento: string;
   risco: string;
   comoTornarSeguro: string;
+}
+
+export interface AlimentoEvitar {
+  id: string;
+  alimento: string;
+  razao: string;
+  apartirDe: string;
+}
+
+export interface ResumoAlimento {
+  id: string;
+  alimento: string;
+  m4a6: boolean;
+  m6: boolean;
+  m7a8: boolean;
+  m9a12: boolean;
+  notaEspecial?: string;
 }
 
 // --- Vacinas (PNV) ---------------------------------------------------

@@ -164,3 +164,134 @@
   max-width: 640px;
   line-height: 1.6;
 }
+
+/* ---- Novo: pontos/evidencia/avisos por estagio ---- */
+
+.diversificacao-screen__estagios h2 {
+  margin-bottom: 14px;
+}
+
+.diversificacao-screen__pontos {
+  margin: 0 0 10px;
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.diversificacao-screen__evidencia {
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.diversificacao-screen__dicas,
+.diversificacao-screen__aviso-alergia {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+
+.diversificacao-screen__aviso-alergia {
+  background: var(--warn-soft);
+}
+
+.diversificacao-screen__dicas h4,
+.diversificacao-screen__aviso-alergia h4 {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.diversificacao-screen__aviso-alergia h4 {
+  color: var(--warn-strong);
+}
+
+.diversificacao-screen__dicas ul,
+.diversificacao-screen__aviso-alergia ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+/* ---- Tabela de alimentos a evitar ---- */
+
+.diversificacao-screen__tabela-evitar {
+  display: flex;
+  flex-direction: column;
+}
+
+.diversificacao-screen__evitar-linha {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+}
+
+.diversificacao-screen__evitar-linha:last-child {
+  border-bottom: none;
+}
+
+.diversificacao-screen__evitar-alimento {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 13.5px;
+  margin-bottom: 3px;
+}
+
+.diversificacao-screen__evitar-razao {
+  display: block;
+  color: var(--ink-muted);
+  margin-bottom: 3px;
+}
+
+.diversificacao-screen__evitar-data {
+  display: block;
+  color: var(--warn-strong);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ---- Tabela-resumo cruzada ---- */
+
+.diversificacao-screen__tabela-resumo-wrap {
+  overflow-x: auto;
+}
+
+.diversificacao-screen__tabela-resumo {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 480px;
+}
+
+.diversificacao-screen__tabela-resumo th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  padding: 4px 8px 8px 0;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.diversificacao-screen__tabela-resumo th:not(:first-child),
+.diversificacao-screen__tabela-resumo td:not(:first-child) {
+  text-align: center;
+}
+
+.diversificacao-screen__tabela-resumo td {
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.diversificacao-screen__tabela-resumo td:first-child {
+  color: var(--ink-muted);
+}

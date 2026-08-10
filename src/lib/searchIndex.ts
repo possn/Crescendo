@@ -116,8 +116,8 @@ function construirIndice(): ResultadoPesquisa[] {
   for (const e of ESTAGIOS) {
     indice.push({
       id: `diversificacao-${e.id}`,
-      titulo: `${e.idadeLabel} — ${e.textura}`,
-      resumo: e.exemplos.join(", "),
+      titulo: `${e.idadeLabel} — ${e.titulo}`,
+      resumo: e.pontos.slice(0, 2).join(" · "),
       seccao: "diversificacao",
       seccaoLabel: "Diversificação Alimentar",
       categoriaLabel: "Estágio",
