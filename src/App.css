@@ -31,6 +31,7 @@
 
 @media (max-width: 760px) {
   .app-shell {
+    flex-direction: column;
     height: auto;
     min-height: 100dvh;
   }
