@@ -14,7 +14,7 @@
  * mais sensível da app.
  */
 
-export type CategoriaSintoma = "febre" | "vomitos" | "diarreia" | "tosse" | "erupcoes" | "obstipacao" | "otite" | "crupe";
+export type CategoriaSintoma = "febre" | "vomitos" | "diarreia" | "tosse" | "erupcoes" | "obstipacao" | "otite" | "crupe" | "conjuntivite" | "garganta";
 
 export interface ConselhoSintoma {
   id: string;
@@ -54,7 +54,7 @@ export const CONSELHOS_SINTOMAS: ConselhoSintoma[] = [
     idadeMaxMeses: 60,
     titulo: "Antipiréticos: qual, a partir de quando, e o que evitar",
     texto:
-      "Paracetamol pode usar-se desde bebé pequeno (confirme a idade mínima exata com o pediatra ou a bula). Ibuprofeno só a partir dos 6 meses — antes disso, os rins ainda são imaturos para o processar com segurança. Nunca aspirina em crianças com doença viral (risco de síndrome de Reye). Alternar rotineiramente entre os dois não tem benefício claramente comprovado e aumenta o risco de erro de dose — a AAP não o recomenda como prática de rotina. A dose certa depende sempre do peso, nunca da idade só por si: siga o rótulo ou a indicação do pediatra. Há uma calculadora de referência mais abaixo nesta página.",
+      "Paracetamol pode usar-se desde bebé pequeno (confirme a idade mínima exata com o pediatra ou a bula). Ibuprofeno só a partir dos 6 meses — antes disso, os rins ainda são imaturos para o processar com segurança. Nunca aspirina em crianças com doença viral (risco de síndrome de Reye). Alternar rotineiramente entre os dois não tem benefício claramente comprovado e aumenta o risco de erro de dose — a AAP não o recomenda como prática de rotina. A dose certa depende sempre do peso, nunca da idade só por si: siga o rótulo ou a indicação do pediatra. Veja Calculadora de Dose no menu, para uma referência por peso.",
     fonte: "AAP Bright Futures / FDA",
   },
   {
@@ -78,6 +78,16 @@ export const CONSELHOS_SINTOMAS: ConselhoSintoma[] = [
     fonte: "AAP Bright Futures",
   },
   {
+    id: "sint-vomitos-retomar-alimentacao",
+    categoria: "vomitos",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Depois de parar de vomitar: retomar a alimentação normal, sem pressa mas sem restringir",
+    texto:
+      "Assim que os vómitos abrandarem (geralmente após algumas horas sem vomitar), pode voltar à alimentação habitual em quantidades pequenas — não há necessidade de dieta especial nem de esperar um dia inteiro. Continuar só líquidos por muito tempo não acelera a recuperação.",
+    fonte: "AAP / ESPGHAN Guidelines for Acute Gastroenteritis",
+  },
+  {
     id: "sint-diarreia-alimentacao",
     categoria: "diarreia",
     idadeMinMeses: 0,
@@ -96,6 +106,16 @@ export const CONSELHOS_SINTOMAS: ConselhoSintoma[] = [
     texto:
       "Menos fraldas molhadas do que o habitual, boca seca, ausência de lágrimas ao chorar, moleirinha (fontanela) afundada num bebé pequeno, ou muita prostração — qualquer um destes justifica contacto com o pediatra.",
     fonte: "AAP Bright Futures",
+  },
+  {
+    id: "sint-gastroenterite-duracao",
+    categoria: "diarreia",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Duração típica, e quando deixa de ser \"só um vírus\"",
+    texto:
+      "Uma gastroenterite viral típica dura entre 5 a 14 dias, com melhoria gradual — os primeiros 2-3 dias costumam ser os piores. Diarreia com sangue, febre alta persistente, dor abdominal muito intensa e localizada, ou diarreia que dura mais de 2 semanas sem melhorar não é o padrão típico viral e justifica avaliação.",
+    fonte: "AAP — Practice Parameter, Acute Gastroenteritis",
   },
   {
     id: "sint-constipacao-geral",
@@ -255,6 +275,70 @@ export const CONSELHOS_SINTOMAS: ConselhoSintoma[] = [
       "Ar frio da noite (uma ida à varanda) ou o vapor de uma casa de banho com o chuveiro ligado costumam aliviar em minutos. Chorar e ficar agitado piora o estridor — manter a criança calma, ao colo, é mais eficaz do que parece.",
     fonte: "HealthyChildren.org",
   },
+
+  // ---- CONJUNTIVITE ----
+  {
+    id: "sint-conjuntivite-viral",
+    categoria: "conjuntivite",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Viral é a causa mais comum — não precisa de antibiótico",
+    texto:
+      "A maioria dos casos de conjuntivite (\"olho vermelho\") em crianças é viral, muitas vezes ligada a uma constipação — olhos vermelhos, lacrimejantes, com comichão. Resolve-se sozinha em 5 a 14 dias, sem tratamento específico. É contagiosa enquanto houver secreção.",
+    fonte: "AAP — HealthyChildren.org, Pinkeye (Conjunctivitis)",
+  },
+  {
+    id: "sint-conjuntivite-bacteriana",
+    categoria: "conjuntivite",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "Bacteriana: secreção espessa tipo pus, olhos \"colados\" de manhã",
+    texto:
+      "Secreção amarela/esverdeada, espessa, que volta a acumular-se poucos minutos depois de limpa, e pálpebras coladas ao acordar sugerem causa bacteriana — vale a pena avaliação pelo pediatra para decidir se são necessárias gotas antibióticas. Na prática, distinguir viral de bacteriana só pela aparência nem sempre é fiável, mesmo para profissionais.",
+    fonte: "AAP / Mayo Clinic",
+  },
+  {
+    id: "sint-conjuntivite-escola",
+    categoria: "conjuntivite",
+    idadeMinMeses: 12,
+    idadeMaxMeses: 60,
+    titulo: "Voltar à creche/escola: regras de exclusão mudaram",
+    texto:
+      "A orientação mais recente da AAP já não recomenda excluir automaticamente uma criança com conjuntivite (sem febre nem mal-estar) da escola — a lógica é semelhante à de uma constipação comum. Se for bacteriana e tratada com gotas, muitas escolas pedem só 24h de antibiótico antes do regresso; confirme a política da instituição.",
+    fonte: "AAP — Managing Infectious Diseases in Child Care and Schools",
+  },
+
+  // ---- DOR DE GARGANTA ----
+  {
+    id: "sint-garganta-viral",
+    categoria: "garganta",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 60,
+    titulo: "A maioria das dores de garganta é viral, não estreptococo",
+    texto:
+      "A maior parte das dores de garganta em crianças acompanha uma constipação comum — vírus, sem necessidade de teste nem antibiótico. Tosse, nariz a pingar e olhos vermelhos junto com a dor de garganta apontam mais para causa viral do que para estreptococo.",
+    fonte: "CDC / AAP",
+  },
+  {
+    id: "sint-garganta-estrepto-sinais",
+    categoria: "garganta",
+    idadeMinMeses: 36,
+    idadeMaxMeses: 60,
+    titulo: "Sinais que sugerem estreptococo (\"garganta estreptocócica\")",
+    texto:
+      "Início súbito de dor forte a engolir, febre, gânglios inchados no pescoço, e placas brancas nas amígdalas — sobretudo sem tosse nem nariz entupido — são os sinais clássicos que levam o pediatra a testar. O diagnóstico final precisa sempre de um teste (zaragatoa), não só da aparência.",
+    fonte: "CDC — Group A Streptococcal Pharyngitis",
+  },
+  {
+    id: "sint-garganta-idade",
+    categoria: "garganta",
+    idadeMinMeses: 0,
+    idadeMaxMeses: 36,
+    titulo: "Antes dos 3 anos, estreptococo é raro",
+    texto:
+      "A garganta estreptocócica é pouco comum antes dos 3 anos (mais frequente dos 5 aos 15 anos) — nesta idade, testar por rotina não costuma ser recomendado, sobretudo se houver sinais de constipação viral associados. Um bebé pequeno com dor de garganta pode manifestar-se só por recusar comer ou chorar ao engolir.",
+    fonte: "AAP / Seattle Children's",
+  },
 ];
 
 export const CATEGORIAS: { id: CategoriaSintoma; label: string; cor: string }[] = [
@@ -266,4 +350,6 @@ export const CATEGORIAS: { id: CategoriaSintoma; label: string; cor: string }[] 
   { id: "obstipacao", label: "Obstipação Intestinal", cor: "#4a7a4a" },
   { id: "otite", label: "Dor de Ouvido / Otite", cor: "#7a5a3d" },
   { id: "crupe", label: "Crupe", cor: "#5a6b8a" },
+  { id: "conjuntivite", label: "Conjuntivite", cor: "#3d8a7a" },
+  { id: "garganta", label: "Dor de Garganta", cor: "#b3722e" },
 ];
