@@ -212,6 +212,24 @@ export interface VacinaAdministrada {
   dataAdministracao: string;
 }
 
+export interface VacinaExtraPlano {
+  id: string;
+  nome: string;
+  doencasPrevenidas: string;
+  idadeRecomendada: string;
+  esquema: string;
+  nota?: string;
+  categoria: "extra-pnv" | "viagem";
+}
+
+export interface VacinaExtraAdministrada {
+  id: string;
+  criancaId: string;
+  vacinaId: string; // "outras" para entradas livres
+  nomePersonalizado?: string; // usado só quando vacinaId === "outras"
+  dataAdministracao: string;
+}
+
 // --- Contactos Úteis ----------------------------------------------------
 
 export type CategoriaContacto = "emergencia" | "apoio-crianca" | "recursos";

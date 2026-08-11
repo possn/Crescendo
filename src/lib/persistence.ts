@@ -24,6 +24,7 @@ import type {
   EntradaDiario,
   Preferencias,
   VacinaAdministrada,
+  VacinaExtraAdministrada,
   RegistoConsulta,
   DuvidaConsulta,
   Favorito,
@@ -35,6 +36,7 @@ const CHAVE_MARCOS_ALCANCADOS = "crescendo:marcos-alcancados"; // array de "cria
 const CHAVE_DIARIO = "crescendo:diario";
 const CHAVE_PREFERENCIAS = "crescendo:preferencias";
 const CHAVE_VACINAS = "crescendo:vacinas-administradas";
+const CHAVE_VACINAS_EXTRA = "crescendo:vacinas-extra-administradas";
 const CHAVE_REGISTOS_CONSULTA = "crescendo:registos-consulta";
 const CHAVE_DUVIDAS_CONSULTA = "crescendo:duvidas-consulta";
 const CHAVE_FAVORITOS = "crescendo:favoritos";
@@ -81,6 +83,13 @@ export async function guardarVacinas(v: VacinaAdministrada[]): Promise<void> {
   await set(CHAVE_VACINAS, v);
 }
 
+export async function carregarVacinasExtra(): Promise<VacinaExtraAdministrada[] | undefined> {
+  return get(CHAVE_VACINAS_EXTRA);
+}
+export async function guardarVacinasExtra(v: VacinaExtraAdministrada[]): Promise<void> {
+  await set(CHAVE_VACINAS_EXTRA, v);
+}
+
 export async function carregarRegistosConsulta(): Promise<RegistoConsulta[] | undefined> {
   return get(CHAVE_REGISTOS_CONSULTA);
 }
@@ -119,6 +128,7 @@ export async function exportarTudo() {
     diario,
     preferencias,
     vacinas,
+    vacinasExtra,
     registosConsulta,
     duvidasConsulta,
     favoritos,
@@ -129,6 +139,7 @@ export async function exportarTudo() {
     carregarDiario(),
     carregarPreferencias(),
     carregarVacinas(),
+    carregarVacinasExtra(),
     carregarRegistosConsulta(),
     carregarDuvidasConsulta(),
     carregarFavoritos(),
@@ -141,6 +152,7 @@ export async function exportarTudo() {
     diarioVisual: diario ?? [],
     preferencias,
     vacinasAdministradas: vacinas ?? [],
+    vacinasExtraAdministradas: vacinasExtra ?? [],
     registosConsulta: registosConsulta ?? [],
     duvidasConsulta: duvidasConsulta ?? [],
     favoritos: favoritos ?? [],

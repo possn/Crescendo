@@ -175,3 +175,116 @@
   line-height: 1.6;
   margin-top: 12px;
 }
+
+/* ---- Abas PNV / Extra-Plano ---- */
+
+.vacinas-screen__abas {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.vacinas-screen__aba {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vacinas-screen__aba--ativa {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--surface);
+}
+
+.vacinas-screen__extra-intro {
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 16px 0;
+}
+
+.vacinas-screen__extra-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.vacinas-screen__extra-item:last-child {
+  border-bottom: none;
+}
+
+.vacinas-screen__extra-detalhe {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.vacinas-screen__extra-registo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-sunken);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.vacinas-screen__extra-registo button {
+  border: none;
+  background: none;
+  color: var(--ink-faint);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.vacinas-screen__outras {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.vacinas-screen__outras h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.vacinas-screen__outra-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.vacinas-screen__outra-form input[type="text"],
+.vacinas-screen__outra-form input[type="date"] {
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: var(--font-ui);
+}
+
+.vacinas-screen__outra-form button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent-strong);
+  color: var(--surface);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}

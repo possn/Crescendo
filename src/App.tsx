@@ -27,6 +27,7 @@ import type {
   MedicaoCrescimento,
   Preferencias,
   VacinaAdministrada,
+  VacinaExtraAdministrada,
   RegistoConsulta,
   DuvidaConsulta,
   Favorito,
@@ -45,6 +46,8 @@ import {
   PREFERENCIAS_OMISSAO,
   carregarVacinas,
   guardarVacinas,
+  carregarVacinasExtra,
+  guardarVacinasExtra,
   carregarRegistosConsulta,
   guardarRegistosConsulta,
   carregarDuvidasConsulta,
@@ -80,6 +83,7 @@ export default function App() {
   const [marcosAlcancados, setMarcosAlcancados] = useState<Set<string>>(new Set());
   const [entradasDiario, setEntradasDiario] = useState<EntradaDiario[]>([]);
   const [vacinasAdministradas, setVacinasAdministradas] = useState<VacinaAdministrada[]>([]);
+  const [vacinasExtraAdministradas, setVacinasExtraAdministradas] = useState<VacinaExtraAdministrada[]>([]);
   const [registosConsulta, setRegistosConsulta] = useState<RegistoConsulta[]>([]);
   const [duvidasConsulta, setDuvidasConsulta] = useState<DuvidaConsulta[]>([]);
   const [favoritos, setFavoritos] = useState<Favorito[]>([]);
@@ -97,6 +101,7 @@ export default function App() {
         diarioGuardado,
         prefsGuardadas,
         vacinasGuardadas,
+        vacinasExtraGuardadas,
         registosConsultaGuardados,
         duvidasConsultaGuardadas,
         favoritosGuardados,
@@ -107,6 +112,7 @@ export default function App() {
         carregarDiario(),
         carregarPreferencias(),
         carregarVacinas(),
+        carregarVacinasExtra(),
         carregarRegistosConsulta(),
         carregarDuvidasConsulta(),
         carregarFavoritos(),
@@ -123,6 +129,7 @@ export default function App() {
       setMarcosAlcancados(marcosGuardados);
       setEntradasDiario(diarioGuardado ?? []);
       setVacinasAdministradas(vacinasGuardadas ?? []);
+      setVacinasExtraAdministradas(vacinasExtraGuardadas ?? []);
       setRegistosConsulta(registosConsultaGuardados ?? []);
       setDuvidasConsulta(duvidasConsultaGuardadas ?? []);
       setFavoritos(favoritosGuardados ?? []);
@@ -261,6 +268,30 @@ export default function App() {
     });
   }
 
+  function registarVacinaExtra(vacinaId: string, dataAdministracao: string, nomePersonalizado?: string) {
+    setVacinasExtraAdministradas((prev) => {
+      const novo = [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          criancaId: criancaAtivaId,
+          vacinaId,
+          nomePersonalizado,
+          dataAdministracao,
+        },
+      ];
+      guardarVacinasExtra(novo);
+      return novo;
+    });
+  }
+  function removerVacinaExtra(id: string) {
+    setVacinasExtraAdministradas((prev) => {
+      const novo = prev.filter((v) => v.id !== id);
+      guardarVacinasExtra(novo);
+      return novo;
+    });
+  }
+
   function adicionarRegistoConsulta(r: RegistoConsulta) {
     setRegistosConsulta((prev) => {
       const novo = [...prev, r];
@@ -341,6 +372,7 @@ export default function App() {
     setMarcosAlcancados(new Set());
     setEntradasDiario([]);
     setVacinasAdministradas([]);
+    setVacinasExtraAdministradas([]);
     setRegistosConsulta([]);
     setDuvidasConsulta([]);
     setFavoritos([]);
@@ -444,6 +476,11 @@ export default function App() {
             vacinasAdministradas={vacinasAdministradas.filter((v) => v.criancaId === criancaAtivaId)}
             onRegistar={registarVacina}
             onRemover={removerVacina}
+            vacinasExtraAdministradas={vacinasExtraAdministradas.filter(
+              (v) => v.criancaId === criancaAtivaId
+            )}
+            onRegistarExtra={registarVacinaExtra}
+            onRemoverExtra={removerVacinaExtra}
           />
         )}
         {seccaoAtiva === "consultas" && (
