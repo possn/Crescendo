@@ -131,7 +131,8 @@
 @media print {
   .app-shell__mobile-header,
   .sidebar,
-  .resumo-screen__acoes-tela {
+  .resumo-screen__acoes-tela,
+  .resumo-screen__apoio-tela {
     display: none !important;
   }
 
@@ -153,4 +154,10 @@
   body {
     background: white !important;
   }
+}
+
+.resumo-screen__apoio-tela {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
 }

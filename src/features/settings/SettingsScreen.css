@@ -196,3 +196,7 @@
   color: var(--surface);
   font-weight: 600;
 }
+
+.settings-screen__card--apoio p {
+  margin-bottom: 12px;
+}

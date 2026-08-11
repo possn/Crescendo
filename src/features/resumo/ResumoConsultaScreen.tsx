@@ -11,6 +11,7 @@ import { calcularZScoreEPercentil } from "../../lib/growthCalculations";
 import { MARCOS_CDC, IDADES_CHECKLIST_MESES } from "../../data/milestones/cdcMilestones";
 import { DOSES_PNV } from "../../data/vacinas/pnv";
 import { ETAPAS_CONSULTA } from "../../data/consultas/etapasConsulta";
+import { BotaoApoio } from "../../components/BotaoApoio";
 import "./ResumoConsultaScreen.css";
 
 import wfaFemale from "../../data/who/weight_for_age_female.json";
@@ -244,6 +245,10 @@ export function ResumoConsultaScreen({
         <p className="resumo-screen__rodape">
           Gerado pela app Crescendo — apoio informativo, não substitui a avaliação do pediatra.
         </p>
+      </div>
+
+      <div className="resumo-screen__apoio-tela">
+        <BotaoApoio variante="rodape" />
       </div>
     </div>
   );

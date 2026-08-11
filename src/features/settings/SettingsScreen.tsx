@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { exportarTudo, apagarTudo } from "../../lib/persistence";
 import { desfocarCampoAtivo } from "../../lib/desfocarCampoAtivo";
+import { BotaoApoio } from "../../components/BotaoApoio";
 import type { Crianca, Preferencias, Unidades, Tema } from "../../types";
 import "./SettingsScreen.css";
 
@@ -310,6 +311,16 @@ export function SettingsScreen({
             </div>
           </div>
         )}
+      </section>
+
+      <section className="settings-screen__card settings-screen__card--apoio">
+        <h2>Sobre</h2>
+        <p>
+          A Crescendo é gratuita e vai continuar a ser. Se lhe for útil, e quiser apoiar o
+          trabalho de manter o conteúdo atualizado, pode oferecer um café — completamente
+          opcional.
+        </p>
+        <BotaoApoio variante="card" />
       </section>
     </div>
   );
