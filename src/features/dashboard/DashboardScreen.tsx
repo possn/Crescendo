@@ -16,7 +16,6 @@ import { MARCOS_CDC, IDADES_CHECKLIST_MESES } from "../../data/milestones/cdcMil
 import { DOSES_PNV } from "../../data/vacinas/pnv";
 import { IlustracaoIdade } from "../../components/IlustracaoIdade";
 import { SeccaoColapsavel } from "../../components/SeccaoColapsavel";
-import { BotaoApoio } from "../../components/BotaoApoio";
 import "./DashboardScreen.css";
 
 import wfaFemale from "../../data/who/weight_for_age_female.json";
@@ -235,10 +234,6 @@ export function DashboardScreen({
         Este resumo é um atalho, não uma avaliação — veja cada secção no menu lateral para uma
         leitura completa.
       </p>
-
-      <div className="dashboard-screen__apoio">
-        <BotaoApoio variante="rodape" />
-      </div>
     </div>
   );
 }
